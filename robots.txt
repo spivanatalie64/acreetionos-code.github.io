@@ -1,9 +1,6 @@
 # AcreetionOS Website - Search Engine Optimization Policy
 # Allow all major search engines, block AI training bots only
 
-# Block AI training bots
-Disallow: /
-
 User-agent: ChatGPT-User
 Disallow: /
 
