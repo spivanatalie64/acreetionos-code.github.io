@@ -1,0 +1,341 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8" />
+<meta name="robots" content="index, follow" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AcreetionOS ISO Builder — Unofficial Editions Only</title>
+<meta name="description" content="Trigger automated ISO builds for unofficial AcreetionOS editions — 32-bit, Hyprland, MATE, GNOME, Plasma, XFCE, Sway, i3, Openbox, and Immutable. Watch the build progress and download the finished ISO." />
+<meta name="keywords" content="AcreetionOS, unofficial ISO builder, Linux build, automated build, Arch Linux, ISO download" />
+<link rel="canonical" href="https://acreetionos.org/build.html" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://acreetionos.org/build.html" />
+<meta property="og:title" content="AcreetionOS ISO Builder — Unofficial Editions" />
+<meta property="og:description" content="Build unofficial AcreetionOS editions on demand. Select, trigger, and download." />
+<meta property="og:image" content="https://acreetionos.org/logo.webp" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="AcreetionOS ISO Builder — Unofficial Editions" />
+<meta property="twitter:description" content="Build unofficial AcreetionOS editions on demand." />
+<meta property="twitter:image" content="https://acreetionos.org/logo.webp" />
+<link rel="icon" type="image/webp" href="acreetionoslogo.webp">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--acreetion-green:#2ecc71;--acreetion-body-bg:#121212;--acreetion-panel-bg:#1a1a1a;--acreetion-box-bg:#222;--acreetion-box-border:#333;--acreetion-text-bright:#e5e5e5;--acreetion-text:#b2b2b2;--acreetion-code-bg:rgba(46,204,113,0.1);--storm-color:#61afef;--flasher-color:#f39c12;--acreetion-purple:#9b59b6;--font-sans:'Roboto',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--font-mono:'Fira Code',monospace}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);background-color:var(--acreetion-body-bg);color:var(--acreetion-text-bright);line-height:1.6}
+.page-header{background-color:rgba(24,26,27,0.85);backdrop-filter:blur(12px);border-bottom:2px solid var(--acreetion-green);position:sticky;top:0;z-index:1000}
+.header-content{display:flex;justify-content:space-between;align-items:center;max-width:1400px;margin:0 auto;padding:0.75rem 2rem}
+.logo{display:flex;align-items:center;gap:1rem;font-family:var(--font-mono);font-size:1.8rem;font-weight:700;color:var(--acreetion-text-bright);text-decoration:none}
+.logo-img{height:40px;width:auto}
+.logo-text span{color:var(--acreetion-green)}
+.main-nav a{color:var(--acreetion-text);text-decoration:none;margin-left:2rem;font-weight:500}
+.main-nav a:hover{color:var(--acreetion-text-bright)}
+.btn-storm{background-color:var(--storm-color)}
+.main-nav a.btn-storm{color:#fff}
+.content-box{background-color:var(--acreetion-box-bg);border:1px solid var(--acreetion-box-border);max-width:1400px;margin:2rem auto;padding:0}
+.box-header{padding:0.8rem 1.2rem;border-bottom:1px solid var(--acreetion-box-border);background-color:#1a1a1a}
+.box-header h2{font-family:var(--font-mono);font-size:1.3rem;color:var(--acreetion-text-bright);font-weight:700}
+.box-body{padding:1.5rem}
+.box-body h3{font-family:var(--font-mono);font-size:1.1rem;margin-top:1.5rem;margin-bottom:0.5rem;border-bottom:1px solid var(--acreetion-box-border);padding-bottom:0.5rem}
+select{width:100%;padding:0.8rem 1rem;background:var(--acreetion-code-bg);color:var(--acreetion-text-bright);border:1px solid var(--acreetion-box-border);font-family:var(--font-sans);font-size:1rem;margin-bottom:1rem;cursor:pointer}
+select:focus{border-color:var(--acreetion-green);outline:none}
+.btn{display:inline-block;color:#000;text-decoration:none;padding:0.7rem 1.5rem;font-weight:700;border:none;cursor:pointer;font-family:var(--font-sans);font-size:1rem}
+.btn:hover{filter:brightness(1.1)}
+.btn-cinnamon{background-color:var(--acreetion-green)}
+.btn-storm{background-color:var(--storm-color)}
+.btn-flasher{background-color:var(--flasher-color)}
+.btn-purple{background-color:var(--acreetion-purple);color:#fff!important}
+.btn-dark{background-color:#333;color:#fff!important}
+#build-btn{width:100%;padding:1rem;font-size:1.2rem;margin-bottom:0.5rem}
+#build-btn:disabled{opacity:0.5;cursor:not-allowed}
+.progress-section{display:none;margin-top:1.5rem}
+.progress-bar-track{width:100%;height:24px;background:var(--acreetion-panel-bg);border:1px solid var(--acreetion-box-border);overflow:hidden;margin-bottom:0.5rem}
+.progress-bar-fill{height:100%;background:var(--acreetion-green);width:0%;transition:width 1s ease}
+.progress-text{font-family:var(--font-mono);font-size:0.9rem;color:var(--acreetion-text);margin-bottom:1rem}
+.status-card{padding:1rem;margin-top:1rem;border-left:3px solid var(--acreetion-green);background:rgba(46,204,113,0.05)}
+.status-card.failed{border-left-color:#e74c3c;background:rgba(231,76,60,0.05)}
+.status-card.building{border-left-color:var(--flasher-color);background:rgba(243,156,18,0.05)}
+.status-card a{color:var(--acreetion-green);text-decoration:none;font-weight:500}
+.download-btn{display:block;text-align:center;padding:1.2rem;font-size:1.3rem;margin-top:1rem;background:var(--acreetion-green);color:#000;text-decoration:none;font-weight:700;animation:pulse 2s infinite}
+@keyframes pulse{0%{opacity:1}50%{opacity:0.7}100%{opacity:1}}
+.all-statuses{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.5rem;margin-top:1rem}
+.mini-status{padding:0.5rem 0.75rem;font-size:0.85rem;border:1px solid var(--acreetion-box-border);background:var(--acreetion-panel-bg)}
+.mini-status .edition-name{font-weight:700;color:var(--acreetion-text-bright)}
+.mini-status .badge{display:inline-block;font-size:0.75rem;padding:0.15rem 0.5rem;margin-left:0.5rem;font-weight:700}
+.badge-success{background:var(--acreetion-green);color:#000}
+.badge-building{background:var(--flasher-color);color:#000}
+.badge-failed{background:#e74c3c;color:#fff}
+.badge-unknown{background:var(--acreetion-box-border);color:var(--acreetion-text)}
+.gh-link{text-align:center;margin-top:1rem;padding:1rem;background:rgba(97,175,239,0.05);border:1px solid var(--acreetion-box-border)}
+.gh-link a{color:var(--storm-color)}
+.page-footer{text-align:center;padding:2rem;margin-top:2rem;border-top:1px solid var(--acreetion-box-border);color:#777;font-size:0.9rem}
+.page-footer a{color:var(--acreetion-green);text-decoration:none}
+#log-area{background:var(--acreetion-panel-bg);border:1px solid var(--acreetion-box-border);padding:1rem;font-family:var(--font-mono);font-size:0.85rem;color:var(--acreetion-text);max-height:300px;overflow-y:auto;margin-top:0.5rem;display:none;white-space:pre-wrap}
+</style></head><body>
+<header class="page-header"><div class="header-content"><a href="index.html" class="logo"><img src="acreetionoslogo.webp" class="logo-img" width="40" height="40" decoding="auto" loading="eager" fetchpriority="high"><span class="logo-text">Acreetion<span>OS</span></span></a><nav class="main-nav"><a href="index.html">Home</a><a href="flash.html">Downloads</a><a href="build.html" class="btn btn-storm">ISO Builder</a><a href="unofficial.html" class="btn btn-storm" style="background-color:var(--acreetion-purple);color:#fff">Unofficial</a><a href="https://github.com/acreetionos-code/" class="btn btn-storm" style="background-color:#333">GitHub</a></nav></div></header>
+
+<div class="content-box"><div class="box-header"><h2><i class="bi bi-gear-wide-connected"></i> AcreetionOS ISO Builder</h2></div><div class="box-body">
+<p style="margin-bottom:1rem;color:var(--acreetion-text)">Select an unofficial edition below and trigger an automated build. The ISO will be compiled in our GitHub Actions pipeline and uploaded to Cloudflare R2. You can watch the build progress in real-time.</p><div style="margin:1rem 0 1.25rem;padding:0.9rem 1rem;border:1px solid var(--acreetion-box-border);background:rgba(46,204,113,0.08);color:var(--acreetion-text-bright);border-radius:10px;"><strong>Heads up:</strong> X11/XLibre is the support-first path here. Wayland editions are present for people who want them, but we do not provide Wayland troubleshooting — use X11/XLibre if you want help.</div>
+
+<label for="edition-select" style="display:block;margin-bottom:0.5rem;color:var(--acreetion-text-bright);font-weight:700">Choose Edition:</label>
+<select id="edition-select">
+<option value="">— Select an edition —</option>
+<option value="32-bit">32-bit (i686) Edition</option>
+<option value="Hyprland">Hyprland Edition</option>
+<option value="MATE">MATE Edition</option>
+<option value="GNOME">GNOME Edition</option>
+<option value="Plasma">Plasma (KDE) Edition</option>
+<option value="XFCE">XFCE Edition</option>
+<option value="Sway">Sway Edition</option>
+<option value="i3">i3 Edition</option>
+<option value="Openbox">Openbox Edition</option>
+<option value="Immutable Cinnamon">Immutable Cinnamon</option>
+<option value="Immutable XLibre">Immutable XLibre</option>
+</select>
+
+<button id="build-btn" class="btn btn-cinnamon" onclick="triggerBuild()" disabled>Select an edition above</button>
+
+<div class="progress-section" id="progress-section">
+<div class="progress-bar-track"><div class="progress-bar-fill" id="progress-bar"></div></div>
+<div class="progress-text" id="progress-text">Waiting to start...</div>
+<div id="status-card" class="status-card"></div>
+<div id="log-area"></div>
+<button id="dl-btn" class="download-btn" disabled onclick="downloadISO()">Not done yet</button>
+</div>
+
+<div class="gh-link">
+<p style="margin-bottom:0.5rem;color:var(--acreetion-text)">Need to kick off an unofficial build? You can trigger it through GitHub Actions once per day:</p>
+<a href="https://github.com/AcreetionOS-Code/acreetionos-code.github.io/actions/workflows/build-all.yml" target="_blank" class="btn btn-storm">Trigger Build via GitHub Actions</a>
+</div>
+</div></div>
+
+<div class="content-box"><div class="box-header"><h2>Build Status Overview</h2></div><div class="box-body">
+<p style="margin-bottom:1rem;color:var(--acreetion-text)">Current build status for unofficial editions:</p>
+<div class="all-statuses" id="status-grid">
+<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--acreetion-text)">Loading build statuses...</div>
+</div>
+</div></div>
+
+<footer class="page-footer"><p>&copy; 2026 AcreetionOS Project. <a href="https://github.com/AcreetionOS-Code/acreetionos-code.github.io/actions">View all builds on GitHub</a></p></footer>
+
+<script>
+const EDITIONS = [
+  '32bit', 'hyprland', 'mate', 'gnome',
+  'plasma', 'xfce', 'sway', 'i3', 'openbox',
+  'immutable-cinnamon', 'immutable-xlibre'
+];
+
+const EDITION_NAMES = {
+  '32bit': '32-bit',
+  'hyprland': 'Hyprland', 'mate': 'MATE', 'gnome': 'GNOME',
+  'plasma': 'Plasma', 'xfce': 'XFCE', 'sway': 'Sway', 'i3': 'i3',
+  'openbox': 'Openbox',
+  'immutable-cinnamon': 'Immutable Cinnamon',
+  'immutable-xlibre': 'Immutable XLibre'
+};
+
+let pollInterval = null;
+let currentEdition = '';
+const BUILD_TRIGGER_DATE_KEY = 'acreetionos-build-trigger-date';
+function getTodayUTC() { return new Date().toISOString().slice(0, 10); }
+function updateTriggerState() { const btn = document.getElementById('build-btn'); if (!btn) return; if (localStorage.getItem(BUILD_TRIGGER_DATE_KEY) === getTodayUTC()) { btn.disabled = true; btn.textContent = 'Triggered today'; } }
+
+setDownloadButtonState('Not done yet', false);
+updateTriggerState();
+
+document.getElementById('edition-select').addEventListener('change', function() {
+  const btn = document.getElementById('build-btn');
+  currentEdition = this.value;
+  if (this.value) {
+    btn.disabled = false;
+    btn.textContent = 'Build ' + this.value;
+    updateTriggerState();
+    if (localStorage.getItem(BUILD_TRIGGER_DATE_KEY) !== getTodayUTC()) {
+      pollStatus();
+    }
+  } else {
+    btn.disabled = true;
+    btn.textContent = 'Select an edition above';
+    setDownloadButtonState('Not done yet', false);
+  }
+  document.getElementById('progress-section').style.display = 'none';
+  if (pollInterval) { clearInterval(pollInterval); pollInterval = null; }
+});
+
+function addLog(msg) {
+  const log = document.getElementById('log-area');
+  log.style.display = 'block';
+  log.textContent += msg + '\n';
+  log.scrollTop = log.scrollHeight;
+}
+
+function setDownloadButtonState(label, enabled, url = '') {
+  const dlBtn = document.getElementById('dl-btn');
+  dlBtn.textContent = label;
+  dlBtn.disabled = !enabled;
+  dlBtn.style.display = 'block';
+  if (url) dlBtn.dataset.url = url;
+  else delete dlBtn.dataset.url;
+}
+
+function triggerBuild() {
+  const edition = document.getElementById('edition-select').value;
+  if (!edition) return;
+
+  currentEdition = edition;
+
+  const btn = document.getElementById('build-btn');
+  btn.disabled = true;
+  btn.textContent = 'Build triggered...';
+
+  document.getElementById('progress-section').style.display = 'block';
+  setDownloadButtonState('Building', false);
+  document.getElementById('progress-bar').style.width = '5%';
+  document.getElementById('progress-text').textContent = 'Triggering build...';
+  document.getElementById('log-area').textContent = '';
+  document.getElementById('log-area').style.display = 'none';
+  document.getElementById('status-card').className = 'status-card building';
+  document.getElementById('status-card').innerHTML = '<strong>Build triggered!</strong> Waiting for GitHub Actions to start...';
+
+  fetch('/api/build/trigger', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ edition })
+  }).then(r => r.json()).then(data => {
+    if (data.error) {
+      document.getElementById('status-card').className = 'status-card failed';
+      document.getElementById('status-card').innerHTML = '<strong>Trigger failed:</strong> ' + data.error + '<br><small>' + (data.detail || '') + '</small>';
+      document.getElementById('progress-text').textContent = 'Failed to trigger build';
+      btn.disabled = false;
+      btn.textContent = 'Try Again';
+      return;
+    }
+    document.getElementById('progress-bar').style.width = '10%';
+    document.getElementById('progress-text').textContent = 'Build triggered! Waiting for runner...';
+    setDownloadButtonState('Building', false);
+    localStorage.setItem(BUILD_TRIGGER_DATE_KEY, getTodayUTC());
+    updateTriggerState();
+    addLog('Build triggered for ' + edition);
+    addLog('Waiting for GitHub Actions runner to pick up the job...');
+    pollInterval = setInterval(pollStatus, 5000);
+  }).catch(err => {
+    document.getElementById('status-card').className = 'status-card failed';
+    document.getElementById('status-card').innerHTML = '<strong>Network error:</strong> ' + err.message;
+    btn.disabled = false;
+    btn.textContent = 'Try Again';
+    updateTriggerState();
+  });
+}
+
+function getSlugForEdition(edition) {
+  if (edition === '32-bit') return '32bit';
+  if (edition === 'Hyprland') return 'hyprland';
+  if (edition === 'MATE') return 'mate';
+  if (edition === 'GNOME') return 'gnome';
+  if (edition === 'Plasma') return 'plasma';
+  if (edition === 'XFCE') return 'xfce';
+  if (edition === 'Sway') return 'sway';
+  if (edition === 'i3') return 'i3';
+  if (edition === 'Openbox') return 'openbox';
+  if (edition === 'Immutable Cinnamon') return 'immutable-cinnamon';
+  if (edition === 'Immutable XLibre') return 'immutable-xlibre';
+  return edition.toLowerCase().replace(/\s+/g, '-');
+}
+
+function pollStatus() {
+  const slug = getSlugForEdition(currentEdition);
+  if (!slug) { stopPolling(); return; }
+
+  fetch('/api/build/status?edition=' + slug, { headers: { 'Cache-Control': 'no-cache' } })
+    .then(r => r.json()).then(data => {
+      if (!data || data.error) return;
+      updateUI(data);
+    }).catch(() => {});
+}
+
+function updateUI(data) {
+  const card = document.getElementById('status-card');
+  const bar = document.getElementById('progress-bar');
+  const text = document.getElementById('progress-text');
+  const dlBtn = document.getElementById('dl-btn');
+
+  if (data.status === 'building') {
+    card.className = 'status-card building';
+    card.innerHTML = '<strong>Building...</strong><br>Started: ' + (data.started || '') +
+      '<br><a href="' + (data.run_url || '#') + '" target="_blank">View on GitHub</a>';
+    bar.style.width = '50%';
+    text.textContent = 'Building ISO... this takes 10-20 minutes.';
+    addLog('Build is running...');
+    addLog('Started at: ' + (data.started || 'unknown'));
+    setDownloadButtonState('Building', false);
+  } else if (data.status === 'success') {
+    stopPolling();
+    card.className = 'status-card';
+    card.innerHTML = '<strong>Build complete!</strong><br>ISO: ' + (data.iso_name || '') +
+      '<br>Finished: ' + (data.finished || '');
+    bar.style.width = '100%';
+    text.textContent = 'Build complete!';
+    addLog('Build completed successfully!');
+    addLog('ISO: ' + (data.iso_name || ''));
+    if (data.download_url) {
+      setDownloadButtonState('Download', true, data.download_url);
+    } else {
+      setDownloadButtonState('Not done yet', false);
+    }
+    document.getElementById('build-btn').disabled = false;
+    document.getElementById('build-btn').textContent = 'Build ' + currentEdition;
+  } else if (data.status === 'failed') {
+    stopPolling();
+    card.className = 'status-card failed';
+    card.innerHTML = '<strong>Build failed</strong><br><a href="' + (data.run_url || '#') + '" target="_blank">View build log on GitHub</a>';
+    bar.style.width = '100%';
+    bar.style.background = '#e74c3c';
+    text.textContent = 'Build failed. Check GitHub for details.';
+    addLog('BUILD FAILED');
+    addLog('See: ' + (data.run_url || '#'));
+    document.getElementById('build-btn').disabled = false;
+    document.getElementById('build-btn').textContent = 'Retry ' + currentEdition;
+    setDownloadButtonState('Not done yet', false);
+    updateTriggerState();
+  }
+}
+
+function stopPolling() {
+  if (pollInterval) {
+    clearInterval(pollInterval);
+    pollInterval = null;
+  }
+}
+
+function downloadISO() {
+  const btn = document.getElementById('dl-btn');
+  const url = btn.dataset.url;
+  if (url && !btn.disabled) window.location.href = url;
+}
+
+function loadAllStatuses() {
+  fetch('/api/build/status', { headers: { 'Cache-Control': 'no-cache' } })
+    .then(r => r.json()).then(data => {
+      const grid = document.getElementById('status-grid');
+      if (!data || !data.builds) {
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--acreetion-text)">No build status data yet.</div>';
+        return;
+      }
+      let html = '';
+      for (const [slug, status] of Object.entries(data.builds)) {
+        if (!EDITIONS.includes(slug)) continue;
+        const name = EDITION_NAMES[slug] || slug;
+        let badge = '<span class="badge badge-unknown">unknown</span>';
+        if (status.status === 'success') badge = '<span class="badge badge-success">success</span>';
+        else if (status.status === 'building') badge = '<span class="badge badge-building">building</span>';
+        else if (status.status === 'failed') badge = '<span class="badge badge-failed">failed</span>';
+        html += '<div class="mini-status"><span class="edition-name">' + name + '</span> ' + badge + '</div>';
+      }
+      grid.innerHTML = html || '<div style="grid-column:1/-1;text-align:center;color:var(--acreetion-text)">No build status data yet.</div>';
+    }).catch(() => {
+      document.getElementById('status-grid').innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--acreetion-text)">Could not load statuses.</div>';
+    });
+}
+
+loadAllStatuses();
+setInterval(loadAllStatuses, 30000);
+</script>
+</body></html>

@@ -1,9 +1,9 @@
 // Service Worker for aggressive caching and offline support
-// Also serves as AIDEN fallback proxy — intercepts /api/chat and forwards to OpenRouter
+// Intercepts /api/chat and forwards to OpenRouter
 const CACHE_VERSION = 'v2';
 const CACHE_NAME = `acreetionos-${CACHE_VERSION}`;
 
-const AIDEN_URL = 'https://aiden.acreetionos.org';
+#  removed
 const CHECK_INTERVAL = 5 * 60 * 1000;
 
 // NOTE: Do NOT store API keys here. The Service Worker will proxy /api/chat
@@ -49,19 +49,28 @@ self.addEventListener('activate', (event) => {
   scheduleAidenCheck();
 });
 
-// Fetch event - serve from cache, proxy /api/chat to OpenRouter
+// Fetch event - serve from cache, forward API requests directly
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
-  // AIDEN fallback proxy: intercept POST /api/chat and forward to the
-  // origin /api/chat endpoint. The origin/Cloudflare Worker holds the
-  // OpenRouter API key — the SW only forwards the request.
-  if (event.request.method === 'POST' && url.pathname === '/api/chat') {
+  // Bypass service worker for Cloudflare edge endpoints (Zaraz, RUM, etc.)
+  if (url.pathname.startsWith('/cdn-cgi/')) {
+    return;
+  }
+
+  // Forward all POST API requests directly without caching
+  if (event.request.method === 'POST' && url.pathname.startsWith('/api/')) {
     event.respondWith(fetch(event.request.clone()));
     return;
   }
 
-  // Normal caching for everything else
+  // Only cache GET requests
+  if (event.request.method !== 'GET') {
+    event.respondWith(fetch(event.request));
+    return;
+  }
+
+  // Normal caching for GET requests
   event.respondWith(
     caches.match(event.request).then((response) => {
       if (response) {
@@ -100,7 +109,7 @@ function scheduleAidenCheck() {
 
 async function checkAidenOnline() {
   try {
-    const response = await fetch(AIDEN_URL, { 
+    const response = await fetch(_URL, { 
       method: 'HEAD',
       mode: 'no-cors',
       cache: 'no-store'
@@ -116,7 +125,7 @@ async function notifySubscribers(isOnline) {
   
   for (const client of clients) {
     client.postMessage({
-      type: 'AIDEN_STATUS',
+      type: '_STATUS',
       online: isOnline
     });
   }

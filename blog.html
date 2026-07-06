@@ -3,7 +3,9 @@
 <head>
     <meta http-equiv="Cache-Control" content="max-age=3600">
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <title>Blog & News - AcreetionOS Linux Updates and Announcements</title>
     <meta name="description" content="Latest AcreetionOS Linux news, release notes, updates, and announcements. Stay informed about new features, bug fixes, and development progress." />
@@ -106,19 +108,19 @@
 
         /* removed pageLoadFade animation to prevent flash of unstyled content */
     .modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,0.7);backdrop-filter:blur(8px);z-index:1000;overflow-y:auto;align-items:center;justify-content:center;padding:1rem;opacity:0;visibility:hidden}.modal-overlay.visible{display:flex;opacity:1;visibility:visible;transition:opacity 0.3s ease,visibility 0.3s ease}.modal-box{position:relative;cursor:default;background-color:var(--acreetion-box-bg);border:1px solid var(--acreetion-box-border);padding:2rem 3rem;max-width:700px}.modal-close-btn{position:absolute;top:1rem;right:1rem;background-color:var(--acreetion-green);color:black;font-family:var(--font-sans);font-size:1.5rem;font-weight:700;border:none;border-radius:50%;width:40px;height:40px;cursor:pointer;line-height:40px;text-align:center;z-index:1001}.modal-close-btn:hover{background-color:#d15c64;transform:scale(1.05)}.modal-box h2{color:var(--acreetion-green)}.page-footer{text-align:center;padding:2rem;margin-top:2rem;border-top:1px solid var(--acreetion-box-border);color:#777;font-size:0.9rem}.page-footer p{color:#777;margin-bottom:0.5rem;text-align:center}.page-footer a{color:var(--acreetion-green);text-decoration:none}.page-footer a:hover{text-decoration:underline}</style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"></head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media=\'all\'"><noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"></noscript></head>
 
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <div id="background-grid"></div>
-    <header class="page-header"><div class="header-content"><a href="index.html" class="logo"><img src="acreetionoslogo.webp" alt="Official AcreetionOS Logo" class="logo-img" width="40" height="40" decoding="auto" loading="eager"><span class="logo-text">Acreetion<span>OS</span></span></a><nav class="main-nav"><a href="TrumpOS/index.html" class="btn btn-storm" style="background-color: #ffcc00; color: #222; font-weight:900; text-transform:uppercase;">TrumpOS (MLGA)</a><a href="index.html#manual-downloads">Downloads</a><a href="donate.html">Donate</a><a href="wiki.html">Wiki</a><a href="developers.html">Developers</a><a href="contact.html">Contact & Support</a><a href="git-tracker.html" class="btn btn-storm">Git Tracker</a><a href="https://gitlab.acreetionos.org" class="btn btn-storm">GitLab</a><a href="mastodon.html" class="btn btn-storm">Mastodon</a><a href="bsky.html" data-modal-target="#bsky-modal" class="btn btn-storm"><i class="bi bi-globe"></i> Bluesky</a><a href="https://xmpp.acreetionos.org" class="btn btn-storm">XMPP</a><a href="https://matrix.acreetionos.org" class="btn btn-storm">Matrix</a></nav></div></header>
+    <header class="page-header"><div class="header-content"><a href="index.html" class="logo"><img src="acreetionoslogo.webp" alt="Official AcreetionOS Logo" class="logo-img" width="40" height="40" decoding="auto" loading="eager"><span class="logo-text">Acreetion<span>OS</span></span></a><nav class="main-nav"><a href="flash.html">Downloads</a><a href="hosting.html">ISO Hosting</a><a href="wiki.html">Wiki</a><a href="developers.html">Developers</a><a href="contact.html">Contact & Support</a><a href="git-tracker.html" class="btn btn-storm">Git Tracker</a><a href="/acreetionos-news-tracker/" class="btn btn-storm" style="background-color: var(--acreetion-green); color: #000;">News Tracker</a><a href="unofficial.html" class="btn btn-storm" style="background-color:var(--acreetion-purple);color:#fff">Unofficial</a><a href="https://github.com/acreetionos-code/" class="btn btn-storm" style="background-color:#333">GitHub</a><a href="https://gitlab.acreetionos.org" class="btn btn-storm">GitLab</a></nav></div></header>
 
     <div class="page-wrapper">
         <main id="main-content" class="main-column">
             
             <div id="blog-content">
                 <article class="blog-post">
-                    <h2>Brand New Front End — From Scratch</h2>
+                    <h1>Brand New Front End — From Scratch</h1>
                     <div class="blog-meta">
                         <span>April 26, 2026</span>
                         <span class="blog-tag">Release</span>
@@ -127,7 +129,7 @@
                     <div class="blog-content">
                         <p>We built a brand new front end experience for AcreetionOS from the ground up. The site now ships a modern, responsive interface that better reflects the project's goals: clarity, accessibility, and an inviting experience for new users.</p>
 
-                        <h3>What’s New</h3>
+                        <h2>What’s New</h2>
                         <ul>
                             <li>Redesigned landing pages with clearer calls-to-action and faster load times.</li>
                             <li>Interactive demo that emulates the AcreetionOS desktop experience — try it from mobile or desktop.</li>
@@ -143,7 +145,7 @@
                         <p>This redesign is for the community. If something feels off, or you have ideas (layout, copy, features), please let us know:</p>
                         <ul>
                             <li>Open an issue on our <a href="https://github.com/AcreetionOS-Code" target="_blank">GitHub</a>.</li>
-                            <li>Join our <a href="https://discord.acreetionos.org" target="_blank">Discord</a> and drop a screenshot.</li>
+                            <li>Join our <a href="https://discord.gg/VHqQkJASw7" target="_blank">Discord</a> and drop a screenshot.</li>
                             <li>Use the feedback form on the <a href="contact.html">Contact</a> page.</li>
                         </ul>
 
@@ -159,13 +161,12 @@
         </main>
         <aside class="sidebar-column">
             <div class="content-box">
-                <div class="box-header">
-                    <h3>Quick Links</h3>
+                <div class="box-header"><h1>Quick Links</h1>
                 </div>
                 <div class="box-body">
                     <ul class="resource-list">
                         <li><a href="wiki.html"><span class="resource-title">AcreetionOS Wiki</span></a></li>
-                        <li><a href="https://discord.acreetionos.org" target="_blank"><span class="resource-title">Discord Server</span></a></li>
+                        <li><a href="https://discord.gg/VHqQkJASw7" target="_blank"><span class="resource-title">Discord Server</span></a></li>
                         <li><a href="https://github.com/AcreetionOS-Code" target="_blank"><span class="resource-title">GitHub</span></a></li>
                     </ul>
                 </div>
@@ -173,7 +174,6 @@
         </aside>
     </div>
     <footer class="page-footer"><p>AcreetionOS is an independent project proudly built on the powerful and flexible foundation of <a href="https://archlinux.org" target="_blank" rel="noopener noreferrer">Arch Linux</a>. We are immensely grateful to the Arch community for their incredible work.</p><p>Follow our development on <a href="https://github.com/AcreetionOS-Code" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i> GitHub</a> and our self-hosted <a href="https://gitlab.acreetionos.org"><i class="bi bi-gitlab"></i> GitLab</a>.</p><p>&copy; 2026 AcreetionOS Project. Based in Spokane, WA. <a href="contributing.html" style="color: var(--acreetion-text); margin-left: 1rem;">Contributing</a> <a href="governance.html" style="color: var(--acreetion-text); margin-left: 1rem;">Governance</a></p></footer>
-<script>document.addEventListener('DOMContentLoaded',() => {const observer = new IntersectionObserver((entries) => {entries.forEach(entry => {if(entry.isIntersecting) {entry.target.classList.add('active');observer.unobserve(entry.target)}})},{threshold:0.05,rootMargin:"0px 0px -30px 0px"});document.querySelectorAll('.content-box,.dev-card,.event-card,.repo-card').forEach(el => {el.classList.add('reveal');observer.observe(el)})});</script></div><div id="bsky-modal" class="modal-overlay"><div class="modal-box" style="text-align: center;"><button class="modal-close-btn" title="Close">&times;</button><h2>Heading to Bluesky</h2><p style="margin-top: 1rem;">You are being redirected to Bluesky's primary page to log in. Our official instance is located at <strong>bsky.acreetionos.org</strong>.</p><div style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem;"><a href="https://bsky.app/" class="btn btn-storm" style="background: var(--acreetion-green); color: #111;">Continue to Primary Page Login</a><a href="https://bsky.acreetionos.org/register.html" class="btn btn-storm" style="background: transparent; color: var(--acreetion-green); border: 1px solid var(--acreetion-green);">Register on Our Instance</a></div></div>
-<button id="back-to-top" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'});">↑</button><script>document.addEventListener('DOMContentLoaded',() => {const btn = document.getElementById('back-to-top');if(!btn) return;window.addEventListener('scroll',() => {if(window.scrollY > 400){btn.classList.add('visible')} else{btn.classList.remove('visible')}})});</script><script src="social-icons.js"></script><script src="user-counter.js"></script>
+<button id="back-to-top" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'});">↑</button><script>document.addEventListener('DOMContentLoaded',() => {const btn = document.getElementById('back-to-top');if(!btn) return;window.addEventListener('scroll',() => {if(window.scrollY > 400){btn.classList.add('visible')} else{btn.classList.remove('visible')}})});</script><script src="social-icons.js" defer></script><script src="user-counter.js" defer></script>
 </body>
 </html>

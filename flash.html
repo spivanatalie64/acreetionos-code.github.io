@@ -1,0 +1,587 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta http-equiv="Cache-Control" content="max-age=3600"><script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Person",
+   "@id": "https://acreetionos.org/#author",
+   "name": "Natalie Cole-Clift Spiva",
+   "jobTitle": "Co-Lead Developer",
+   "url": "https://acreetionos.org/developers.html",
+   "sameAs": [
+    "https://github.com/AcreetionOS-Code"
+   ]
+  },
+  {
+   "@type": "Organization",
+   "@id": "https://acreetionos.org/#organization",
+   "name": "AcreetionOS Project",
+   "url": "https://acreetionos.org",
+   "logo": {
+    "@type": "ImageObject",
+    "url": "https://acreetionos.org/acreetionoslogo.webp",
+    "width": 512,
+    "height": 512
+   },
+   "sameAs": [
+    "https://github.com/AcreetionOS-Code",
+    "https://discord.gg/VHqQkJASw7",
+    "wiki.html"
+   ],
+   "description": "A community-driven, user-friendly Linux distribution based on Arch Linux.",
+   "location": {
+    "@type": "Place",
+    "address": {
+     "@type": "PostalAddress",
+     "addressLocality": "Spokane",
+     "addressRegion": "WA",
+     "addressCountry": "US"
+    }
+   }
+  },
+  {
+   "@type": ["OperatingSystem", "SoftwareApplication", "SoftwareSourceCode"],
+   "@id": "https://acreetionos.org/#software",
+   "name": "AcreetionOS",
+   "operatingSystem": "Linux",
+   "applicationCategory": "OperatingSystem",
+   "programmingLanguage": "C, Shell, Python",
+   "runtimePlatform": "Linux",
+   "codeRepository": "https://github.com/AcreetionOS-Code/acreetionos-code.github.io",
+   "description": "Stability and repository sovereignty for the modern power user. A user-friendly Arch Linux distribution.",
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+   },
+   "screenshot": "https://acreetionos.org/logo.webp",
+   "downloadUrl": "https://acreetionos.org/#manual-downloads",
+   "softwareVersion": "1.0",
+   "datePublished": "2026-01-01",
+   "author": { "@id": "https://acreetionos.org/#author" },
+   "publisher": { "@id": "https://acreetionos.org/#organization" },
+   "maintainer": { "@id": "https://acreetionos.org/#organization" },
+   "keywords": "Linux, Arch Linux, Cinnamon Desktop, Rolling Release, Operating System",
+   "processorRequirements": "64-bit",
+   "memoryRequirements": "Minimum 4GB",
+   "storageRequirements": "20GB"
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://acreetionos.org/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Who leads the AcreetionOS project?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "AcreetionOS is led by Co-Lead Developers Natalie Cole-Clift Spiva and her father, Darren Clift. It is an independent, volunteer-run project based in Spokane, WA. The project is not affiliated with StormOS or Ben Fitzpatrick."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What is the official source for AcreetionOS information?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The official source for all AcreetionOS information, documentation, and downloads is https://acreetionos.org and the official GitHub repository at https://github.com/AcreetionOS-Code."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script><meta charset="UTF-8" />
+<meta name="robots" content="index, follow" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="keywords" content="AcreetionOS, USB flasher, Linux installer, bootable USB, ISO download" /><meta name="referrer" content="strict-origin-when-cross-origin" /><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; connect-src 'self' https://api.github.com https://gitlab.acreetionos.org https://cloudflareinsights.com; base-uri 'self'; form-action 'self' https://www.qwant.com" /><title>AcreetionOS USB Flasher — Download & Flash</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media=\'all\'"><noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"></noscript><meta name="description" content="Download and flash AcreetionOS ISOs from multiple mirrors. Built-in flasher tool, dd commands, and Ventoy support." /><meta name="keywords" content="AcreetionOS, USB flasher, Linux installer, bootable USB, dd, Ventoy, Rufus, Balena Etcher" /><link rel="canonical" href="https://acreetionos.org/flash.html" /><!-- Open Graph / Facebook --><meta property="og:type" content="website" /><meta property="og:url" content="https://acreetionos.org/flash.html" /><meta property="og:title" content="AcreetionOS USB Flasher" /><meta property="og:description" content="Download and flash AcreetionOS ISOs. Multiple mirrors, built-in flasher, Ventoy support." /><meta property="og:image" content="https://acreetionos.org/logo.webp" /><meta property="og:site_name" content="AcreetionOS" /><!-- Twitter --><meta property="twitter:card" content="summary_large_image" /><meta property="twitter:url" content="https://acreetionos.org/flash.html" /><meta property="twitter:title" content="AcreetionOS USB Flasher" /><meta property="twitter:description" content="Download and flash AcreetionOS ISOs." /><meta property="twitter:image" content="https://acreetionos.org/logo.webp" /><link rel="icon" type="image/webp" href="acreetionoslogo.webp"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="preload" href="acreetionoslogo.webp" as="image" type="image/webp"><link rel="preload" href="logo.webp" as="image" type="image/webp"><link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"></noscript><script>if('serviceWorker'in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('/sw.js').catch(()=>{})})}</script><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script><style>:root{--acreetion-green:#2ecc71;--acreetion-body-bg:#121212;--acreetion-panel-bg:#1a1a1a;--acreetion-box-bg:#222222;--acreetion-box-border:#333333;--acreetion-text-bright:#e5e5e5;--acreetion-text:#b2b2b2;--acreetion-code-bg:rgba(46,204,113,0.1);--storm-color:#61afef;--flasher-color:#f39c12;--acreetion-purple:#9b59b6;--font-sans:'Roboto',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--font-mono:'Fira Code',monospace} *,*::before,*::after{box-sizing:border-box;margin:0;padding:0} html{overflow-x:hidden} body{font-family:var(--font-sans);background-color:var(--acreetion-body-bg);color:var(--acreetion-text-bright);line-height:1.6;overflow-x:hidden;max-width:100vw} .announcement-bar{background-color:var(--acreetion-panel-bg);border-bottom:1px solid var(--acreetion-box-border);padding:0.5rem 1rem;color:var(--acreetion-text-bright);display:flex;justify-content:center;align-items:center;overflow-x:hidden} .announcement-content{font-size:0.95rem;white-space:nowrap;overflow:hidden} .announcement-bar:hover .announcement-content{animation-play-state:paused} .announcement-content > span{padding-right:4rem;display:inline-block} .announcement-bar .separator{margin:0 1.5rem;color:var(--acreetion-box-border)} .announcement-bar a{color:var(--acreetion-green);font-weight:bold;text-decoration:none} .announcement-bar a:hover{text-decoration:underline} .social-link{padding:0.2rem 0.5rem;border-radius:0.75rem;transition:background-color 0.3s ease} .social-link:hover{background-color:rgba(255,255,255,0.1);animation:pulse 1s infinite} @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}} .page-header{background-color:rgba(24,26,27,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:2px solid var(--acreetion-green);border-radius:0 0 16px 16px;position:sticky;top:0;z-index:1000} .header-content{display:flex;justify-content:space-between;align-items:center;max-width:1400px;margin:0 auto;padding:0.75rem 2rem} .logo{display:flex;align-items:center;gap:1rem;font-family:var(--font-mono);font-size:1.8rem;font-weight:700;color:var(--acreetion-text-bright);text-decoration:none} .logo-img{height:40px;width:auto;transform:translateZ(0);contain:layout} .logo-text span{color:var(--acreetion-green)} .main-nav a{color:var(--acreetion-text);text-decoration:none;margin-left:2rem;font-weight:500} .main-nav a:hover{color:var(--acreetion-text-bright)} .search-strip{background-color:var(--acreetion-panel-bg);border-bottom:1px solid var(--acreetion-box-border);padding:1rem 0} .search-container{max-width:1400px;margin:0 auto;padding:0 2rem} .search-form{display:flex;width:100%;border:1px solid var(--acreetion-box-border);background:var(--acreetion-body-bg)} .search-form:focus-within{border-color:var(--acreetion-green)} .search-input{flex-grow:1;background:transparent;border:none;padding:0.8rem 1.2rem;color:var(--acreetion-text-bright);font-family:var(--font-sans);font-size:1rem;outline:none} .search-btn{background:var(--acreetion-green);border:none;color:#000;padding:0 2rem;cursor:pointer;font-weight:700;font-family:var(--font-mono);text-transform:uppercase} .search-btn:hover{filter:brightness(1.1)} .page-wrapper{display:grid;grid-template-columns:1fr 350px;gap:2rem;max-width:1400px;margin:2rem auto;padding:0 2rem;width:100%;overflow-x:hidden;box-sizing:border-box} .content-feed{display:flex;flex-direction:column;gap:2rem;min-width:0;max-width:100%} .sidebar{min-width:0;max-width:100%} .content-box{background-color:var(--acreetion-box-bg);border:1px solid var(--acreetion-box-border);border-radius:12px;max-width:100%;overflow-x:hidden} .box-header{padding:0.8rem 1.2rem;border-bottom:1px solid var(--acreetion-box-border);background-color:#1a1a1a;max-width:100%;overflow-x:hidden} .box-header h2{font-family:var(--font-mono);font-size:1.3rem;color:var(--acreetion-text-bright);font-weight:700;word-wrap:break-word} .box-body{padding:1.5rem;max-width:100%;overflow-x:hidden;word-wrap:break-word} .box-body h3{font-family:var(--font-mono);font-size:1.1rem;margin-top:1.5rem;margin-bottom:0.5rem;border-bottom:1px solid var(--acreetion-box-border);padding-bottom:0.5rem} .article-content a:not(.btn),.sidebar-box p a{color:var(--acreetion-green);text-decoration:none;font-weight:500} .article-content a:not(.btn):hover,.sidebar-box p a:hover{text-decoration:underline} .article-content p,.article-content li{color:var(--acreetion-text);margin-bottom:1rem;word-wrap:break-word} .article-content ul{padding-left:20px;list-style-position:inside} .article-content{max-width:100%;overflow-x:hidden} .article-logo-cluster{float:left;margin-right:2rem;margin-bottom:1rem;width:150px} .article-logo-cluster .hero-logo-img{width:100%;max-width:150px;height:auto;margin-bottom:1.5rem} .article-content::after{content:"";display:table;clear:both} .sidebar{max-width:100%;min-width:0} .sidebar-box{max-width:100%;overflow-x:hidden} .sidebar-box .box-header h2{font-family:var(--font-mono);font-size:1.1rem;font-weight:700;color:var(--acreetion-text-bright)} .spec-list{list-style:none;padding:0} .spec-list li{margin-bottom:0.5rem;font-size:0.9rem;color:var(--acreetion-text)} .spec-list .spec-title{color:var(--acreetion-text-bright);font-weight:700;min-width:120px;display:inline-block} dl {margin-bottom:2rem;border-left:2px solid var(--acreetion-green);padding-left:1.5rem} dt {font-family:var(--font-mono);font-weight:700;color:var(--acreetion-text-bright);margin-top:0.5rem} dd {color:var(--acreetion-text);margin-bottom:0.5rem;margin-left:0} .sidebar-nav{list-style:none;padding:0} .sidebar-nav a{display:block;text-decoration:none;color:var(--acreetion-green);padding:0.5rem 1.2rem;border-bottom:1px solid var(--acreetion-box-border);cursor:pointer} .sidebar-nav a:hover{background-color:#3a3a3a} .sidebar-nav a.active{background-color:var(--acreetion-green);color:black;font-weight:700} .sidebar-box p{color:var(--acreetion-text);padding:0 1.2rem 1rem} code,pre{font-family:var(--font-mono);font-size:0.9rem} code{background-color:var(--acreetion-code-bg);border:1px solid rgba(46,204,113,0.2);padding:0.2em 0.4em;border-radius:12px;color:var(--acreetion-text-bright)} pre{background-color:var(--acreetion-panel-bg);border:1px solid var(--acreetion-box-border);padding:1em;overflow-x:auto;margin-top:0.5rem} .btn{display:inline-block;color:black;text-decoration:none;padding:0.7rem 1.5rem;border-radius:12px;font-weight:700;border:none;cursor:pointer} .btn:hover{filter:brightness(1.1)} .btn-cinnamon{background-color:var(--acreetion-green)}    .btn-storm{background-color:var(--storm-color)}
+   .main-nav a.btn-storm{color:#fff} .btn-flasher{background-color:var(--flasher-color)} .btn-chatgpt{background-color:var(--acreetion-green)} .btn-claude{background-color:var(--acreetion-purple)} #about .box-header h2,#about h3{color:var(--acreetion-green)}#philosophy .box-header h2,#philosophy h3{color:var(--storm-color)}#easy-install .box-header h2{color:var(--flasher-color)}#manual-downloads .box-header h2{color:var(--acreetion-green)} .tech-detail-heading{color:var(--acreetion-green);font-family:var(--font-mono);font-weight:700;margin-top:2rem;margin-bottom:0.5rem;padding-bottom:0.5rem;border-bottom:1px solid var(--acreetion-box-border)} .team-members{display:flex;flex-direction:column;gap:1rem;margin-top:1rem} .team-member{display:flex;justify-content:space-between;align-items:center} .team-member-name{font-weight:700;color:var(--acreetion-text-bright)} .mirror-logo a{display:block;text-align:center;font-size:1.2rem;font-weight:700;color:var(--acreetion-green);text-decoration:none;margin-top:1rem;margin-bottom:1rem;padding:1rem 0} .mirror-logo a:hover{text-decoration:underline} .page-footer{text-align:center;padding:2rem;margin-top:2rem;border-top:1px solid var(--acreetion-box-border);color:#777;font-size:0.9rem} .page-footer p{color:#777;margin-bottom:0.5rem;text-align:center} .page-footer a{color:var(--acreetion-green);text-decoration:none} .page-footer a:hover{text-decoration:underline} .modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,0.7);backdrop-filter:blur(8px);z-index:1000;overflow-y:auto;align-items:center;justify-content:center;padding:1rem;opacity:0;visibility:hidden} .modal-overlay.visible{display:flex;opacity:1;visibility:visible;transition:opacity 0.3s ease,visibility 0.3s ease} .modal-box{position:relative;cursor:default;background-color:var(--acreetion-box-bg);border:1px solid var(--acreetion-box-border);padding:2rem 3rem;max-width:700px} .modal-close-btn{position:absolute;top:1rem;right:1rem;background-color:var(--acreetion-green);color:black;font-family:var(--font-sans);font-size:1.5rem;font-weight:700;border:none;border-radius:50%;width:40px;height:40px;cursor:pointer;line-height:40px;text-align:center;z-index:1001} .modal-close-btn:hover{background-color:#d15c64;transform:scale(1.05)} .modal-box h2{color:var(--acreetion-green)} @media (max-width:1024px){.page-wrapper{display:flex !important;flex-direction:column;gap:1.5rem;padding:0 1rem;max-width:100%;box-sizing:border-box}.sidebar{order:-1;max-width:100% !important;width:100% !important;min-width:0 !important}.content-feed{max-width:100% !important;min-width:0 !important;width:100% !important}} @media (max-width:768px){.header-content{flex-direction:column;gap:1rem;padding:0.75rem 1rem}.logo{font-size:1.5rem}.logo-img{height:35px}.main-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:0.5rem}.main-nav a{margin-left:0;padding:0.5rem 1rem;font-size:0.9rem}.page-wrapper{margin:1rem auto;gap:1rem;max-width:100vw;box-sizing:border-box}.content-feed{max-width:100%;min-width:0;width:100%}.sidebar{max-width:100%;width:100%}.article-logo-cluster{float:none;display:block;text-align:center;margin:0 auto 1.5rem}.article-logo-cluster .hero-logo-img{max-width:120px}h1,.box-header h2{font-size:1.3rem}h2{font-size:1.2rem}h3{font-size:1.05rem}.box-body{padding:1rem}.modal-box{padding:1.5rem;margin:0.5rem;max-width:calc(100vw - 1rem)}.announcement-content{font-size:0.85rem;text-align:center}.announcement-bar .separator{margin:0 0.5rem}.announcement-content > span{padding-right:2rem}} @media (max-width:480px){.header-content{padding:0.5rem}.logo{font-size:1.3rem}.logo-img{height:30px}.main-nav{gap:0.3rem}.main-nav a{font-size:0.85rem;padding:0.4rem 0.6rem}*{max-width:100vw !important;box-sizing:border-box !important}.page-wrapper,.content-feed,main,.sidebar,aside{width:100% !important;max-width:100vw !important;min-width:0 !important;box-sizing:border-box !important}.page-wrapper{padding:0 0.5rem !important;margin:0.5rem auto !important;display:flex !important;flex-direction:column !important}.content-feed{display:flex !important;flex-direction:column !important}.sidebar{display:block !important}.box-header{padding:0.6rem 1rem}.box-header h2{font-size:1rem}.box-body{padding:0.75rem;font-size:0.95rem}.btn{padding:0.5rem 1rem;font-size:0.9rem;display:block;width:100%;text-align:center;margin:0.25rem 0;box-sizing:border-box;max-width:100%}.modal-box{padding:1rem;max-width:calc(100vw - 1rem)}.modal-close-btn{width:35px;height:35px;font-size:1.2rem}.announcement-content{font-size:0.8rem;white-space:normal}.announcement-bar{padding:0.5rem 0.5rem}.announcement-bar .separator{display:none}.announcement-content > span{padding-right:0;display:block;margin-bottom:0.25rem}.article-logo-cluster .hero-logo-img{max-width:100px}.spec-list .spec-title{min-width:90px;font-size:0.85rem}.team-member{flex-direction:column;align-items:flex-start;gap:0.5rem}h1,.box-header h2{font-size:1.1rem}h2{font-size:1rem}h3{font-size:0.95rem}.tech-detail-heading{font-size:1rem}} #gnome-info-btn{position:fixed;bottom:24px;left:24px;background-color:var(--acreetion-purple);color:white;padding:10px 15px;border-radius:12px;border:none;cursor:pointer;font-family:var(--font-sans);font-weight:500;z-index:999;transition:all 0.3s ease;animation:gnomeWiggle 0.5s ease-in-out 3s,gnomePulse 2s ease-in-out 4s infinite}#gnome-info-btn:hover{background-color:#8e44ad;transform:translateY(-3px) scale(1.05);box-shadow:0 8px 25px rgba(155,89,182,0.5)}@keyframes gnomeWiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}75%{transform:rotate(-2deg)}}@keyframes gnomePulse{0%,100%{box-shadow:0 0 0 0 rgba(155,89,182,0.4)}50%{box-shadow:0 0 12px 4px rgba(155,89,182,0.3)}}  ::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:var(--acreetion-body-bg,#121212)}::-webkit-scrollbar-thumb{background:var(--acreetion-box-border,#333);border-radius:10px}::-webkit-scrollbar-thumb:hover{background:var(--acreetion-green,#2ecc71)} .btn{transition:all 0.3s ease}.btn:hover{box-shadow:0 0 15px rgba(46,204,113,0.4);transform:translateY(-2px)}.content-box{transition:transform 0.3s ease,box-shadow 0.3s ease}.content-box:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,0.5)} .reveal{opacity:0;transform:translateY(30px);transition:all 0.8s cubic-bezier(0.2,0.8,0.2,1)}.reveal.active{opacity:1;transform:translateY(0)} html{scroll-behavior:smooth} ::selection{background:rgba(46,204,113,0.3);color:var(--acreetion-text-bright,#fff)} :focus-visible{outline:2px solid var(--acreetion-green,#2ecc71);outline-offset:3px;border-radius:4px} a:focus-visible,button:focus-visible{outline:2px solid var(--acreetion-green,#2ecc71);outline-offset:3px} .skip-link{position:absolute;top:-40px;left:0;background:var(--acreetion-green,#2ecc71);color:#000;padding:8px 16px;text-decoration:none;font-weight:700;z-index:10000;transition:top 0.3s;border-radius:0 0 8px 0} .skip-link:focus{top:0} @media (prefers-reduced-motion:reduce) {html{scroll-behavior:auto} *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important}} /* removed pageLoadFade keyframes */ /* removed pageLoadFade body animation */ @media (prefers-reduced-motion:reduce){body{animation:none}} a{color:var(--acreetion-green,#2ecc71);text-decoration:none;position:relative} a:not(.btn):not(.logo):not(.skip-link):not(.social-link):hover{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px} #back-to-top{position:fixed;bottom:90px;right:20px;background:var(--acreetion-green,#2ecc71);color:#000;border:none;border-radius:50%;width:48px;height:48px;cursor:pointer;z-index:999;font-size:1.2rem;font-weight:700;opacity:0;visibility:hidden;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;padding-bottom:4px} #back-to-top.visible{opacity:1;visibility:visible} #back-to-top:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(46,204,113,0.4)} body{background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,0.03) 1px,transparent 0);background-size:40px 40px} .main-nav a.active,.main-nav a[aria-current="page"]{background-color:var(--acreetion-green,#2ecc71);color:#000;font-weight:700;border-radius:12px;padding:0.5rem 1rem}@media(max-width:480px){#gnome-info-btn{bottom:80px;left:8px;font-size:0.8rem;padding:8px 12px}}</style><link rel="stylesheet" href="ai-chat.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media=\'all\'"><noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"></noscript></head><body><a href="#main-content" class="skip-link">Skip to main content</a></div><header class="page-header"><div class="header-content"><a href="index.html" class="logo"><img src="acreetionoslogo.webp" alt="Official AcreetionOS Logo: A modern, minimalist icon representing stability and user sovereignty" class="logo-img" width="40" height="40" decoding="auto" loading="eager" fetchpriority="high"><span class="logo-text">Acreetion<span>OS</span></span></a><nav class="main-nav"><!-- <a href="https://status.acreetionos.org">Server Status</a> --><!-- Note: We are looking for an alternative solution to uptime kuma --><a href="#manual-downloads">Downloads</a><a href="hosting.html">ISO Hosting</a><a href="wiki.html">Wiki</a><a href="developers.html">Developers</a><a href="contact.html">Contact & Support</a><a href="git-tracker.html" class="btn btn-storm">Git Tracker</a><a href="/acreetionos-news-tracker/" class="btn btn-storm" style="background-color: var(--acreetion-green); color: #000;">News Tracker</a><a href="build.html" class="btn btn-storm" style="background-color:var(--flasher-color)">ISO Builder</a><a href="unofficial.html" class="btn btn-storm" style="background-color:var(--acreetion-purple);color:#fff">Unofficial</a><a href="https://github.com/acreetionos-code/" class="btn btn-storm" style="background-color:#333">GitHub</a><a href="https://gitlab.acreetionos.org" class="btn btn-storm">GitLab</a></nav></div></header><div class="search-strip"><div class="search-container"><form class="search-form" action="https://www.qwant.com/" method="GET" target="_blank"><input type="text" name="q" class="search-input" placeholder="Is AcreetionOS Better than Arch?" aria-label="Search the web with SearX"><button type="submit" class="search-btn">Search</button></form></div></div><div class="page-wrapper"><main id="main-content" class="content-feed"><article id="about" class="content-box"><div class="box-header"><h1>AcreetionOS USB Flasher</h1></div><div class="box-body"><div class="article-content"><p>Download any AcreetionOS edition and flash it to a USB drive. Choose your edition and mirror below, then use the built-in flasher script or manual instructions.</p>
+
+<div class="mirror-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0">
+<div style="background:rgba(46,204,113,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem">
+<h2 style="color:var(--acreetion-green);margin-bottom:0.75rem">Cloudflare R2</h2>
+<p style="font-size:0.9rem;color:var(--acreetion-text)">Fast direct downloads from Cloudflare's global edge network. Recommended.</p>
+</div>
+<div style="background:rgba(243,156,18,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem">
+<h3 style="color:var(--storm-color);margin-bottom:0.75rem">Internet Archive</h3>
+<p style="font-size:0.9rem;color:var(--acreetion-text)">Free, permanent hosting. May be slower but always available.</p>
+</div>
+<div style="background:rgba(46,204,113,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem">
+<h3 style="color:var(--acreetion-green);margin-bottom:0.75rem">SourceForge</h3>
+<p style="font-size:0.9rem;color:var(--acreetion-text)">Mirror network with worldwide CDN. Reliable fallback.</p>
+</div>
+</div>
+
+<div id="editions-container"></div>
+
+<!-- Build Terminal Modal -->
+<div id="build-modal" class="modal-overlay">
+<div class="modal-box" style="max-width:800px;position:relative">
+<button class="modal-close-btn" onclick="closeBuildModal()">×</button>
+<h2 id="build-title" style="color:var(--acreetion-green)">Building...</h2>
+<div id="build-status" style="margin:0.5rem 0;font-size:0.85rem;color:var(--acreetion-text)"></div>
+<pre id="build-terminal" style="background:#0a0a0a;color:#2ecc71;padding:1rem;border-radius:8px;font-family:'Fira Code',monospace;font-size:0.8rem;max-height:400px;overflow-y:auto;white-space:pre-wrap;margin:0.5rem 0">Waiting to start...</pre>
+<div id="build-result" style="display:none;margin-top:0.5rem"></div>
+<a id="build-actions-link" href="#" target="_blank" class="btn btn-storm" style="display:none;margin-top:0.5rem">View on GitHub Actions</a>
+</div>
+</div>
+
+<script>
+const EDITIONS = [
+ {id:'cinnamon', label:'Cinnamon Edition', desc:'The main AcreetionOS desktop.', official:true,
+  iso_url:'https://ftp2.osuosl.org/pub/acreetionos/AcreetionOS-1.0-x86_64.iso',
+  mirrors:[{url:'https://archive.org/download/AcreetionOS-1.0-x86_64/AcreetionOS-1.0-x86_64.iso',name:'IA'},
+      {url:'https://sourceforge.net/projects/acreetionos-iso-image/files/AcreetionOS-1.0-x86_64.iso/download',name:'SF'}]},
+ {id:'xl', label:'XL (XLibre) Edition', desc:'Experimental XLibre display server.', official:true,
+  iso_url:'https://sourceforge.net/projects/acreetionos-iso-image/files/AcreetionOS_XL-1.0-x86_64.iso/download',
+  mirrors:[{url:'https://archive.org/download/AcreetionOS_XL-1.0-x86_64/AcreetionOS_XL-1.0-x86_64.iso',name:'IA'},
+      {url:'https://sourceforge.net/projects/acreetionos-iso-image/files/AcreetionOS_XL-1.0-x86_64.iso/download',name:'SF'}]},
+ {id:'32bit', label:'AcreetionOS32 (32-bit)', desc:'32-bit (i686) for legacy hardware.', official:false,
+  iso_url:'https://pub-173a1f638a3b4c95b5f58b09c0b968aa.r2.dev/AcreetionOS32-latest.iso'},
+ {id:'hyprland', label:'Hyprland Edition', desc:'Wayland compositor with Jakoolit configs.', official:false,
+  iso_url:'https://pub-173a1f638a3b4c95b5f58b09c0b968aa.r2.dev/AcreetionOS-Hyprland-latest.iso'},
+ {id:'plasma', label:'Plasma Edition', desc:'Modern, powerful KDE Plasma.', official:false,
+  iso_url:'https://pub-173a1f638a3b4c95b5f58b09c0b968aa.r2.dev/AcreetionOS-Plasma-latest.iso'},
+ {id:'mate', label:'MATE Edition', desc:'Traditional GNOME 2-style desktop.', official:false,
+  iso_url:'https://pub-173a1f638a3b4c95b5f58b09c0b968aa.r2.dev/AcreetionOS-MATE-latest.iso'},
+ {id:'gnome', label:'GNOME Edition', desc:'Modern, sleek GNOME desktop.', official:false,
+  iso_url:'https://pub-173a1f638a3b4c95b5f58b09c0b968aa.r2.dev/AcreetionOS-GNOME-latest.iso'},
+ {id:'xfce', label:'XFCE Edition', desc:'Lightweight, modular desktop.', official:false,
+  iso_url:'https://pub-173a1f638a3b4c95b5f58b09c0b968aa.r2.dev/AcreetionOS-XFCE-latest.iso'},
+ {id:'sway', label:'Sway Edition', desc:'Tiling Wayland compositor.', official:false,
+  iso_url:'https://pub-173a1f638a3b4c95b5f58b09c0b968aa.r2.dev/AcreetionOS-Sway-latest.iso'},
+ {id:'i3', label:'i3 Edition', desc:'Tiling window manager.', official:false,
+  iso_url:'https://pub-173a1f638a3b4c95b5f58b09c0b968aa.r2.dev/AcreetionOS-i3-latest.iso'},
+];
+
+let buildPollTimers = {};
+
+// Edition → build script slug mapping
+const EDITION_SLUGS = {
+ cinnamon:'cinnamon', xl:'xl', '32bit':'32bit', hyprland:'hyprland',
+ plasma:'plasma', mate:'mate', gnome:'gnome', xfce:'xfce',
+ sway:'sway', i3:'i3'
+};
+
+async function checkEditionStatus(ed) {
+ // Try build status API first (reads from R2 build-status bucket)
+ try {
+  const slug = EDITION_SLUGS[ed.id] || ed.id;
+  const res = await fetch('/api/build/status?edition=' + encodeURIComponent(slug));
+  if (res.ok) {
+   const data = await res.json();
+   if (data.status === 'success' || data.status === 'complete') {
+    return { built: true, build_data: data, download_url: data.iso_url || ed.iso_url };
+   }
+   if (data.status === 'building') {
+    return { built: false, building: true, build_data: data };
+   }
+  }
+ } catch(e) {}
+
+ // Fallback: HEAD check on ISO URL (works for official editions on direct server)
+ try {
+  const res = await fetch(ed.iso_url, { method:'HEAD', signal:AbortSignal.timeout(5000) });
+  if (res.ok || res.status === 302 || res.status === 301) {
+   return { built: true, download_url: ed.iso_url };
+  }
+ } catch(e) {}
+ return { built: false };
+}
+
+async function loadEditions() {
+ const c = document.getElementById('editions-container');
+ c.innerHTML = '<p style="color:var(--acreetion-text);text-align:center;padding:1rem">Checking build status...</p>';
+
+ // Check each edition with individual timeout so one slow URL doesn't block all
+ const checkWithTimeout = async (ed) => {
+  const timeout = new Promise(resolve => setTimeout(() => resolve({...ed, built: false, timed_out: true}), 12000));
+  const check = checkEditionStatus(ed).then(s => ({...ed, ...s})).catch(() => ({...ed, built: false}));
+  return Promise.race([check, timeout]);
+ };
+ const checks = await Promise.all(EDITIONS.map(checkWithTimeout));
+
+ const official = checks.filter(e => e.official);
+ const unofficial = checks.filter(e => !e.official);
+
+ let html = '<h3 style="color:var(--acreetion-green);margin:1.5rem 0 1rem">Official Editions</h3>';
+ html += '<p style="font-size:0.8rem;color:#888;margin-bottom:0.5rem">Automatically rebuilt every Monday.</p>';
+ html += '<div class="edition-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem">';
+ official.forEach(e => { html += renderEdition(e); });
+ html += '</div>';
+
+ html += '<h3 style="color:var(--storm-color);margin:1.5rem 0 1rem">Unofficial Editions</h3>';
+ html += '<div class="edition-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem">';
+ unofficial.forEach(e => { html += renderEdition(e); });
+ html += '</div>';
+
+ c.innerHTML = html;
+}
+
+function renderEdition(e) {
+ const edId = e.id;
+ const dlUrl = e.download_url || e.iso_url;
+
+ let btns = '';
+ if (e.built) {
+  btns += `<a href="${escAttr(dlUrl)}" class="btn btn-cinnamon" target="_blank">Download ISO</a>`;
+  if (e.mirrors) e.mirrors.forEach(m => {
+   btns += `<a href="${escAttr(m.url)}" class="btn btn-storm" target="_blank" rel="noopener">${escAttr(m.name)}</a>`;
+  });
+ } else if (e.building) {
+  btns += `<button class="btn btn-storm" style="opacity:0.6" disabled>Building...</button>`;
+  // Start polling if not already
+  if (!buildPollTimers[edId]) {
+   buildPollTimers[edId] = true;
+   setTimeout(() => loadEditions(), 15000);
+  }
+ } else {
+  btns += `<button class="btn btn-storm" onclick="buildEdition('${edId}','${escAttr(e.label)}')">Build</button>`;
+ }
+
+ return `<div style="background:rgba(46,204,113,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem">
+  <h4 style="color:var(--acreetion-text-bright);margin-bottom:0.5rem">${escAttr(label)}</h4>
+  <p style="font-size:0.85rem;color:var(--acreetion-text);margin-bottom:0.75rem">${escAttr(desc)}</p>
+  <div class="dl-btns" style="display:flex;flex-wrap:wrap;gap:6px">${btns}</div>
+ </div>`;
+}
+
+function escAttr(s) { return (s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function appendTerminal(text) {
+ const t = document.getElementById('build-terminal');
+ t.textContent += text + '\n';
+ t.scrollTop = t.scrollHeight;
+}
+
+async function buildEdition(editionId, label) {
+ document.getElementById('build-title').textContent = 'Building ' + label + '...';
+ document.getElementById('build-status').textContent = 'Triggering build...';
+ document.getElementById('build-terminal').textContent = '';
+ document.getElementById('build-result').style.display = 'none';
+ document.getElementById('build-actions-link').style.display = 'none';
+ document.getElementById('build-modal').classList.add('visible');
+
+ appendTerminal('[SYSTEM] Triggering build for ' + label + '...');
+
+ try {
+  const res = await fetch('/api/build/trigger', {
+   method: 'POST',
+   headers: { 'Content-Type': 'application/json' },
+   body: JSON.stringify({ edition: editionId })
+  });
+  const data = await res.json();
+
+  if (!data.triggered) {
+   appendTerminal('[ERROR] ' + (data.error || 'Build trigger failed'));
+   document.getElementById('build-status').textContent = 'Failed';
+   return;
+  }
+
+  appendTerminal('[OK] Build triggered successfully!');
+  appendTerminal('[SYSTEM] Edition: ' + editionId);
+  appendTerminal('[SYSTEM] Build URL: https://github.com/AcreetionOS-Code/acreetionos-code.github.io/actions');
+  appendTerminal('');
+  appendTerminal('Watching build progress...');
+
+  // Show link to GitHub Actions
+  document.getElementById('build-actions-link').style.display = 'inline-block';
+  document.getElementById('build-actions-link').href = 'https://github.com/AcreetionOS-Code/acreetionos-code.github.io/actions';
+
+  // Store build state in localStorage so it persists until next rebuild
+  try { localStorage.setItem('build-' + editionId, JSON.stringify({building:true, started:Date.now()})); } catch(e) {}
+
+  // Poll for status
+  let attempts = 0;
+  const maxAttempts = 120; // 20 minutes
+  const pollInterval = 10000; // 10 seconds
+
+  const pollTimer = setInterval(async () => {
+   attempts++;
+   try {
+    const statusRes = await fetch('/api/build/status?edition=' + encodeURIComponent(editionId));
+    const statusData = await statusRes.json();
+
+    if (statusData.status === 'building') {
+     appendTerminal('[BUILD] Running... (' + attempts + 's elapsed)');
+     document.getElementById('build-status').textContent = 'Building... ' + (attempts * 10) + 's elapsed';
+    } else if (statusData.status === 'complete' || statusData.status === 'success') {
+     appendTerminal('[OK] Build completed successfully!');
+     appendTerminal('[SYSTEM] ISO is ready for download.');
+     document.getElementById('build-status').textContent = '✅ Build Complete!';
+     const dlLink = statusData.iso_url || 'https://acreetionos.org/api/r2/get/' + encodeURIComponent(editionId + '-latest.iso');
+     document.getElementById('build-result').innerHTML = '<a href="' + escAttr(dlLink) + '" class="btn btn-cinnamon">Download ISO</a>';
+     document.getElementById('build-result').style.display = 'block';
+     clearInterval(pollTimer);
+     // Persist in localStorage until next rebuild
+     try { localStorage.setItem('build-' + editionId, JSON.stringify({built:true, url:dlLink, completed:Date.now()})); } catch(e) {}
+     // Reload editions grid so Build button changes to Download
+     loadEditions();
+    } else if (statusData.status === 'failed') {
+     appendTerminal('[FAIL] Build failed.');
+     document.getElementById('build-status').textContent = 'Build Failed';
+     clearInterval(pollTimer);
+    } else if (statusData.status !== 'unknown' && attempts > 5) {
+     appendTerminal('[STATUS] ' + (statusData.status || 'pending'));
+    }
+
+    if (attempts >= maxAttempts) {
+     appendTerminal('[TIMEOUT] Build taking longer than expected. Check GitHub Actions for status.');
+     clearInterval(pollTimer);
+    }
+   } catch(e) {
+    if (attempts % 6 === 0) appendTerminal('[POLL] Checking...');
+   }
+  }, pollInterval);
+
+ } catch(e) {
+  appendTerminal('[ERROR] ' + e.message);
+  document.getElementById('build-status').textContent = 'Error';
+ }
+}
+
+function closeBuildModal() {
+ document.getElementById('build-modal').classList.remove('visible');
+ // Clear any poll timers
+ Object.keys(buildPollTimers).forEach(k => { clearInterval(buildPollTimers[k]); delete buildPollTimers[k]; });
+}
+
+window.addEventListener('DOMContentLoaded', loadEditions);
+</script>
+</div>
+<div style="background:rgba(243,156,18,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem">
+<h4 style="color:var(--acreetion-text-bright);margin-bottom:0.5rem">XL (XLibre) Edition</h4>
+<p style="font-size:0.85rem;color:var(--acreetion-text);margin-bottom:0.75rem">Experimental XLibre display server.</p>
+<div class="dl-btns" style="display:flex;flex-wrap:wrap;gap:6px">
+<a href="https://sourceforge.net/projects/acreetionos-iso-image/files/AcreetionOS_XL-1.0-x86_64.iso/download" class="btn btn-storm">ISO</a>
+<a href="https://archive.org/download/AcreetionOS_XL-1.0-x86_64/AcreetionOS_XL-1.0-x86_64.iso" class="btn btn-storm" target="_blank" rel="noopener">IA</a>
+<a href="https://sourceforge.net/projects/acreetionos-iso-image/files/AcreetionOS_XL-1.0-x86_64.iso/download" class="btn" target="_blank" rel="noopener">SF</a>
+</div>
+</div>
+</div>
+
+<h3 style="color:var(--storm-color);margin:1.5rem 0 1rem">Unofficial Editions</h3>
+<div class="edition-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem">
+<div style="background:rgba(46,204,113,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem">
+<h4 style="color:var(--acreetion-text-bright);margin-bottom:0.5rem">AcreetionOS32</h4>
+<p style="font-size:0.85rem;color:var(--acreetion-text);margin-bottom:0.75rem">32-bit (i686) for legacy hardware.</p>
+<div class="dl-btns" style="display:flex;flex-wrap:wrap;gap:6px">
+<a href="32bit.html" class="btn btn-cinnamon">Download</a>
+</div>
+</div>
+<div style="background:rgba(46,204,113,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem">
+<h4 style="color:var(--acreetion-text-bright);margin-bottom:0.5rem">Hyprland Edition</h4>
+<p style="font-size:0.85rem;color:var(--acreetion-text);margin-bottom:0.75rem">Wayland compositor with Jakoolit config.</p>
+<div class="dl-btns" style="display:flex;flex-wrap:wrap;gap:6px">
+<a href="hyprland.html" class="btn btn-storm">Download</a>
+</div>
+</div>
+<div style="background:rgba(46,204,113,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem">
+<h4 style="color:var(--acreetion-text-bright);margin-bottom:0.5rem">MATE Edition</h4>
+<p style="font-size:0.85rem;color:var(--acreetion-text);margin-bottom:0.75rem">Traditional GNOME 2-style desktop.</p>
+<div class="dl-btns" style="display:flex;flex-wrap:wrap;gap:6px">
+<a href="mate.html" class="btn btn-cinnamon">Download</a>
+</div>
+</div>
+<div style="background:rgba(97,175,239,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem">
+<h4 style="color:var(--acreetion-text-bright);margin-bottom:0.5rem">GNOME Edition</h4>
+<p style="font-size:0.85rem;color:var(--acreetion-text);margin-bottom:0.75rem">Modern, sleek GNOME desktop.</p>
+<div class="dl-btns" style="display:flex;flex-wrap:wrap;gap:6px">
+<a href="gnome.html" class="btn">Download</a>
+</div>
+</div>
+<div style="background:rgba(46,204,113,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem">
+<h4 style="color:var(--acreetion-text-bright);margin-bottom:0.5rem">Plasma Edition</h4>
+<p style="font-size:0.85rem;color:var(--acreetion-text);margin-bottom:0.75rem">Modern, powerful KDE Plasma.</p>
+<div class="dl-btns" style="display:flex;flex-wrap:wrap;gap:6px">
+<a href="plasma.html" class="btn btn-storm">Download</a>
+</div>
+</div>
+<div style="background:rgba(46,204,113,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem">
+<h4 style="color:var(--acreetion-text-bright);margin-bottom:0.5rem">XFCE Edition</h4>
+<p style="font-size:0.85rem;color:var(--acreetion-text);margin-bottom:0.75rem">Lightweight and high speed.</p>
+<div class="dl-btns" style="display:flex;flex-wrap:wrap;gap:6px">
+<a href="xfce.html" class="btn btn-storm">Download</a>
+</div>
+</div>
+<div style="background:rgba(46,204,113,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem">
+<h4 style="color:var(--acreetion-text-bright);margin-bottom:0.5rem">Sway Edition</h4>
+<p style="font-size:0.85rem;color:var(--acreetion-text);margin-bottom:0.75rem">Modern Wayland tiling manager.</p>
+<div class="dl-btns" style="display:flex;flex-wrap:wrap;gap:6px">
+<a href="sway.html" class="btn btn-storm">Download</a>
+</div>
+</div>
+<div style="background:rgba(46,204,113,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem">
+<h4 style="color:var(--acreetion-text-bright);margin-bottom:0.5rem">i3 Edition</h4>
+<p style="font-size:0.85rem;color:var(--acreetion-text);margin-bottom:0.75rem">Manual tiling X11 desktop.</p>
+<div class="dl-btns" style="display:flex;flex-wrap:wrap;gap:6px">
+<a href="i3.html" class="btn btn-storm">Download</a>
+</div>
+</div>
+</div>
+
+<h3 style="color:var(--acreetion-green);margin:1.5rem 0 1rem">Flash to USB</h3>
+<div style="background:rgba(46,204,113,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem;margin-bottom:1.5rem">
+<h4 style="color:var(--acreetion-text-bright);margin-bottom:0.75rem">Option 1: Download &amp; Flash Script (Linux/macOS)</h4>
+<p style="font-size:0.9rem;color:var(--acreetion-text);margin-bottom:0.75rem">Download this script, make it executable, and run it. It will download the ISO and flash it to your USB drive.</p>
+<pre style="background:var(--acreetion-code-bg);padding:1rem;border-radius:12px;overflow-x:auto;margin:1rem 0"><code>#!/bin/bash
+# AcreetionOS USB Flasher
+# Usage: sudo bash acreetionos-flash.sh <edition> </dev/sdX>
+# Editions: cinnamon, xl, 32bit, hyprland, plasma, xfce, mate, gnome, sway, i3
+
+set -e
+EDITION="${1:-cinnamon}"
+DEVICE="${2:-/dev/sdX}"
+
+case "$EDITION" in
+ cinnamon) URL="https://sourceforge.net/projects/acreetionos-iso-image/files/AcreetionOS-1.0-x86_64.iso/download";;
+ xl)    URL="https://iso.acreetionos.org:8448/acreetion/AcreetionOS_XL-1.0-x86_64.iso";;
+ 32bit)  URL="https://pub-173a1f638a3b4c95b5f58b09c0b968aa.r2.dev/AcreetionOS32-latest.iso";;
+ hyprland) URL="https://pub-173a1f638a3b4c95b5f58b09c0b968aa.r2.dev/AcreetionOS-Hyprland-latest.iso";;
+ plasma)  URL="https://pub-173a1f638a3b4c95b5f58b09c0b968aa.r2.dev/AcreetionOS-Plasma-latest.iso";;
+ xfce)   URL="https://pub-173a1f638a3b4c95b5f58b09c0b968aa.r2.dev/AcreetionOS-XFCE-latest.iso";;
+ mate)   URL="https://pub-173a1f638a3b4c95b5f58b09c0b968aa.r2.dev/AcreetionOS-MATE-latest.iso";;
+ gnome)  URL="https://pub-173a1f638a3b4c95b5f58b09c0b968aa.r2.dev/AcreetionOS-GNOME-latest.iso";;
+ sway)   URL="https://pub-173a1f638a3b4c95b5f58b09c0b968aa.r2.dev/AcreetionOS-Sway-latest.iso";;
+ i3)    URL="https://pub-173a1f638a3b4c95b5f58b09c0b968aa.r2.dev/AcreetionOS-i3-latest.iso";;
+ *) echo "Unknown edition: $EDITION"; exit 1;;
+esac
+
+echo "Downloading $EDITION..."
+curl -L -o /tmp/acreetionos.iso "$URL"
+echo "Flashing to $DEVICE..."
+sudo dd if=/tmp/acreetionos.iso of="$DEVICE" bs=4M status=progress && sync
+echo "Done! Safe to remove $DEVICE"</code></pre>
+<a id="dl-flash-script" href="data:application/x-sh;base64,IyEvYmluL2Jhc2gKIyBBY3JlZXRpb25PUyBVU0IgRmxhc2hlcgojIFVzYWdlOiBzdWRvIGJhc2ggYWNyZWV0aW9ub3MtZmxhc2guc2ggPGVkaXRpb24+IDwvZGV2L3NkWD4KIyBFZGl0aW9uczogY2lubmFtb24sIHhsLCAzMmJpdCwgaHlwcmxhbmQsIG1hdGUsIGdub21lCnNldCAtZQpFRElUSU9OPSIkezE6LWNpbm5hbW9ufSIKREVWSUNFPSIkezI6LS9kZXYvc2RYfSIKY2FzZSAiJEVESVRJT04iIGluCiAgY2lubmFtb24pIFVSTD0iaHR0cHM6Ly9pc28uYWNyZWV0aW9ub3Mub3JnOjg0NDgvYWNyZWV0aW9uL0FjcmVldGlvbk9TLTEuMC14ODZfNjQuaXNvIjs7CiAgeGwpICAgICAgIFVSTD0iaHR0cHM6Ly9pc28uYWNyZWV0aW9ub3Mub3JnOjg0NDgvYWNyZWV0aW9uL0FjcmVldGlvbk9TX1hMLTEuMC14ODZfNjQuaXNvIjs7CiAgMzJiaXQpICAgIFVSTD0iaHR0cHM6Ly9wdWItMTczYTFmNjM4YTNiNGM5NWI1ZjU4YjA5YzBiOTY4YWEucjIuZGV2L0FjcmVldGlvbk9TMzItbGF0ZXN0LmlzbyI7OwogIGh5cHJsYW5kKSBVUkw9Imh0dHBzOi8vcHViLTE3M2ExZjYzOGEzYjRjOTViNWY1OGIwOWMwYjk2OGFhLnIyLmRldi9BY3JlZXRpb25PUy1IeXBybGFuZC1sYXRlc3QuaXNvIjs7CiAgbWF0ZSkgICAgIFVSTD0iaHR0cHM6Ly9wdWItMTczYTFmNjM4YTNiNGM5NWI1ZjU4YjA5YzBiOTY4YWEucjIuZGV2L0FjcmVldGlvbk9TLU1BVEUtbGF0ZXN0LmlzbyI7OwogIGdub21lKSAgICBVUkw9Imh0dHBzOi8vcHViLTE3M2ExZjYzOGEzYjRjOTViNWY1OGIwOWMwYjk2OGFhLnIyLmRldi9BY3JlZXRpb25PUy1HTk9NRS1sYXRlc3QuaXNvIjs7CiAgKikgZWNobyAiVW5rbm93biBlZGl0aW9uOiAkRURJVElPTiI7IGV4aXQgMTs7CmVzYWMKZWNobyAiRG93bmxvYWRpbmcgJEVESVRJT04uLi4iCmN1cmwgLUwgLW8gL3RtcC9hY3JlZXRpb25vcy5pc28gIiRVUkwiCmVjaG8gIkZsYXNoaW5nIHRvICRERVZJQ0UuLi4iCnN1ZG8gZGQgaWY9L3RtcC9hY3JlZXRpb25vcy5pc28gb2Y9IiRERVZJQ0UiIGJzPTRNIHN0YXR1cz1wcm9ncmVzcyAmJiBzeW5jCmVjaG8gIkRvbmUhIFNhZmUgdG8gcmVtb3ZlICRERVZJQ0UiCg==" class="btn btn-flasher" download="acreetionos-flash.sh">Download Flash Script</a>
+</div>
+
+
+<h3 style="color:var(--acreetion-green);margin:1.5rem 0 1rem">Desktop App Flasher</h3>
+<div style="background:rgba(46,204,113,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem;margin-bottom:1.5rem">
+<p><strong>AcreetionOS USB Flasher</strong> is a cross-platform desktop app built with Tauri. Select an edition, pick your USB drive, and flash — all from one interface. The app is rebuilt weekly with the latest ISO names baked in.</p>
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:1rem">
+<a href="https://github.com/spivanatalie64/acreetionos-flasher/releases/download/v1.0.0/AcreetionOS.USB.Flasher_1.0.0_x64-setup.exe" class="btn btn-flasher"><i class="bi bi-windows"></i> Windows</a>
+<a href="https://github.com/spivanatalie64/acreetionos-flasher/releases/download/v1.0.0/AcreetionOS.USB.Flasher_1.0.0_aarch64.dmg" class="btn btn-flasher"><i class="bi bi-apple"></i> macOS</a>
+<a href="https://github.com/spivanatalie64/acreetionos-flasher/releases/download/v1.0.0/AcreetionOS.USB.Flasher_1.0.0_amd64.AppImage" class="btn btn-flasher"><i class="bi bi-linux"></i> Linux (AppImage)</a>
+<a href="https://github.com/spivanatalie64/acreetionos-flasher/releases/download/v1.0.0/AcreetionOS.USB.Flasher_1.0.0_amd64.deb" class="btn" style="background:#333">Linux (.deb)</a>
+<a href="https://github.com/spivanatalie64/acreetionos-flasher/releases/download/v1.0.0/AcreetionOS.USB.Flasher-1.0.0-1.x86_64.rpm" class="btn" style="background:#333">Linux (.rpm)</a>
+<a href="https://github.com/spivanatalie64/acreetionos-flasher" class="btn">Source Code</a>
+</div>
+</div>
+<h4 style="color:var(--acreetion-text-bright);margin:1rem 0 0.5rem">Option 2: dd (Linux/macOS)</h4>
+<div style="background:rgba(46,204,113,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem;margin-bottom:1.5rem">
+<label for="dd-edition" style="display:block;margin-bottom:0.5rem;color:var(--acreetion-text)">1. Select edition:</label>
+<select id="dd-edition" style="width:100%;padding:0.6rem;background:var(--acreetion-code-bg);color:var(--acreetion-text-bright);border:1px solid var(--acreetion-box-border);border-radius:8px;margin-bottom:1rem;font-family:monospace">
+<option value="https://iso.acreetionos.org:8448/acreetion/AcreetionOS-1.0-x86_64.iso">Cinnamon Edition</option>
+<option value="https://iso.acreetionos.org:8448/acreetion/AcreetionOS_XL-1.0-x86_64.iso">XL (XLibre) Edition</option>
+<option value="https://pub-173a1f638a3b4c95b5f58b09c0b968aa.r2.dev/AcreetionOS32-latest.iso">AcreetionOS32 (32-bit)</option>
+<option value="https://pub-173a1f638a3b4c95b5f58b09c0b968aa.r2.dev/AcreetionOS-Hyprland-latest.iso">Hyprland Edition</option>
+<option value="https://pub-173a1f638a3b4c95b5f58b09c0b968aa.r2.dev/AcreetionOS-Plasma-latest.iso">Plasma Edition</option>
+<option value="https://pub-173a1f638a3b4c95b5f58b09c0b968aa.r2.dev/AcreetionOS-XFCE-latest.iso">XFCE Edition</option>
+<option value="https://pub-173a1f638a3b4c95b5f58b09c0b968aa.r2.dev/AcreetionOS-MATE-latest.iso">MATE Edition</option>
+<option value="https://pub-173a1f638a3b4c95b5f58b09c0b968aa.r2.dev/AcreetionOS-GNOME-latest.iso">GNOME Edition</option>
+<option value="https://pub-173a1f638a3b4c95b5f58b09c0b968aa.r2.dev/AcreetionOS-Sway-latest.iso">Sway Edition</option>
+<option value="https://pub-173a1f638a3b4c95b5f58b09c0b968aa.r2.dev/AcreetionOS-i3-latest.iso">i3 Edition</option>
+</select>
+<label for="dd-device" style="display:block;margin-bottom:0.5rem;color:var(--acreetion-text)">2. Enter device (e.g. /dev/sdb):</label>
+<input id="dd-device" type="text" value="/dev/sdX" style="width:100%;padding:0.6rem;background:var(--acreetion-code-bg);color:var(--acreetion-text-bright);border:1px solid var(--acreetion-box-border);border-radius:8px;margin-bottom:1rem;font-family:monospace">
+<button onclick="generateDD()" class="btn btn-cinnamon" style="margin-bottom:0.75rem">Generate Command</button>
+<pre id="dd-output" style="background:var(--acreetion-code-bg);padding:1rem;border-radius:12px;overflow-x:auto;display:none"><code id="dd-code"></code></pre>
+</div>
+
+<h4 style="color:var(--acreetion-text-bright);margin:1rem 0 0.5rem">Option 3: Ventoy (All Platforms)</h4>
+<div style="background:rgba(97,175,239,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem;margin-bottom:1.5rem">
+<ol style="margin-left:1.5rem">
+<li>Download <a href="https://www.ventoy.net" target="_blank" rel="noopener">Ventoy</a> for your OS</li>
+<li>Install Ventoy to your USB drive (this formats it)</li>
+<li>Simply <strong>copy</strong> the ISO file onto the Ventoy partition</li>
+<li>Boot from the USB — Ventoy will show a menu of all ISOs</li>
+</ol>
+</div>
+
+<h4 style="color:var(--acreetion-text-bright);margin:1rem 0 0.5rem">Option 4: Rufus (Windows)</h4>
+<div style="background:rgba(46,204,113,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem;margin-bottom:1.5rem">
+<ol style="margin-left:1.5rem">
+<li>Download <a href="https://rufus.ie" target="_blank" rel="noopener">Rufus</a></li>
+<li>Select your USB drive</li>
+<li>Click SELECT and choose the downloaded ISO</li>
+<li>Click START and wait for completion</li>
+</ol>
+</div>
+
+<script>
+function generateDD() {
+ var url = document.getElementById('dd-edition').value;
+ var dev = document.getElementById('dd-device').value || '/dev/sdX';
+ var cmd = '# Download ISO\ncurl -L -o /tmp/acreetionos.iso "' + url + '"\n\n# Flash to USB\nsudo dd if=/tmp/acreetionos.iso of=' + dev + ' bs=4M status=progress && sync\necho "Done!"';
+ document.getElementById('dd-code').textContent = cmd;
+ document.getElementById('dd-output').style.display = 'block';
+}
+</script>
+
+<div id="hosting-providers-container" style="max-width:800px;margin:2rem auto;padding:0 1rem"></div>
+<script>
+async function loadHostingProviders() {
+ const c = document.getElementById('hosting-providers-container');
+ try {
+  const [countRes, provRes] = await Promise.all([
+   fetch('/api/hosting/count'),
+   fetch('/api/hosting/providers')
+  ]);
+  const countData = await countRes.json();
+  const provData = await provRes.json();
+  const active = (provData.providers || []).filter(p => p.status === 'active');
+  if (active.length === 0) { c.style.display = 'none'; return; }
+  let html = '<h3 style="color:var(--acreetion-green);margin:1.5rem 0 0.5rem">ISO Mirror Providers</h3>';
+  html += '<div style="background:rgba(46,204,113,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem">';
+  if (active.length >= 5) {
+   html += '<label for="fastest-mirror" style="display:block;margin-bottom:0.5rem;font-weight:600;color:var(--acreetion-text-bright)">Fastest Provider</label>';
+   html += '<select id="fastest-mirror" style="width:100%;padding:0.6rem;background:var(--acreetion-panel-bg,#1a1a1a);color:var(--acreetion-text-bright);border:1px solid var(--acreetion-box-border);border-radius:8px;font-size:0.9rem;margin-bottom:0.75rem" onchange="if(this.value)window.location.href=this.value">';
+   html += '<option value="">Select a mirror...</option>';
+   active.forEach(p => { html += '<option value="' + escAttr(p.mirror_url) + '">' + escAttr(p.org) + ' — ' + escAttr(p.location) + '</option>'; });
+   html += '</select>';
+  } else {
+   html += '<div style="display:flex;flex-direction:column;gap:0.5rem">';
+   active.forEach(p => {
+    html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:1px solid var(--acreetion-box-border)">';
+    html += '<span><strong>' + escAttr(p.org) + '</strong> <span style="color:#888;font-size:0.85rem">' + escAttr(p.location) + '</span></span>';
+    html += '<a href="' + escAttr(p.mirror_url) + '" target="_blank" style="background:#2ecc71;color:#000;padding:0.3rem 0.8rem;font-size:0.8rem;border-radius:6px;text-decoration:none;font-weight:700">ISO</a>';
+    html += '</div>';
+   });
+   html += '</div>';
+  }
+  html += '<a href="hosting.html" style="margin-top:0.75rem;display:inline-block;background:transparent;color:var(--acreetion-green);border:1px solid var(--acreetion-green);padding:0.4rem 1rem;font-size:0.85rem;border-radius:8px;text-decoration:none">View All Providers</a>';
+  html += '</div>';
+  c.innerHTML = html;
+ } catch(e) { c.style.display = 'none'; }
+}
+function escAttr(s) { return (s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+window.addEventListener('DOMContentLoaded', loadHostingProviders);
+</script>
+
+<!-- CVE Alert Badge -->
+<div id="cve-alert" style="position:fixed;bottom:20px;right:20px;z-index:9999;display:none;cursor:pointer" onclick="window.location.href='security.html'">
+<div style="background:#e74c3c;color:#fff;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.2rem;box-shadow:0 4px 12px rgba(231,76,60,0.5);animation:pulse 2s infinite">S</div>
+<div id="cve-badge-count" style="position:absolute;top:-4px;right:-4px;background:#fff;color:#e74c3c;width:20px;height:20px;border-radius:50%;font-size:0.7rem;display:flex;align-items:center;justify-content:center;font-weight:700">0</div>
+</div>
+<style>@keyframes pulse{0%,100%{box-shadow:0 4px 12px rgba(231,76,60,0.5)}50%{box-shadow:0 4px 24px rgba(231,76,60,0.8)}}</style>
+<script>
+async function checkCVEAlert() {
+ try {
+  const res = await fetch('/api/cve/status');
+  const data = await res.json();
+  const badge = document.getElementById('cve-alert');
+  const count = document.getElementById('cve-badge-count');
+  if (data.has_active && data.count > 0) {
+   badge.style.display = 'block';
+   count.textContent = data.count > 99 ? '99+' : data.count;
+  } else {
+   badge.style.display = 'none';
+  }
+ } catch(e) {}
+}
+checkCVEAlert();
+setInterval(checkCVEAlert, 300000);
+</script>
+</body></html>

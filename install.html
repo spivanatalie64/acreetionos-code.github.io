@@ -1,262 +1,222 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta http-equiv="Cache-Control" content="max-age=3600">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <!-- Removed invalid http-equiv meta tags for HTML validation -->
-    <title>AcreetionOS Installation Guide - Easy Arch Linux Setup</title>
-    <meta name="description" content="Step-by-step guide to installing AcreetionOS. Learn how to create a bootable USB, partition your drives, and set up your new user-friendly Arch Linux system today." />
-    <meta name="keywords" content="install AcreetionOS, Arch Linux installation, Linux setup guide, bootable USB Linux, easy Linux install, Cinnamon desktop setup, Linux for beginners" />
-    <link rel="canonical" href="https://acreetionos.org/install.html" />
-    <link rel="icon" type="image/webp" href="acreetionoslogo.webp">
-    <link rel="stylesheet" href="contact.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-
-    <style>::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:var(--acreetion-body-bg,#121212)}::-webkit-scrollbar-thumb{background:var(--acreetion-box-border,#333);border-radius:10px}::-webkit-scrollbar-thumb:hover{background:var(--acreetion-green,#2ecc71)} .btn{transition:all 0.3s ease}.btn:hover{box-shadow:0 0 15px rgba(46,204,113,0.4);transform:translateY(-2px)}.content-box{transition:transform 0.3s ease,box-shadow 0.3s ease}.content-box:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,0.5)} .reveal{opacity:0;transform:translateY(30px);transition:all 0.8s cubic-bezier(0.2,0.8,0.2,1);will-change:opacity,transform}.reveal.active{opacity:1;transform:translateY(0)} html{scroll-behavior:smooth} ::selection{background:rgba(46,204,113,0.3);color:var(--acreetion-text-bright,#fff)} :focus-visible{outline:2px solid var(--acreetion-green,#2ecc71);outline-offset:3px;border-radius:4px} a:focus-visible,button:focus-visible{outline:2px solid var(--acreetion-green,#2ecc71);outline-offset:3px} .skip-link{position:absolute;top:-40px;left:0;background:var(--acreetion-green,#2ecc71);color:#000;padding:8px 16px;text-decoration:none;font-weight:700;z-index:10000;transition:top 0.3s;border-radius:0 0 8px 0} .skip-link:focus{top:0} @media (prefers-reduced-motion:reduce) {html{scroll-behavior:auto} *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important}} /* removed pageLoadFade keyframes */ /* removed pageLoadFade body animation */ @media (prefers-reduced-motion:reduce){body{animation:none}}a{color:var(--acreetion-green,#2ecc71);text-decoration:none;position:relative} a:not(.btn):not(.logo):not(.skip-link):not(.social-link):hover{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px} #back-to-top{position:fixed;bottom:30px;right:30px;background:var(--acreetion-green,#2ecc71);color:#000;border:none;border-radius:50%;width:48px;height:48px;cursor:pointer;z-index:999;font-size:1.2rem;font-weight:700;opacity:0;visibility:hidden;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;padding-bottom:4px} #back-to-top.visible{opacity:1;visibility:visible} #back-to-top:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(46,204,113,0.4)} body{background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,0.03) 1px,transparent 0);background-size:40px 40px} .main-nav a.active,.main-nav a[aria-current="page"]{background-color:var(--acreetion-green,#2ecc71);color:#000;font-weight:700;border-radius:12px;padding:0.5rem 1rem} 
-        
-        /* removed pageLoadFade animation to prevent flash of unstyled content */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-            will-change: opacity, transform;
+<!DOCTYPE html><html lang="en"><head>
+<meta http-equiv="Cache-Control" content="max-age=3600"><script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://acreetionos.org/#author",
+      "name": "Natalie Cole-Clift Spiva",
+      "jobTitle": "Co-Lead Developer",
+      "url": "https://acreetionos.org/developers.html",
+      "sameAs": [
+        "https://github.com/AcreetionOS-Code"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://acreetionos.org/#organization",
+      "name": "AcreetionOS Project",
+      "url": "https://acreetionos.org",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://acreetionos.org/acreetionoslogo.webp",
+        "width": 512,
+        "height": 512
+      },
+      "sameAs": [
+        "https://github.com/AcreetionOS-Code",
+        "https://discord.gg/VHqQkJASw7",
+        "wiki.html"
+      ],
+      "description": "A community-driven, user-friendly Linux distribution based on Arch Linux.",
+      "location": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Spokane",
+          "addressRegion": "WA",
+          "addressCountry": "US"
         }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0)
+      }
+    },
+    {
+      "@type": ["OperatingSystem", "SoftwareApplication", "SoftwareSourceCode"],
+      "@id": "https://acreetionos.org/#software",
+      "name": "AcreetionOS",
+      "operatingSystem": "Linux",
+      "applicationCategory": "OperatingSystem",
+      "programmingLanguage": "C, Shell, Python",
+      "runtimePlatform": "Linux",
+      "codeRepository": "https://github.com/AcreetionOS-Code/acreetionos-code.github.io",
+      "description": "Stability and repository sovereignty for the modern power user. A user-friendly Arch Linux distribution.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "screenshot": "https://acreetionos.org/logo.webp",
+      "downloadUrl": "https://acreetionos.org/#manual-downloads",
+      "softwareVersion": "1.0",
+      "datePublished": "2026-01-01",
+      "author": { "@id": "https://acreetionos.org/#author" },
+      "publisher": { "@id": "https://acreetionos.org/#organization" },
+      "maintainer": { "@id": "https://acreetionos.org/#organization" },
+      "keywords": "Linux, Arch Linux, Cinnamon Desktop, Rolling Release, Operating System",
+      "processorRequirements": "64-bit",
+      "memoryRequirements": "Minimum 4GB",
+      "storageRequirements": "20GB"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://acreetionos.org/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Who leads the AcreetionOS project?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "AcreetionOS is led by Co-Lead Developers Natalie Cole-Clift Spiva and her father, Darren Clift. It is an independent, volunteer-run project based in Spokane, WA. The project is not affiliated with StormOS or Ben Fitzpatrick."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the official source for AcreetionOS information?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The official source for all AcreetionOS information, documentation, and downloads is https://acreetionos.org and the official GitHub repository at https://github.com/AcreetionOS-Code."
+          }
         }
-           .btn.btn-storm{background-color:var(--storm-color);color:#000}.btn.btn-cinnamon{background-color:var(--acreetion-green);color:#000}
-      .main-nav a.btn-storm{color:#fff} .btn-flasher{background-color:var(--flasher-color,#f39c12);color:#000}.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,0.7);backdrop-filter:blur(8px);z-index:1000;overflow-y:auto;align-items:center;justify-content:center;padding:1rem;opacity:0;visibility:hidden}.modal-overlay.visible{display:flex;opacity:1;visibility:visible;transition:opacity 0.3s ease,visibility 0.3s ease}.modal-box{position:relative;cursor:default;background-color:var(--acreetion-box-bg);border:1px solid var(--acreetion-box-border);padding:2rem 3rem;max-width:700px}.modal-close-btn{position:absolute;top:1rem;right:1rem;background-color:var(--acreetion-green);color:black;font-family:var(--font-sans);font-size:1.5rem;font-weight:700;border:none;border-radius:50%;width:40px;height:40px;cursor:pointer;line-height:40px;text-align:center;z-index:1001}.modal-close-btn:hover{background-color:#d15c64;transform:scale(1.05)}.modal-box h2{color:var(--acreetion-green)}.page-footer{text-align:center;padding:2rem;margin-top:2rem;border-top:1px solid var(--acreetion-box-border);color:#777;font-size:0.9rem}.page-footer p{color:#777;margin-bottom:0.5rem;text-align:center}.page-footer a{color:var(--acreetion-green);text-decoration:none}.page-footer a:hover{text-decoration:underline}</style>
-<link rel="stylesheet" href="ai-chat.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"></head>
+      ]
+    }
+  ]
+}
+</script><meta charset="UTF-8" />
+<meta name="robots" content="index, follow" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="keywords" content="AcreetionOS, autobuild, ISO download, USB flasher, build your own ISO" /><meta name="referrer" content="strict-origin-when-cross-origin" /><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; connect-src 'self' https://api.github.com https://gitlab.acreetionos.org https://cloudflareinsights.com; base-uri 'self'; form-action 'self' https://www.qwant.com" /><title>AcreetionOS Autobuild — Download, Flash & Build Your Own ISO</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media=\'all\'"><noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"></noscript><meta name="description" content="Autobuild downloads for all AcreetionOS editions. Live build status, multi-mirror downloads, USB flasher utility, and self-build guides. Hosting is free because ISOs are large." /><meta name="keywords" content="AcreetionOS, autobuild, ISO download, USB flasher, Linux install, build your own ISO, GitLab CI" /><link rel="canonical" href="https://acreetionos.org/install.html" /><!-- Open Graph / Facebook --><meta property="og:type" content="website" /><meta property="og:url" content="https://acreetionos.org/install.html" /><meta property="og:title" content="AcreetionOS Autobuild & Downloads" /><meta property="og:description" content="Download AcreetionOS ISOs, check autobuild status, flash USB drives, or build your own ISO on GitLab." /><meta property="og:image" content="https://acreetionos.org/logo.webp" /><meta property="og:site_name" content="AcreetionOS" /><!-- Twitter --><meta property="twitter:card" content="summary_large_image" /><meta property="twitter:url" content="https://acreetionos.org/install.html" /><meta property="twitter:title" content="AcreetionOS Autobuild & Downloads" /><meta property="twitter:description" content="Download AcreetionOS ISOs. Check autobuild status, flash USB drives, or build your own." /><meta property="twitter:image" content="https://acreetionos.org/logo.webp" /><link rel="icon" type="image/webp" href="acreetionoslogo.webp"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="preload" href="acreetionoslogo.webp" as="image" type="image/webp"><link rel="preload" href="logo.webp" as="image" type="image/webp"><link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"></noscript><script>if('serviceWorker'in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('/sw.js').catch(()=>{})})}</script><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script><style>:root{--acreetion-green:#2ecc71;--acreetion-body-bg:#121212;--acreetion-panel-bg:#1a1a1a;--acreetion-box-bg:#222222;--acreetion-box-border:#333333;--acreetion-text-bright:#e5e5e5;--acreetion-text:#b2b2b2;--acreetion-code-bg:rgba(46,204,113,0.1);--storm-color:#61afef;--flasher-color:#f39c12;--acreetion-purple:#9b59b6;--font-sans:'Roboto',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--font-mono:'Fira Code',monospace} *,*::before,*::after{box-sizing:border-box;margin:0;padding:0} html{overflow-x:hidden} body{font-family:var(--font-sans);background-color:var(--acreetion-body-bg);color:var(--acreetion-text-bright);line-height:1.6;overflow-x:hidden;max-width:100vw} .announcement-bar{background-color:var(--acreetion-panel-bg);border-bottom:1px solid var(--acreetion-box-border);padding:0.5rem 1rem;color:var(--acreetion-text-bright);display:flex;justify-content:center;align-items:center;overflow-x:hidden} .announcement-content{font-size:0.95rem;white-space:nowrap;overflow:hidden} .announcement-bar:hover .announcement-content{animation-play-state:paused} .announcement-content > span{padding-right:4rem;display:inline-block} .announcement-bar .separator{margin:0 1.5rem;color:var(--acreetion-box-border)} .announcement-bar a{color:var(--acreetion-green);font-weight:bold;text-decoration:none} .announcement-bar a:hover{text-decoration:underline} .social-link{padding:0.2rem 0.5rem;border-radius:0.75rem;transition:background-color 0.3s ease} .social-link:hover{background-color:rgba(255,255,255,0.1);animation:pulse 1s infinite} @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}} .page-header{background-color:rgba(24,26,27,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:2px solid var(--acreetion-green);border-radius:0 0 16px 16px;position:sticky;top:0;z-index:1000} .header-content{display:flex;justify-content:space-between;align-items:center;max-width:1400px;margin:0 auto;padding:0.75rem 2rem} .logo{display:flex;align-items:center;gap:1rem;font-family:var(--font-mono);font-size:1.8rem;font-weight:700;color:var(--acreetion-text-bright);text-decoration:none} .logo-img{height:40px;width:auto;transform:translateZ(0);contain:layout} .logo-text span{color:var(--acreetion-green)} .main-nav a{color:var(--acreetion-text);text-decoration:none;margin-left:2rem;font-weight:500} .main-nav a:hover{color:var(--acreetion-text-bright)} .search-strip{background-color:var(--acreetion-panel-bg);border-bottom:1px solid var(--acreetion-box-border);padding:1rem 0} .search-container{max-width:1400px;margin:0 auto;padding:0 2rem} .search-form{display:flex;width:100%;border:1px solid var(--acreetion-box-border);background:var(--acreetion-body-bg)} .search-form:focus-within{border-color:var(--acreetion-green)} .search-input{flex-grow:1;background:transparent;border:none;padding:0.8rem 1.2rem;color:var(--acreetion-text-bright);font-family:var(--font-sans);font-size:1rem;outline:none} .search-btn{background:var(--acreetion-green);border:none;color:#000;padding:0 2rem;cursor:pointer;font-weight:700;font-family:var(--font-mono);text-transform:uppercase} .search-btn:hover{filter:brightness(1.1)} .page-wrapper{display:grid;grid-template-columns:1fr 350px;gap:2rem;max-width:1400px;margin:2rem auto;padding:0 2rem;width:100%;overflow-x:hidden;box-sizing:border-box} .content-feed{display:flex;flex-direction:column;gap:2rem;min-width:0;max-width:100%} .sidebar{min-width:0;max-width:100%} .content-box{background-color:var(--acreetion-box-bg);border:1px solid var(--acreetion-box-border);border-radius:12px;max-width:100%;overflow-x:hidden} .box-header{padding:0.8rem 1.2rem;border-bottom:1px solid var(--acreetion-box-border);background-color:#1a1a1a;max-width:100%;overflow-x:hidden} .box-header h2{font-family:var(--font-mono);font-size:1.3rem;color:var(--acreetion-text-bright);font-weight:700;word-wrap:break-word} .box-body{padding:1.5rem;max-width:100%;overflow-x:hidden;word-wrap:break-word} .box-body h3{font-family:var(--font-mono);font-size:1.1rem;margin-top:1.5rem;margin-bottom:0.5rem;border-bottom:1px solid var(--acreetion-box-border);padding-bottom:0.5rem} .article-content a:not(.btn),.sidebar-box p a{color:var(--acreetion-green);text-decoration:none;font-weight:500} .article-content a:not(.btn):hover,.sidebar-box p a:hover{text-decoration:underline} .article-content p,.article-content li{color:var(--acreetion-text);margin-bottom:1rem;word-wrap:break-word} .article-content ul{padding-left:20px;list-style-position:inside} .article-content{max-width:100%;overflow-x:hidden} .article-logo-cluster{float:left;margin-right:2rem;margin-bottom:1rem;width:150px} .article-logo-cluster .hero-logo-img{width:100%;max-width:150px;height:auto;margin-bottom:1.5rem} .article-content::after{content:"";display:table;clear:both} .sidebar{max-width:100%;min-width:0} .sidebar-box{max-width:100%;overflow-x:hidden} .sidebar-box .box-header h2{font-family:var(--font-mono);font-size:1.1rem;font-weight:700;color:var(--acreetion-text-bright)} .spec-list{list-style:none;padding:0} .spec-list li{margin-bottom:0.5rem;font-size:0.9rem;color:var(--acreetion-text)} .spec-list .spec-title{color:var(--acreetion-text-bright);font-weight:700;min-width:120px;display:inline-block} dl {margin-bottom:2rem;border-left:2px solid var(--acreetion-green);padding-left:1.5rem} dt {font-family:var(--font-mono);font-weight:700;color:var(--acreetion-text-bright);margin-top:0.5rem} dd {color:var(--acreetion-text);margin-bottom:0.5rem;margin-left:0} .sidebar-nav{list-style:none;padding:0} .sidebar-nav a{display:block;text-decoration:none;color:var(--acreetion-green);padding:0.5rem 1.2rem;border-bottom:1px solid var(--acreetion-box-border);cursor:pointer} .sidebar-nav a:hover{background-color:#3a3a3a} .sidebar-nav a.active{background-color:var(--acreetion-green);color:black;font-weight:700} .sidebar-box p{color:var(--acreetion-text);padding:0 1.2rem 1rem} code,pre{font-family:var(--font-mono);font-size:0.9rem} code{background-color:var(--acreetion-code-bg);border:1px solid rgba(46,204,113,0.2);padding:0.2em 0.4em;border-radius:12px;color:var(--acreetion-text-bright)} pre{background-color:var(--acreetion-panel-bg);border:1px solid var(--acreetion-box-border);padding:1em;overflow-x:auto;margin-top:0.5rem} .btn{display:inline-block;color:black;text-decoration:none;padding:0.7rem 1.5rem;border-radius:12px;font-weight:700;border:none;cursor:pointer} .btn:hover{filter:brightness(1.1)} .btn-cinnamon{background-color:var(--acreetion-green)}       .btn-storm{background-color:var(--storm-color)}
+      .main-nav a.btn-storm{color:#fff} .btn-flasher{background-color:var(--flasher-color)} .btn-chatgpt{background-color:var(--acreetion-green)} .btn-claude{background-color:var(--acreetion-purple)} #about .box-header h2,#about h3{color:var(--acreetion-green)}#philosophy .box-header h2,#philosophy h3{color:var(--storm-color)}#easy-install .box-header h2{color:var(--flasher-color)}#manual-downloads .box-header h2{color:var(--acreetion-green)} .tech-detail-heading{color:var(--acreetion-green);font-family:var(--font-mono);font-weight:700;margin-top:2rem;margin-bottom:0.5rem;padding-bottom:0.5rem;border-bottom:1px solid var(--acreetion-box-border)} .team-members{display:flex;flex-direction:column;gap:1rem;margin-top:1rem} .team-member{display:flex;justify-content:space-between;align-items:center} .team-member-name{font-weight:700;color:var(--acreetion-text-bright)} .mirror-logo a{display:block;text-align:center;font-size:1.2rem;font-weight:700;color:var(--acreetion-green);text-decoration:none;margin-top:1rem;margin-bottom:1rem;padding:1rem 0} .mirror-logo a:hover{text-decoration:underline} .page-footer{text-align:center;padding:2rem;margin-top:2rem;border-top:1px solid var(--acreetion-box-border);color:#777;font-size:0.9rem} .page-footer p{color:#777;margin-bottom:0.5rem;text-align:center} .page-footer a{color:var(--acreetion-green);text-decoration:none} .page-footer a:hover{text-decoration:underline} .modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,0.7);backdrop-filter:blur(8px);z-index:1000;overflow-y:auto;align-items:center;justify-content:center;padding:1rem;opacity:0;visibility:hidden} .modal-overlay.visible{display:flex;opacity:1;visibility:visible;transition:opacity 0.3s ease,visibility 0.3s ease} .modal-box{position:relative;cursor:default;background-color:var(--acreetion-box-bg);border:1px solid var(--acreetion-box-border);padding:2rem 3rem;max-width:700px} .modal-close-btn{position:absolute;top:1rem;right:1rem;background-color:var(--acreetion-green);color:black;font-family:var(--font-sans);font-size:1.5rem;font-weight:700;border:none;border-radius:50%;width:40px;height:40px;cursor:pointer;line-height:40px;text-align:center;z-index:1001} .modal-close-btn:hover{background-color:#d15c64;transform:scale(1.05)} .modal-box h2{color:var(--acreetion-green)} @media (max-width:1024px){.page-wrapper{display:flex !important;flex-direction:column;gap:1.5rem;padding:0 1rem;max-width:100%;box-sizing:border-box}.sidebar{order:-1;max-width:100% !important;width:100% !important;min-width:0 !important}.content-feed{max-width:100% !important;min-width:0 !important;width:100% !important}} @media (max-width:768px){.header-content{flex-direction:column;gap:1rem;padding:0.75rem 1rem}.logo{font-size:1.5rem}.logo-img{height:35px}.main-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:0.5rem}.main-nav a{margin-left:0;padding:0.5rem 1rem;font-size:0.9rem}.page-wrapper{margin:1rem auto;gap:1rem;max-width:100vw;box-sizing:border-box}.content-feed{max-width:100%;min-width:0;width:100%}.sidebar{max-width:100%;width:100%}.article-logo-cluster{float:none;display:block;text-align:center;margin:0 auto 1.5rem}.article-logo-cluster .hero-logo-img{max-width:120px}h1,.box-header h2{font-size:1.3rem}h2{font-size:1.2rem}h3{font-size:1.05rem}.box-body{padding:1rem}.modal-box{padding:1.5rem;margin:0.5rem;max-width:calc(100vw - 1rem)}.announcement-content{font-size:0.85rem;text-align:center}.announcement-bar .separator{margin:0 0.5rem}.announcement-content > span{padding-right:2rem}} @media (max-width:480px){.header-content{padding:0.5rem}.logo{font-size:1.3rem}.logo-img{height:30px}.main-nav{gap:0.3rem}.main-nav a{font-size:0.85rem;padding:0.4rem 0.6rem}*{max-width:100vw !important;box-sizing:border-box !important}.page-wrapper,.content-feed,main,.sidebar,aside{width:100% !important;max-width:100vw !important;min-width:0 !important;box-sizing:border-box !important}.page-wrapper{padding:0 0.5rem !important;margin:0.5rem auto !important;display:flex !important;flex-direction:column !important}.content-feed{display:flex !important;flex-direction:column !important}.sidebar{display:block !important}.box-header{padding:0.6rem 1rem}.box-header h2{font-size:1rem}.box-body{padding:0.75rem;font-size:0.95rem}.btn{padding:0.5rem 1rem;font-size:0.9rem;display:block;width:100%;text-align:center;margin:0.25rem 0;box-sizing:border-box;max-width:100%}.modal-box{padding:1rem;max-width:calc(100vw - 1rem)}.modal-close-btn{width:35px;height:35px;font-size:1.2rem}.announcement-content{font-size:0.8rem;white-space:normal}.announcement-bar{padding:0.5rem 0.5rem}.announcement-bar .separator{display:none}.announcement-content > span{padding-right:0;display:block;margin-bottom:0.25rem}.article-logo-cluster .hero-logo-img{max-width:100px}.spec-list .spec-title{min-width:90px;font-size:0.85rem}.team-member{flex-direction:column;align-items:flex-start;gap:0.5rem}h1,.box-header h2{font-size:1.1rem}h2{font-size:1rem}h3{font-size:0.95rem}.tech-detail-heading{font-size:1rem}} #gnome-info-btn{position:fixed;bottom:24px;left:24px;background-color:var(--acreetion-purple);color:white;padding:10px 15px;border-radius:12px;border:none;cursor:pointer;font-family:var(--font-sans);font-weight:500;z-index:999;transition:all 0.3s ease;animation:gnomeWiggle 0.5s ease-in-out 3s,gnomePulse 2s ease-in-out 4s infinite}#gnome-info-btn:hover{background-color:#8e44ad;transform:translateY(-3px) scale(1.05);box-shadow:0 8px 25px rgba(155,89,182,0.5)}@keyframes gnomeWiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}75%{transform:rotate(-2deg)}}@keyframes gnomePulse{0%,100%{box-shadow:0 0 0 0 rgba(155,89,182,0.4)}50%{box-shadow:0 0 12px 4px rgba(155,89,182,0.3)}}   ::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:var(--acreetion-body-bg,#121212)}::-webkit-scrollbar-thumb{background:var(--acreetion-box-border,#333);border-radius:10px}::-webkit-scrollbar-thumb:hover{background:var(--acreetion-green,#2ecc71)} .btn{transition:all 0.3s ease}.btn:hover{box-shadow:0 0 15px rgba(46,204,113,0.4);transform:translateY(-2px)}.content-box{transition:transform 0.3s ease,box-shadow 0.3s ease}.content-box:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,0.5)} .reveal{opacity:0;transform:translateY(30px);transition:all 0.8s cubic-bezier(0.2,0.8,0.2,1)}.reveal.active{opacity:1;transform:translateY(0)} html{scroll-behavior:smooth} ::selection{background:rgba(46,204,113,0.3);color:var(--acreetion-text-bright,#fff)} :focus-visible{outline:2px solid var(--acreetion-green,#2ecc71);outline-offset:3px;border-radius:4px} a:focus-visible,button:focus-visible{outline:2px solid var(--acreetion-green,#2ecc71);outline-offset:3px} .skip-link{position:absolute;top:-40px;left:0;background:var(--acreetion-green,#2ecc71);color:#000;padding:8px 16px;text-decoration:none;font-weight:700;z-index:10000;transition:top 0.3s;border-radius:0 0 8px 0} .skip-link:focus{top:0} @media (prefers-reduced-motion:reduce) {html{scroll-behavior:auto} *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important}} /* removed pageLoadFade keyframes */ /* removed pageLoadFade body animation */ @media (prefers-reduced-motion:reduce){body{animation:none}} a{color:var(--acreetion-green,#2ecc71);text-decoration:none;position:relative} a:not(.btn):not(.logo):not(.skip-link):not(.social-link):hover{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px} #back-to-top{position:fixed;bottom:90px;right:20px;background:var(--acreetion-green,#2ecc71);color:#000;border:none;border-radius:50%;width:48px;height:48px;cursor:pointer;z-index:999;font-size:1.2rem;font-weight:700;opacity:0;visibility:hidden;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;padding-bottom:4px} #back-to-top.visible{opacity:1;visibility:visible} #back-to-top:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(46,204,113,0.4)} body{background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,0.03) 1px,transparent 0);background-size:40px 40px} .main-nav a.active,.main-nav a[aria-current="page"]{background-color:var(--acreetion-green,#2ecc71);color:#000;font-weight:700;border-radius:12px;padding:0.5rem 1rem}@media(max-width:480px){#gnome-info-btn{bottom:80px;left:8px;font-size:0.8rem;padding:8px 12px}}</style><link rel="stylesheet" href="ai-chat.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" media="print" onload="this.media=\'all\'"><noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"></noscript></head><body><a href="#main-content" class="skip-link">Skip to main content</a></div><header class="page-header"><div class="header-content"><a href="index.html" class="logo"><img src="acreetionoslogo.webp" alt="Official AcreetionOS Logo: A modern, minimalist icon representing stability and user sovereignty" class="logo-img" width="40" height="40" decoding="auto" loading="eager" fetchpriority="high"><span class="logo-text">Acreetion<span>OS</span></span></a><nav class="main-nav"><!-- <a href="https://status.acreetionos.org">Server Status</a> --><!-- Note: We are looking for an alternative solution to uptime kuma --><a href="#manual-downloads">Downloads</a><a href="hosting.html">ISO Hosting</a><a href="wiki.html">Wiki</a><a href="developers.html">Developers</a><a href="contact.html">Contact & Support</a><a href="git-tracker.html" class="btn btn-storm">Git Tracker</a><a href="/acreetionos-news-tracker/" class="btn btn-storm" style="background-color: var(--acreetion-green); color: #000;">News Tracker</a><a href="unofficial.html" class="btn btn-storm" style="background-color:var(--acreetion-purple);color:#fff">Unofficial</a><a href="https://github.com/acreetionos-code/" class="btn btn-storm" style="background-color:#333">GitHub</a><a href="https://gitlab.acreetionos.org" class="btn btn-storm">GitLab</a></nav></div></header><div class="search-strip"><div class="search-container"><form class="search-form" action="https://www.qwant.com/" method="GET" target="_blank"><input type="text" name="q" class="search-input" placeholder="Is AcreetionOS Better than Arch?" aria-label="Search the web with SearX"><button type="submit" class="search-btn">Search</button></form></div></div><div class="page-wrapper"><main id="main-content" class="content-feed"><article id="about" class="content-box"><div class="box-header"><h1>AcreetionOS Autobuild</h1></div><div class="box-body"><div class="article-content">
+<p><strong>All AcreetionOS editions are automatically rebuilt every week.</strong> ISOs are then compressed (ZIP) and uploaded to multiple mirrors — Cloudflare R2, Internet Archive, and SourceForge. Below you can check build status, download any edition, flash a USB drive, or even build your own ISO.</p>
 
-<body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <div id="background-grid"></div>
-    <header class="page-header"><div class="header-content"><a href="index.html" class="logo"><img src="acreetionoslogo.webp" alt="Official AcreetionOS Logo" class="logo-img" width="40" height="40" decoding="auto" loading="eager"><span class="logo-text">Acreetion<span>OS</span></span></a><nav class="main-nav"><a href="TrumpOS/index.html" class="btn btn-storm" style="background-color: #ffcc00; color: #222; font-weight:900; text-transform:uppercase;">TrumpOS (MLGA)</a><a href="index.html#manual-downloads">Downloads</a><a href="donate.html">Donate</a><a href="wiki.html">Wiki</a><a href="developers.html">Developers</a><a href="contact.html">Contact & Support</a><a href="git-tracker.html" class="btn btn-storm">Git Tracker</a><a href="https://gitlab.acreetionos.org" class="btn btn-storm">GitLab</a><a href="mastodon.html" class="btn btn-storm">Mastodon</a><a href="bsky.html" data-modal-target="#bsky-modal" class="btn btn-storm"><i class="bi bi-globe"></i> Bluesky</a><a href="https://xmpp.acreetionos.org" class="btn btn-storm">XMPP</a><a href="https://matrix.acreetionos.org" class="btn btn-storm">Matrix</a></nav></div></header>
-
-    <div id="main-content" class="page-wrapper">
-        <div class="main-column">
-            <div class="content-box">
-                <div class="box-header">
-                    <h1>Complete Installation Guide</h1>
-                </div>
-                <div class="box-body">
-                    <p style="font-size: 1.1rem; margin-bottom: 2rem;">Follow this comprehensive guide to install AcreetionOS Linux on your computer. This guide works for beginners and advanced users alike.</p>
-                    <h2 style="color: var(--acreetion-green); margin-top: 2rem; margin-bottom: 1rem;">Step 1: Download AcreetionOS ISO</h2>
-                    <p>Choose your edition and download from one of our mirrors. <strong>All editions are 64-bit (x86_64) only.</strong></p>
-                    <h3 style="color: var(--acreetion-green); margin-top: 1.5rem; margin-bottom: 0.5rem;">Cinnamon Edition (Main)</h3>
-                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem;">
-                        <a href="https://iso.acreetionos.org:8448/acreetion/AcreetionOS-1.0-x86_64.iso" class="btn">Direct Download</a>
-                        <a href="https://ftp2.osuosl.org/pub/acreetionos/AcreetionOS-1.0-x86_64.iso" class="btn">OSUOSL Mirror</a>
-                        <a href="https://ftp.halifax.rwth-aachen.de/acreetionos/AcreetionOS-1.0-x86_64.iso" class="btn">RWTH Aachen Mirror</a>
-                        <a href="https://acreetionos-mirror-2-ro.privacy11.xyz/iso/AcreetionOS-1.0-x86_64.iso" class="btn">Romania Mirror</a>
-                    </div>
-                    <h3 style="color: var(--storm-color); margin-top: 1.5rem; margin-bottom: 0.5rem;">AcreetionOS XL (XLibre Edition)</h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>XLibre is no longer experimental.</strong> After extensive real-world testing, it has proven exceptionally stable and reliable. The AcreetionOS team is now in active discussions about transitioning the entire project to XLibre as the sole display foundation.</p>
-                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem;">
-                        <a href="https://iso.acreetionos.org:8448/acreetion/AcreetionOS_XL-1.0-x86_64.iso" class="btn btn-storm">XLibre Direct</a>
-                        <a href="https://ftp2.osuosl.org/pub/acreetionos/AcreetionOS_XL-1.0-x86_64.iso" class="btn btn-storm">XLibre OSUOSL</a>
-                        <a href="https://ftp.halifax.rwth-aachen.de/acreetionos/AcreetionOS-1.0-x86_64.iso" class="btn btn-storm">XLibre RWTH Aachen</a>
-                        <a href="https://acreetionos-mirror-2-ro.privacy11.xyz/iso/AcreetionOS_XL-1.0-x86_64.iso" class="btn btn-storm">XLibre Romania</a>
-                    </div>
-                    <div style="background: rgba(46,204,113,0.1); border: 1px solid var(--acreetion-green); border-radius: 12px; padding: 1rem; margin-bottom: 1rem;">
-                        <p style="color: var(--acreetion-text-bright); margin: 0;"><strong>Roadmap Update:</strong> We have already built the migration package to move existing installations from X11 to XLibre. Our focus now is on deploying it in a way that <em>just works</em> — seamless, reliable, and invisible to users. When ready, all active installations will receive the update automatically. No reinstall required.</p>
-                    </div>
-                    <h2 style="color: var(--acreetion-green); margin-top: 2rem; margin-bottom: 1rem;">Step 2: Create Bootable USB Drive</h2>
-<div style="background:rgba(46,204,113,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem;margin-bottom:1.5rem;">
-<p style="color:var(--acreetion-text-bright);font-weight:700;margin-bottom:0.5rem;">Recommended: AcreetionOS USB Flasher</p>
-<p style="color:var(--acreetion-text);margin-bottom:1rem;">Our own flasher tool is the easiest way. It auto-detects your OS:</p>
-<div id="flasher-download-area" style="display:flex;flex-wrap:wrap;gap:10px;">
-<a id="flasher-dl-linux" href="https://iso.acreetionos.org:8448/Flashing_Utility/dist/AcreetionOS%20USB%20Flasher-1.0.0.AppImage" class="btn btn-flasher" style="display:none;">Download Flasher for Linux (.AppImage)</a>
-<a id="flasher-dl-win" href="https://iso.acreetionos.org:8448/Flashing_Utility/dist/AcreetionOS_USB_Flasher_Setup_1.0.0.exe" class="btn btn-flasher" style="display:none;">Download Flasher for Windows (.exe)</a>
-<a id="flasher-dl-mac" href="https://www.balena.io/etcher/" target="_blank" rel="noopener" class="btn btn-flasher" style="display:none;">Download Balena Etcher for macOS</a>
-<span id="flasher-os-detect" style="color:var(--acreetion-text);font-size:0.9rem;">Detecting your operating system...</span>
+<div style="background:rgba(243,156,18,0.05);border:1px solid rgba(243,156,18,0.3);border-radius:12px;padding:1.25rem;margin:1.5rem 0">
+<h2 style="color:var(--storm-color);margin-bottom:0.5rem">A Note on Hosting</h2>
+<p style="color:var(--acreetion-text);font-size:0.9rem">AcreetionOS ISOs are typically <strong>1.5&ndash;3 GB</strong> each. With multiple editions being rebuilt weekly, storage adds up fast. We rely entirely on <strong>free hosting providers</strong> — Cloudflare R2 (10 GB free), Internet Archive (unlimited), and SourceForge (unlimited). If you find these useful, consider <a href="hosting.html">becoming a hosting provider</a> or contributing bandwidth/mirrors.</p>
 </div>
-<p id="flasher-instructions" style="color:var(--acreetion-text);margin-top:0.75rem;font-size:0.9rem;display:none;"></p>
+
+<h3 style="color:var(--acreetion-green);margin:1.5rem 0 1rem">Autobuild Status</h3>
+<p style="color:var(--acreetion-text);margin-bottom:1rem">Each edition is rebuilt on a weekly schedule. Click the badges to see the latest build logs:</p>
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:2rem">
+<a href="https://github.com/AcreetionOS-Code/acreetionos-code.github.io/actions" class="btn btn-cinnamon">Cinnamon (Main)</a>
+<a href="https://github.com/spivanatalie64/acreetionos32/actions" class="btn">32-bit</a>
+<a href="https://github.com/spivanatalie64/acreetionos-hyprland/actions" class="btn btn-storm">Hyprland</a>
+<a href="mate.html" class="btn">MATE</a>
+<a href="gnome.html" class="btn">GNOME</a>
+<a href="https://gitlab.acreetionos.org" class="btn" style="background-color:#e24329;color:#fff">GitLab Builder</a>
 </div>
-<script>!function(){var u=navigator.userAgent||navigator.platform||'',d=document.getElementById('flasher-os-detect'),l=document.getElementById('flasher-dl-linux'),w=document.getElementById('flasher-dl-win'),m=document.getElementById('flasher-dl-mac'),i=document.getElementById('flasher-instructions');d.style.display='block';if(u.indexOf('Win')!==-1){w.style.display='inline-block';d.textContent='Detected: Windows';i.textContent='Download the installer, run it, select your ISO and USB drive, then click Flash.';i.style.display='block'}else if(u.indexOf('Mac')!==-1){m.style.display='inline-block';d.textContent='Detected: macOS';i.textContent='We recommend Balena Etcher for macOS. Download, open, select your ISO and USB drive, and click Flash.';i.style.display='block'}else{l.style.display='inline-block';d.textContent='Detected: Linux';i.textContent='Download the AppImage. Make it executable with chmod +x, then double-click to run. Select your ISO and USB drive, then click Flash.';i.style.display='block'}}();</script>
-                    <p><strong>Required:</strong> USB drive with at least 8GB capacity</p>
-                    <h3 style="color: var(--acreetion-text-bright); margin-top: 1.5rem; margin-bottom: 0.5rem;">On Linux:</h3>
-                    <pre style="background: var(--acreetion-code-bg); padding: 1rem; border-radius: 12px; overflow-x: auto; margin: 1rem 0;">
-<code># Replace /dev/sdX with your USB device (check with lsblk)
-sudo dd if=acreetionos-*.iso of=/dev/sdX bs=4M status=progress && sync</code></pre>
-                    <h3 style="color: var(--acreetion-text-bright); margin-top: 1.5rem; margin-bottom: 0.5rem;">On Windows:</h3>
-                    <p>Use <a href="https://rufus.ie/" target="_blank" rel="noopener noreferrer">Rufus</a> or <a href="https://etcher.balena.io/" target="_blank" rel="noopener noreferrer">Balena Etcher</a> (recommended for all platforms)</p>
-                    <ol style="margin-left: 2rem; margin-top: 0.5rem;">
-                        <li>Download and run Rufus</li>
-                        <li>Select your USB drive</li>
-                        <li>Select the AcreetionOS ISO file</li>
-                        <li>Click "START" and wait for completion</li>
-                    </ol>
-                    <h3 style="color: var(--acreetion-text-bright); margin-top: 1.5rem; margin-bottom: 0.5rem;">On macOS:</h3>
-                    <p>Use <a href="https://etcher.balena.io/" target="_blank" rel="noopener noreferrer">Balena Etcher</a> (recommended) or Terminal:</p>
-                    <pre style="background: var(--acreetion-code-bg); padding: 1rem; border-radius: 12px; overflow-x: auto; margin: 1rem 0;">
-<code># Find your USB device
-diskutil list
 
-# Unmount it (replace diskN with your device)
-diskutil unmountDisk /dev/diskN
+<h3 style="color:var(--acreetion-green);margin:1.5rem 0 1rem">Download ISOs</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem">
+<div style="background:rgba(46,204,113,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem">
+<h4 style="color:var(--acreetion-text-bright);margin-bottom:0.5rem">Cinnamon Edition</h4>
+<p style="font-size:0.85rem;color:var(--acreetion-text);margin-bottom:0.75rem">Main edition &mdash; Cinnamon desktop, XLibre.</p>
+<div class="dl-btns" style="display:flex;flex-wrap:wrap;gap:6px">
+<a href="https://iso.acreetionos.org:8448/acreetion/AcreetionOS-1.0-x86_64.iso" class="btn btn-cinnamon">ISO</a>
+<a href="https://iso.acreetionos.org:8448/acreetion/AcreetionOS-1.0-x86_64.iso.zip" class="btn">ZIP</a>
+<a href="https://archive.org/download/AcreetionOS-1.0-x86_64/AcreetionOS-1.0-x86_64.iso" class="btn btn-storm">IA</a>
+<a href="https://sourceforge.net/projects/acreetionos-iso-image/files/AcreetionOS-1.0-x86_64.iso/download" class="btn">SF</a>
+<a href="https://github.com/AcreetionOS-Code/acreetionos-code.github.io" class="btn">Source</a>
+</div>
+</div>
+<div style="background:rgba(243,156,18,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem">
+<h4 style="color:var(--acreetion-text-bright);margin-bottom:0.5rem">XL (XLibre) Edition</h4>
+<p style="font-size:0.85rem;color:var(--acreetion-text);margin-bottom:0.75rem">Experimental XLibre display server build.</p>
+<div class="dl-btns" style="display:flex;flex-wrap:wrap;gap:6px">
+<a href="https://iso.acreetionos.org:8448/acreetion/AcreetionOS_XL-1.0-x86_64.iso" class="btn btn-storm">ISO</a>
+<a href="https://iso.acreetionos.org:8448/acreetion/AcreetionOS_XL-1.0-x86_64.iso.zip" class="btn">ZIP</a>
+<a href="https://archive.org/download/AcreetionOS_XL-1.0-x86_64/AcreetionOS_XL-1.0-x86_64.iso" class="btn btn-storm">IA</a>
+<a href="https://sourceforge.net/projects/acreetionos-iso-image/files/AcreetionOS_XL-1.0-x86_64.iso/download" class="btn">SF</a>
+<a href="https://github.com/AcreetionOS-Code/acreetionos-code.github.io" class="btn">Source</a>
+</div>
+</div>
+<div style="background:rgba(46,204,113,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem">
+<h4 style="color:var(--acreetion-text-bright);margin-bottom:0.5rem">AcreetionOS32 (i686)</h4>
+<p style="font-size:0.85rem;color:var(--acreetion-text);margin-bottom:0.75rem">32-bit build for legacy hardware.</p>
+<div class="dl-btns" style="display:flex;flex-wrap:wrap;gap:6px">
+<a href="32bit.html" class="btn btn-cinnamon">ISO</a>
+<a href="https://github.com/spivanatalie64/acreetionos32" class="btn">Source</a>
+</div>
+</div>
+<div style="background:rgba(97,175,239,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem">
+<h4 style="color:var(--acreetion-text-bright);margin-bottom:0.5rem">Hyprland Edition</h4>
+<p style="font-size:0.85rem;color:var(--acreetion-text);margin-bottom:0.75rem">Wayland compositor with Jakoolit configs.</p>
+<div class="dl-btns" style="display:flex;flex-wrap:wrap;gap:6px">
+<a href="hyprland.html" class="btn btn-storm">ISO</a>
+<a href="https://github.com/spivanatalie64/acreetionos-hyprland" class="btn">Source</a>
+</div>
+</div>
+<div style="background:rgba(46,204,113,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem">
+<h4 style="color:var(--acreetion-text-bright);margin-bottom:0.5rem">MATE Edition</h4>
+<p style="font-size:0.85rem;color:var(--acreetion-text);margin-bottom:0.75rem">Traditional GNOME 2-style desktop.</p>
+<div class="dl-btns" style="display:flex;flex-wrap:wrap;gap:6px">
+<a href="mate.html" class="btn btn-cinnamon">ISO</a>
+<a href="mate.html" class="btn">Source</a>
+</div>
+</div>
+<div style="background:rgba(46,204,113,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem">
+<h4 style="color:var(--acreetion-text-bright);margin-bottom:0.5rem">GNOME Edition</h4>
+<p style="font-size:0.85rem;color:var(--acreetion-text);margin-bottom:0.75rem">Modern, sleek GNOME desktop.</p>
+<div class="dl-btns" style="display:flex;flex-wrap:wrap;gap:6px">
+<a href="gnome.html" class="btn">ISO</a>
+<a href="gnome.html" class="btn">Source</a>
+</div>
+</div>
+</div>
 
-# Write ISO
-sudo dd if=acreetionos-*.iso of=/dev/rdiskN bs=1m</code></pre>
-                    <h2 style="color: var(--acreetion-green); margin-top: 2rem; margin-bottom: 1rem;">Step 3: Boot from USB</h2>
-                    <ol style="margin-left: 2rem;">
-                        <li>Insert the USB drive into your computer</li>
-                        <li>Restart your computer</li>
-                        <li>Press the boot menu key during startup:
-                            <ul style="margin-left: 2rem; margin-top: 0.5rem;">
-                                <li><strong>Dell:</strong> F12</li>
-                                <li><strong>HP:</strong> F9 or Esc</li>
-                                <li><strong>Lenovo:</strong> F12 or F8</li>
-                                <li><strong>Asus:</strong> F8 or Esc</li>
-                                <li><strong>Acer:</strong> F12</li>
-                                <li><strong>MSI:</strong> F11</li>
-                                <li><strong>Generic:</strong> F2, F10, F11, F12, Del, or Esc</li>
-                            </ul>
-                        </li>
-                        <li>Select your USB drive from the boot menu</li>
-                        <li>AcreetionOS will boot into the live environment</li>
-                    </ol>
-                    <h2 style="color: var(--acreetion-green); margin-top: 2rem; margin-bottom: 1rem;">Step 4: Start the Installer</h2>
-                    <p>Once booted into AcreetionOS live environment:</p>
-                    <ol style="margin-left: 2rem;">
-                        <li>Look for the <strong>"Install AcreetionOS"</strong> icon on the desktop</li>
-                        <li>Double-click to launch the installer</li>
-                        <li>The Calamares installer will guide you through the process</li>
-                    </ol>
-                    <h2 style="color: var(--acreetion-green); margin-top: 2rem; margin-bottom: 1rem;">Step 5: Configure Installation</h2>
-                    <h3 style="color: var(--acreetion-text-bright); margin-top: 1.5rem; margin-bottom: 0.5rem;">Choose Your Language & Region</h3>
-                    <p>Select your preferred language, timezone, and keyboard layout.</p>
-                    <h3 style="color: var(--acreetion-text-bright); margin-top: 1.5rem; margin-bottom: 0.5rem;">Partition Your Drive</h3>
-                    <p><strong>⚠ WARNING:</strong> Partitioning will erase data. Back up important files first!</p>
-                    <p><strong>Option 1: Erase Entire Disk</strong> (Recommended for beginners)</p>
-                    <ul style="margin-left: 2rem;">
-                        <li>Select "Erase disk"</li>
-                        <li>Choose your target drive</li>
-                        <li>The installer will automatically create partitions</li>
-                    </ul>
-                    <p style="margin-top: 1rem;"><strong>Option 2: Manual Partitioning</strong> (Advanced users)</p>
-                    <ul style="margin-left: 2rem;">
-                        <li><strong>EFI System Partition:</strong> 512 MB, FAT32, mounted at /boot/efi</li>
-                        <li><strong>Root Partition:</strong> 30+ GB, ext4, mounted at /</li>
-                        <li><strong>Home Partition (optional):</strong> Remaining space, ext4, mounted at /home</li>
-                        <li><strong>Swap (optional):</strong> 2-8 GB depending on RAM</li>
-                    </ul>
-                    <h3 style="color: var(--acreetion-text-bright); margin-top: 1.5rem; margin-bottom: 0.5rem;">Create User Account</h3>
-                    <ul style="margin-left: 2rem;">
-                        <li>Enter your full name</li>
-                        <li>Choose a username (lowercase, no spaces)</li>
-                        <li>Set a strong password</li>
-                        <li>Choose whether to auto-login</li>
-                    </ul>
-                    <h2 style="color: var(--acreetion-green); margin-top: 2rem; margin-bottom: 1rem;">Step 6: Install</h2>
-                    <ol style="margin-left: 2rem;">
-                        <li>Review your installation summary</li>
-                        <li>Click <strong>"Install"</strong></li>
-                        <li>Wait 5-15 minutes for installation to complete</li>
-                        <li>Installation will copy files, install bootloader, and configure system</li>
-                    </ol>
-                    <h2 style="color: var(--acreetion-green); margin-top: 2rem; margin-bottom: 1rem;">Step 7: Reboot & Enjoy</h2>
-                    <ol style="margin-left: 2rem;">
-                        <li>Click <strong>"Restart Now"</strong> when prompted</li>
-                        <li>Remove the USB drive when asked</li>
-                        <li>Your computer will boot into AcreetionOS</li>
-                        <li>Log in with the credentials you created</li>
-                    </ol>
-                    <h2 style="color: var(--acreetion-green); margin-top: 2rem; margin-bottom: 1rem;">Post-Installation Steps</h2>
-                    <h3 style="color: var(--acreetion-text-bright); margin-top: 1.5rem; margin-bottom: 0.5rem;">Update Your System</h3>
-                    <pre style="background: var(--acreetion-code-bg); padding: 1rem; border-radius: 12px; overflow-x: auto; margin: 1rem 0;">
-<code>sudo pacman -Syu</code></pre>
-                    <h3 style="color: var(--acreetion-text-bright); margin-top: 1.5rem; margin-bottom: 0.5rem;">Install Additional Software</h3>
-                    <p>Use the built-in Pamac package manager or command line:</p>
-                    <pre style="background: var(--acreetion-code-bg); padding: 1rem; border-radius: 12px; overflow-x: auto; margin: 1rem 0;">
-<code>sudo pacman -S firefox vlc gimp libreoffice</code></pre>
-                    <h3 style="color: var(--acreetion-text-bright); margin-top: 1.5rem; margin-bottom: 0.5rem;">Enable AUR (Arch User Repository)</h3>
-                    <p>AUR is already configured in AcreetionOS! Just use Pamac GUI or install an AUR helper:</p>
-                    <pre style="background: var(--acreetion-code-bg); padding: 1rem; border-radius: 12px; overflow-x: auto; margin: 1rem 0;">
-<code>sudo pacman -S yay
-yay -S google-chrome spotify</code></pre>
-                </div>
-            </div>
-        </div>
-        <div class="sidebar-column">
-            <div class="content-box">
-                <div class="box-header">
-                    <h3>System Requirements</h3>
-                </div>
-                <div class="box-body">
-                    <p><a href="requirements.html" class="btn">View Full Requirements →</a></p>
-                    <p style="margin-top: 1rem; font-size: 0.9rem;"><strong>Minimum:</strong> 2GB RAM, 20GB storage, 64-bit processor<br/><strong>Recommended:</strong> 4GB RAM, 40GB storage (SSD)</p>
-                </div>
-            </div>
-            <div class="content-box">
-                <div class="box-header">
-                    <h3>Need Help?</h3>
-                </div>
-                <div class="box-body">
-                    <ul class="resource-list">
-                        <li><a href="faq.html"><span class="resource-title">FAQ</span></a></li>
-                        <li><a href="contact.html"><span class="resource-title">Get Support</span></a></li>
-                        <li><a href="https://github.com/AcreetionOS-Code" target="_blank"><span class="resource-title">GitHub</span></a></li>
-                        <li><a href="https://discord.gg/AJ6uuvtDXY" target="_blank"><span class="resource-title">Discord Community</span></a></li>
-                        <li><a href="https://rootapp.gg/AC0V5bagggqKtuj_B_MzFA" target="_blank"><span class="resource-title">Root Community</span></a></li>
-                        <li><a href="https://build.acreetionos.org" target="_blank"><span class="resource-title">ISO Builder</span></a></li>
-                        <li><a href="https://nextcloud.acreetionos.org" target="_blank"><span class="resource-title">Nextcloud</span></a></li>
-                        <li><a href="https://social.acreetionos.org" target="_blank"><span class="resource-title">Mastodon</span></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="content-box">
-                <div class="box-header">
-                    <h3>Technical Specs</h3>
-                </div>
-                <div class="box-body">
-                    <ul style="list-style:none;padding:0;font-size:0.9rem;">
-                        <li style="margin-bottom:0.5rem;"><strong>Base:</strong> Arch Linux (Rolling)</li>
-                        <li style="margin-bottom:0.5rem;"><strong>Desktop:</strong> Cinnamon</li>
-                        <li style="margin-bottom:0.5rem;"><strong>Display:</strong> XLibre</li>
-                        <li style="margin-bottom:0.5rem;"><strong>Audio:</strong> Pipewire</li>
-                        <li style="margin-bottom:0.5rem;"><strong>Live Boot:</strong> systemd-boot + syslinux</li>
-                        <li style="margin-bottom:0.5rem;"><strong>Installed:</strong> GRUB bootloader</li>
-                        <li style="margin-bottom:0.5rem;"><strong>Filesystem:</strong> EXT4</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <footer class="page-footer"><p>AcreetionOS is an independent project proudly built on the powerful and flexible foundation of <a href="https://archlinux.org" target="_blank" rel="noopener noreferrer">Arch Linux</a>. We are immensely grateful to the Arch community for their incredible work.</p><p>Follow our development on <a href="https://github.com/AcreetionOS-Code" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i> GitHub</a> and our self-hosted <a href="https://gitlab.acreetionos.org"><i class="bi bi-gitlab"></i> GitLab</a>.</p><p>&copy; 2026 AcreetionOS Project. Based in Spokane, WA. <a href="contributing.html" style="color: var(--acreetion-text); margin-left: 1rem;">Contributing</a> <a href="governance.html" style="color: var(--acreetion-text); margin-left: 1rem;">Governance</a></p></footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        observer.unobserve(entry.target)
-                    }
-                })
-            }, {
-                threshold: 0.05,
-                rootMargin: "0px 0px -30px 0px"
-            });
+<h3 style="color:var(--acreetion-green);margin:1.5rem 0 1rem">Flash a USB Drive</h3>
+<p style="color:var(--acreetion-text);margin-bottom:1rem">Use our <a href="flash.html">USB Flasher page</a> for the full interactive tool with dd command generator, flash script download, and Ventoy/Rufus instructions.</p>
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:2rem">
+<a href="flash.html" class="btn btn-flasher">Open USB Flasher</a><a href="https://github.com/spivanatalie64/acreetionos-flasher/releases" class="btn btn-flasher" style="background-color:var(--acreetion-green);color:#000">Download Desktop App</a><a href="https://github.com/spivanatalie64/acreetionos-flasher" class="btn">Flasher Source</a>
+</div>
 
-            document.querySelectorAll('.content-box,.dev-card,.event-card,.repo-card').forEach(el => {
-                el.classList.add('reveal');
-                observer.observe(el)
-            })
-        });
-    </script>
-<!-- AIDEN AI Assistant -->
-<link rel="stylesheet" href="ai-chat.css">
-<script src="ai-chat.js"></script>
-<script src="social-icons.js"></script><script src="user-counter.js"></script>
-</div><div id="bsky-modal" class="modal-overlay"><div class="modal-box" style="text-align: center;"><button class="modal-close-btn" title="Close">&times;</button><h2>Heading to Bluesky</h2><p style="margin-top: 1rem;">You are being redirected to Bluesky's primary page to log in. Our official instance is located at <strong>bsky.acreetionos.org</strong>.</p><div style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem;"><a href="https://bsky.app/" class="btn btn-storm" style="background: var(--acreetion-green); color: #111;">Continue to Primary Page Login</a><a href="https://bsky.acreetionos.org/register.html" class="btn btn-storm" style="background: transparent; color: var(--acreetion-green); border: 1px solid var(--acreetion-green);">Register on Our Instance</a></div></div>
-<script>document.addEventListener('DOMContentLoaded',()=>{const t=document.querySelectorAll('[data-modal-target]'),m=document.querySelectorAll('.modal-overlay'),o=e=>{e.classList.add('visible'),document.body.style.overflow='hidden'},c=e=>{e.classList.remove('visible'),document.body.style.overflow=''};t.forEach(e=>e.addEventListener('click',e=>{e.preventDefault();const a=document.querySelector(e.target.dataset.modalTarget);a&&o(a)})),m.forEach(e=>{e.addEventListener('click',t=>{t.target===e&&c(e)});const t=e.querySelector('.modal-close-btn');t&&t.addEventListener('click',()=>c(e))})});</script>
-</body>
+<h3 style="color:var(--acreetion-green);margin:1.5rem 0 1rem">Build It Yourself</h3>
+<div style="background:rgba(46,204,113,0.05);border:1px solid var(--acreetion-box-border);border-radius:12px;padding:1.25rem;margin-bottom:1.5rem">
+<p><strong>Hey, if you want to build it yourself, you can.</strong> All source code is open and the build pipeline runs on our self-hosted <strong>GitLab</strong> at <a href="https://gitlab.acreetionos.org" target="_blank" rel="noopener">gitlab.acreetionos.org</a>. You can trigger a fresh ISO build at any time.</p>
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:1rem">
+<a href="https://gitlab.acreetionos.org" class="btn" style="background-color:#e24329;color:#fff">GitLab Builder</a>
+<a href="https://github.com/AcreetionOS-Code" class="btn">GitHub Source</a>
+</div>
+<h4 style="color:var(--acreetion-text-bright);margin:1.5rem 0 0.5rem">Manual Build (Any Linux)</h4>
+<pre style="background:var(--acreetion-code-bg);padding:1rem;border-radius:12px;overflow-x:auto"><code># Clone the AcreetionOS source
+git clone https://github.com/AcreetionOS-Code/acreetionos-code.github.io.git
+cd acreetionos-code.github.io
 
-</html>
+# Install dependencies (Arch Linux)
+sudo pacman -S archiso squashfs-tools
+
+# Build the ISO
+sudo mkarchiso -v -w /tmp/work -o /tmp/out .
+
+# The ISO will be in /tmp/out/</code></pre>
+</div>
+
+<h3 style="color:var(--acreetion-green);margin:1.5rem 0 1rem">Build Pipeline Schedule</h3>
+<div style="overflow-x:auto">
+<table style="width:100%;border-collapse:collapse;font-size:0.9rem">
+<thead><tr style="border-bottom:2px solid var(--acreetion-box-border)">
+<th style="padding:0.75rem;text-align:left;color:var(--acreetion-text-bright)">Edition</th>
+<th style="padding:0.75rem;text-align:left;color:var(--acreetion-text-bright)">Schedule</th>
+<th style="padding:0.75rem;text-align:left;color:var(--acreetion-text-bright)">Uploads To</th>
+<th style="padding:0.75rem;text-align:left;color:var(--acreetion-text-bright)">Source</th>
+</tr></thead>
+<tbody>
+<tr style="border-bottom:1px solid var(--acreetion-box-border)"><td style="padding:0.75rem">Cinnamon (Main)</td><td style="padding:0.75rm">Manual</td><td style="padding:0.75rem">R2, IA, SourceForge</td><td style="padding:0.75rem"><a href="https://github.com/AcreetionOS-Code">GitHub</a></td></tr>
+<tr style="border-bottom:1px solid var(--acreetion-box-border)"><td style="padding:0.75rem">32-bit</td><td style="padding:0.75rem">Every 7 days</td><td style="padding:0.75rem">R2</td><td style="padding:0.75rem"><a href="https://github.com/spivanatalie64/acreetionos32">GitHub</a></td></tr>
+<tr style="border-bottom:1px solid var(--acreetion-box-border)"><td style="padding:0.75rem">Hyprland</td><td style="padding:0.75rem">Monday 06:00 UTC</td><td style="padding:0.75rem">R2</td><td style="padding:0.75rem"><a href="https://github.com/spivanatalie64/acreetionos-hyprland">GitHub</a></td></tr>
+<tr style="border-bottom:1px solid var(--acreetion-box-border)"><td style="padding:0.75rem">MATE</td><td style="padding:0.75rem">Monday 06:00 UTC</td><td style="padding:0.75rem">R2</td><td style="padding:0.75rem"><a href="mate.html">GitHub</a></td></tr>
+<tr><td style="padding:0.75rem">GNOME</td><td style="padding:0.75rem">Sunday 00:00 UTC</td><td style="padding:0.75rem">R2, IA, SourceForge</td><td style="padding:0.75rem"><a href="gnome.html">GitHub</a></td></tr>
+</tbody>
+</table>
+</div>
+
+</body></html>

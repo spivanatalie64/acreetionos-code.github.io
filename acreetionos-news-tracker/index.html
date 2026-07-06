@@ -1,221 +1,394 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="AcreetionOS news from GitHub, Google News, and AI."><meta name="theme-color" content="#2ecc71"><title>AcreetionOS News</title><link rel="icon" href="https://acreetionos.org/acreetionoslogo.webp"><link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"><style>:root{--green:#2ecc71;--bg:#121212;--panel:#1a1a1a;--box:#222;--border:#333;--bright:#e5e5e5;--muted:#b2b2b2;--purple:#9b59b6;--blue:#61afef;--orange:#f39c12;--sans:'Roboto',sans-serif;--mono:'Fira Code',monospace}*{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--sans);background:var(--bg);color:var(--bright);line-height:1.6;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,0.03) 1px,transparent 0);background-size:40px 40px}.header{background:rgba(24,26,27,0.85);backdrop-filter:blur(12px);border-bottom:2px solid var(--green);border-radius:0 0 16px 16px;position:sticky;top:0;z-index:100;padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto}.header h1{font-family:var(--mono);font-size:1.4rem;color:var(--green)}.header a{color:var(--muted);text-decoration:none;font-weight:500;margin-left:1.5rem;transition:color 0.2s}.header a:hover{color:var(--bright)}.container{max-width:1200px;margin:1.5rem auto;padding:0 2rem}.st{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:0.6rem 1rem;margin-bottom:1.5rem;text-align:center;color:var(--muted);font-size:0.85rem}.st .sp{display:inline-block;width:12px;height:12px;border:2px solid var(--border);border-top-color:var(--green);border-radius:50%;animation:spin 0.8s linear infinite;margin-right:0.4rem;vertical-align:middle}.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:1rem;margin-top:0.5rem}.c{background:var(--box);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all 0.3s ease;opacity:0;transform:translateY(24px)}.c.show{opacity:1;transform:translateY(0)}.c:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(46,204,113,0.15);border-color:var(--green)}.b{padding:1rem}.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem}.tg{display:inline-block;padding:0.2rem 0.6rem;border-radius:10px;font-size:0.65rem;font-weight:700;letter-spacing:0.3px;text-transform:uppercase}.rls{background:rgba(46,204,113,0.2);color:var(--green)}.cmt{background:rgba(97,175,239,0.2);color:var(--blue)}.com{background:rgba(155,89,182,0.2);color:var(--purple)}.inf{background:rgba(243,156,18,0.2);color:var(--orange)}.dt{font-size:0.65rem;color:var(--muted);font-family:var(--mono)}.c h3{font-size:1rem;margin-bottom:0.3rem;color:var(--bright);line-height:1.3}.c p{color:var(--muted);font-size:0.8rem;margin-bottom:0.5rem;line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.meta{display:flex;justify-content:space-between;align-items:center;font-size:0.7rem;color:var(--muted);padding-top:0.5rem;border-top:1px solid var(--border)}.meta .src{display:flex;align-items:center;gap:0.3rem}.meta .src .dot{width:6px;height:6px;border-radius:50%;display:inline-block}.dot-gh{background:var(--green)}.dot-news{background:var(--purple)}.dot-ai{background:var(--blue)}.meta a{color:var(--green);text-decoration:none;font-weight:600;font-size:0.7rem}.meta a:hover{text-decoration:underline}.mb{display:block;margin:1rem auto 0;padding:0.45rem 1.2rem;background:var(--green);color:#000;border:none;border-radius:12px;font-weight:700;cursor:pointer;font-family:var(--sans);font-size:0.9rem;transition:all 0.2s}.mb:hover{transform:translateY(-2px);box-shadow:0 0 15px rgba(46,204,113,0.4)}.mb:disabled{opacity:0.5;cursor:not-allowed;transform:none;box-shadow:none}.er{background:rgba(255,0,0,0.1);border:1px solid rgba(255,0,0,0.3);border-radius:12px;padding:0.8rem 1rem;text-align:center;color:#ff6b6b;margin-bottom:1rem;font-size:0.85rem}.stats{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem;font-size:0.75rem;color:var(--muted)}.stats span{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:0.3rem 0.7rem}.stats b{color:var(--green)}.ft{text-align:center;padding:1.5rem;margin-top:1.5rem;border-top:1px solid var(--border);color:var(--muted);font-size:0.8rem}.ft a{color:var(--green);text-decoration:none}@keyframes spin{to{transform:rotate(360deg)}}@media(max-width:768px){.header{flex-direction:column;gap:0.5rem;padding:0.5rem 1rem}.container{padding:0 1rem}.g{grid-template-columns:1fr}}</style></head><body><header class="header"><h1>AcreetionOS News</h1><nav><a href="https://acreetionos.org">Home</a><a href="https://acreetionos.org/developers.html">Devs</a><a href="https://github.com/AcreetionOS-Code">GitHub</a></nav></header><div class="container"><div class="st" id="st"><span id="stxt">Loading...</span></div><div id="er"></div><h2 style="font-family:var(--mono);color:var(--green);margin-bottom:0.3rem;font-size:1.2rem">Latest Updates</h2><div class="stats" id="stats"></div><div class="g" id="g"></div><div id="ms" style="text-align:center;margin-top:0.75rem"></div></div><footer class="ft"><p>Part of the <a href="https://acreetionos.org">AcreetionOS</a> project</p></footer><script>
-var G=document.getElementById('g'),ER=document.getElementById('er'),ST=document.getElementById('st'),SX=document.getElementById('stxt'),SUB=document.getElementById('stats'),MS=document.getElementById('ms');
-var allArticles=[];
-var OR_KEY=['sk-or-v1-e1fe6','de492815203d1c','36d63bdd526a6c','d09d4706ad788f','f8255e5746c4dee60'].join('');
-var CP='https://api.allorigins.win/raw?url=';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="AcreetionOS live news — GitHub activity, community news, and AI summaries.">
+  <meta name="theme-color" content="#2ecc71">
+  <title>AcreetionOS News Tracker</title>
+  <link rel="icon" href="https://acreetionos.org/acreetionoslogo.webp">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--green:#2ecc71;--bg:#121212;--panel:#1a1a1a;--box:#222;--border:#333;--bright:#e5e5e5;--muted:#b2b2b2;--purple:#9b59b6;--blue:#61afef;--orange:#f39c12;--red:#e74c3c;--sans:'Roboto',sans-serif;--mono:'Fira Code',monospace}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--sans);background:var(--bg);color:var(--bright);line-height:1.6;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,0.03) 1px,transparent 0);background-size:40px 40px;min-height:100vh}
+    header{background:rgba(24,26,27,0.9);backdrop-filter:blur(12px);border-bottom:2px solid var(--green);border-radius:0 0 16px 16px;position:sticky;top:0;z-index:100;padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between}
+    header h1{font-family:var(--mono);font-size:1.4rem;color:var(--green);display:flex;align-items:center;gap:0.6rem}
+    .live-dot{width:8px;height:8px;background:var(--red);border-radius:50%;animation:pulse 1.2s ease-in-out infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)}}
+    nav a{color:var(--muted);text-decoration:none;font-weight:500;margin-left:1.5rem;transition:color 0.2s}
+    nav a:hover{color:var(--bright)}
+    .container{max-width:1200px;margin:1.5rem auto;padding:0 2rem}
+    .status-bar{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:0.6rem 1rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:var(--muted)}
+    .spinner{width:12px;height:12px;border:2px solid var(--border);border-top-color:var(--green);border-radius:50%;animation:spin 0.8s linear infinite;flex-shrink:0}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .error-bar{background:rgba(231,76,60,0.1);border:1px solid rgba(231,76,60,0.3);border-radius:12px;padding:0.7rem 1rem;margin-bottom:1rem;color:var(--red);font-size:0.85rem;display:none}
+    .stats{display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.5rem}
+    .stat-chip{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:0.3rem 0.8rem;font-size:0.75rem;color:var(--muted)}
+    .stat-chip b{color:var(--green)}
+    h2{font-family:var(--mono);font-size:1.15rem;color:var(--green);margin-bottom:1rem}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:1rem;margin-bottom:2rem}
+    .card{background:var(--box);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all 0.3s ease;opacity:0;transform:translateY(20px)}
+    .card.show{opacity:1;transform:translateY(0)}
+    .card:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(46,204,113,0.12);border-color:var(--green)}
+    .card-body{padding:1rem}
+    .card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem}
+    .tag{display:inline-block;padding:0.15rem 0.55rem;border-radius:8px;font-size:0.65rem;font-weight:700;letter-spacing:0.3px;text-transform:uppercase}
+    .tag-release{background:rgba(46,204,113,0.2);color:var(--green)}
+    .tag-commit{background:rgba(97,175,239,0.2);color:var(--blue)}
+    .tag-community{background:rgba(155,89,182,0.2);color:var(--purple)}
+    .tag-ai{background:rgba(243,156,18,0.2);color:var(--orange)}
+    .tag-infrastructure{background:rgba(231,76,60,0.15);color:var(--red)}
+    .card-date{font-size:0.65rem;color:var(--muted);font-family:var(--mono)}
+    .card h3{font-size:0.95rem;margin-bottom:0.3rem;color:var(--bright);line-height:1.4}
+    .card p{color:var(--muted);font-size:0.8rem;margin-bottom:0.6rem;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .card-meta{display:flex;justify-content:space-between;align-items:center;font-size:0.7rem;color:var(--muted);padding-top:0.5rem;border-top:1px solid var(--border)}
+    .source-dot{width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:0.3rem}
+    .dot-github{background:var(--green)}
+    .dot-gitlab{background:var(--orange)}
+    .dot-news{background:var(--purple)}
+    .dot-ai{background:var(--blue)}
+    .card-meta a{color:var(--green);text-decoration:none;font-weight:600}
+    .card-meta a:hover{text-decoration:underline}
+    .activity-list{display:flex;flex-direction:column;gap:0.5rem;margin-bottom:2rem}
+    .activity-item{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:0.7rem 1rem;display:flex;align-items:flex-start;gap:0.75rem;transition:border-color 0.2s;opacity:0;transform:translateX(-12px)}
+    .activity-item.show{opacity:1;transform:translateX(0);transition:all 0.3s ease}
+    .activity-item:hover{border-color:var(--green)}
+    .activity-icon{font-size:0.85rem;flex-shrink:0;margin-top:0.1rem}
+    .activity-content{flex:1;min-width:0}
+    .activity-msg{font-size:0.85rem;color:var(--bright);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .activity-meta{font-size:0.72rem;color:var(--muted);margin-top:0.15rem;display:flex;gap:0.75rem;flex-wrap:wrap}
+    .activity-meta a{color:var(--green);text-decoration:none}
+    .activity-date{font-family:var(--mono);font-size:0.68rem;color:var(--muted);flex-shrink:0;margin-top:0.15rem}
+    .load-more{display:block;margin:0 auto 2rem;padding:0.5rem 1.5rem;background:transparent;border:1px solid var(--green);color:var(--green);border-radius:12px;font-weight:700;cursor:pointer;font-family:var(--sans);font-size:0.9rem;transition:all 0.2s}
+    .load-more:hover{background:rgba(46,204,113,0.1)}
+    .load-more:disabled{opacity:0.4;cursor:not-allowed}
+    footer{text-align:center;padding:1.5rem;border-top:1px solid var(--border);color:var(--muted);font-size:0.8rem}
+    footer a{color:var(--green);text-decoration:none}
+    @media(max-width:768px){header{flex-direction:column;gap:0.5rem;padding:0.6rem 1rem}.container{padding:0 1rem}.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<header>
+  <h1><span class="live-dot"></span> AcreetionOS News</h1>
+  <nav>
+    <a href="https://acreetionos.org">Home</a>
+    <a href="https://acreetionos.org/developers.html">Devs</a>
+    <a href="https://github.com/AcreetionOS-Code">GitHub</a>
+  </nav>
+</header>
 
-function st(t,l){SX.textContent=t;if(l){ST.innerHTML='<span class="sp"></span><span id="stxt">'+t+'</span>'}else{ST.innerHTML='<span id="stxt">'+t+'</span>'}}
-function em(m){ER.innerHTML='<div class="er">'+m+'</div>'}
+<div class="container">
+  <div class="status-bar" id="status-bar">
+    <span class="spinner" id="spinner"></span>
+    <span id="status-text">Fetching latest news…</span>
+  </div>
+  <div class="error-bar" id="error-bar"></div>
+  <div class="stats" id="stats"></div>
 
-function fd(d){
-  try{
-    var date=new Date(d);
-    if(isNaN(date.getTime()))return'';
-    var now=new Date();
-    var diff=now-date;
-    if(diff<3600000)return Math.floor(diff/60000)+'m ago';
-    if(diff<86400000)return Math.floor(diff/3600000)+'h ago';
-    if(diff<604800000)return Math.floor(diff/86400000)+'d ago';
-    return date.toLocaleDateString('en-US',{month:'short',day:'numeric'});
-  }catch(e){return''}
-}
+  <h2>Featured</h2>
+  <div class="grid" id="featured-grid"></div>
 
-function ac(a){
-  var c=document.createElement('div');c.className='c';
-  var dc=a.src==='GitHub'?'dot-gh':a.src==='Google News'?'dot-news':a.src==='AI'?'dot-ai':'dot-gl';
-  c.innerHTML='<div class="b"><div class="top"><span class="tg '+a.tc+'">'+a.tag+'</span><span class="dt">'+fd(a.date)+'</span></div><h3>'+a.title+'</h3><p>'+(a.desc||'')+'</p><div class="meta"><span class="src"><span class="dot '+dc+'"></span>'+a.src+'</span><a href="'+a.url+'" target="_blank" rel="noopener">Read</a></div></div>';
-  G.appendChild(c);
-  requestAnimationFrame(function(){c.classList.add('show')});
-}
+  <h2>Activity Feed</h2>
+  <div class="activity-list" id="activity-list"></div>
+  <button class="load-more" id="load-more" style="display:none">Load more</button>
+</div>
 
-function renderAll(){
-  G.innerHTML='';
-  for(var i=0;i<allArticles.length;i++)ac(allArticles[i]);
-  SUB.innerHTML='<span><b>'+allArticles.length+'</b> articles</span><span><b>'+allArticles.filter(function(x){return x.src==='GitHub'}).length+'</b> GitHub</span><span><b>'+allArticles.filter(function(x){return x.src==='Google News'}).length+'</b> News</span><span><b>'+allArticles.filter(function(x){return x.src==='AI'}).length+'</b> AI</span>';
-}
+<footer><p>Part of the <a href="https://acreetionos.org">AcreetionOS</a> project</p></footer>
 
-function saveCache(){try{localStorage.setItem('aosn4',JSON.stringify({data:allArticles,ts:Date.now()}))}catch(e){}}
-function loadCache(){
-  try{
-    var raw=localStorage.getItem('aosn4');
-    if(!raw)return false;
-    var p=JSON.parse(raw);
-    if(Date.now()-p.ts<600000&&p.data.length>0){allArticles=p.data;return true}
-  }catch(e){}
-  return false;
-}
+<script>
+(function(){
+  'use strict';
 
-async function fetchGitHub(){
-  try{
-    var rr=await fetch('https://api.github.com/orgs/AcreetionOS-Code/repos?per_page=6&sort=pushed');
-    if(!rr.ok)return;
-    var repos=await rr.json();
-    var fetches=[];
-    for(var r=0;r<Math.min(5,repos.length);r++){
-      (function(repo){
-        fetches.push(
-          Promise.all([
-            fetch('https://api.github.com/repos/AcreetionOS-Code/'+repo.name+'/commits?per_page=3'),
-            repo.name!=='acreetionos-code.github.io'?fetch('https://api.github.com/repos/AcreetionOS-Code/'+repo.name+'/releases?per_page=2'):Promise.resolve(new Response('[]'))
-          ]).then(function(responses){
-            var items=[];
-            var cr=responses[0],rr=responses[1];
-            if(cr.ok){
-              return cr.json().then(function(cs){
-                for(var i=0;i<cs.length;i++){
-                  var c=cs[i];
-                  items.push({t:'commit',repo:repo.name,msg:(c.commit.message||'').split('\n')[0],author:c.commit.author?.name||'Unknown',date:c.commit.author?.date,url:c.html_url,sha:c.sha?.slice(0,7)});
-                }
-                if(rr.ok){
-                  return rr.json().then(function(rs){
-                    if(Array.isArray(rs)){
-                      for(var i=0;i<rs.length;i++){
-                        var re=rs[i];
-                        items.push({t:'release',repo:repo.name,msg:re.tag_name,desc:(re.body||'').split('\n')[0],author:re.author?.login||'',date:re.published_at||re.created_at,url:re.html_url});
-                      }
-                    }
-                    return items;
-                  });
-                }
-                return items;
-              });
-            }
-            return items;
-          }).catch(function(){return[]})
-        );
-      })(repos[r]);
+  var CACHE_KEY = 'aosn_v5';
+  var CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+  var activityPage = 0;
+  var allActivity = [];
+
+  function setStatus(text, loading) {
+    document.getElementById('status-text').textContent = text;
+    document.getElementById('spinner').style.display = loading ? 'block' : 'none';
+  }
+
+  function showError(msg) {
+    var el = document.getElementById('error-bar');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+
+  function relativeTime(dateStr) {
+    if (!dateStr) return '';
+    try {
+      var d = new Date(dateStr), now = new Date(), diff = now - d;
+      if (isNaN(diff)) return '';
+      if (diff < 3600000) return Math.max(1, Math.floor(diff / 60000)) + 'm ago';
+      if (diff < 86400000) return Math.floor(diff / 3600000) + 'h ago';
+      if (diff < 604800000) return Math.floor(diff / 86400000) + 'd ago';
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    } catch(e) { return ''; }
+  }
+
+  function esc(s) {
+    return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function tagClass(tag) {
+    if (!tag) return 'tag-commit';
+    var t = tag.toLowerCase();
+    if (t.includes('release')) return 'tag-release';
+    if (t.includes('communit')) return 'tag-community';
+    if (t.includes('infra')) return 'tag-infrastructure';
+    if (t.includes('ai')) return 'tag-ai';
+    return 'tag-commit';
+  }
+
+  function sourceDot(src) {
+    if (!src) return '';
+    var s = src.toLowerCase();
+    if (s.includes('github')) return 'dot-github';
+    if (s.includes('gitlab')) return 'dot-gitlab';
+    if (s.includes('news')) return 'dot-news';
+    if (s.includes('ai')) return 'dot-ai';
+    return 'dot-github';
+  }
+
+  function activityIcon(type) {
+    if (type === 'release') return '🚀';
+    if (type === 'news') return '📰';
+    return '⚙️';
+  }
+
+  var analysisCache = {};
+
+  function renderFeatured(articles) {
+    var grid = document.getElementById('featured-grid');
+    grid.innerHTML = '';
+    if (!articles || articles.length === 0) {
+      grid.innerHTML = '<p style="color:var(--muted);font-size:0.9rem">No featured articles yet.</p>';
+      return;
     }
-    var nested=await Promise.all(fetches);
-    for(var i=0;i<nested.length;i++){
-      var items=nested[i];
-      for(var j=0;j<items.length;j++){
-        var x=items[j];
-        if(x.t==='release'){
-          allArticles.push({title:x.msg+' released on '+x.repo,desc:x.desc||'New release for '+x.repo+'.',tag:'Release',tc:'rls',url:x.url,src:'GitHub',date:x.date});
-        }else{
-          allArticles.push({title:x.msg.slice(0,65),desc:'Commit by '+x.author+' on '+x.repo+(x.sha?' ('+x.sha+')':''),tag:'Development',tc:'cmt',url:x.url,src:'GitHub',date:x.date});
-        }
+    articles.forEach(function(a, i) {
+      var card = document.createElement('div');
+      card.className = 'card';
+      var aId = 'article-' + i;
+      card.innerHTML =
+        '<div class="card-body">' +
+          '<div class="card-top">' +
+            '<span class="tag ' + tagClass(a.tag) + '">' + esc(a.tag || 'Update') + '</span>' +
+            '<span class="card-date">' + esc(relativeTime(a.date)) + '</span>' +
+          '</div>' +
+          '<h3>' + esc(a.title) + '</h3>' +
+          '<p>' + esc(a.desc || '') + '</p>' +
+          '<div class="card-meta">' +
+            '<span><span class="source-dot ' + sourceDot(a.source) + '"></span>' + esc(a.source || '') + '</span>' +
+            '<span>' +
+              '<button class="analyze-btn" data-idx="' + i + '" style="background:var(--green);color:#000;border:none;border-radius:6px;padding:0.2rem 0.6rem;cursor:pointer;font-size:0.72rem;font-weight:600;margin-right:0.4rem">🔍 Analyze</button>' +
+              '<a href="' + esc(a.url || '#') + '" target="_blank" rel="noopener">Read →</a>' +
+            '</span>' +
+          '</div>' +
+          '<div id="analysis-' + i + '" style="display:none;margin-top:0.6rem;padding:0.6rem;background:var(--panel);border-radius:8px;font-size:0.78rem"></div>' +
+        '</div>';
+      grid.appendChild(card);
+      setTimeout(function(){ card.classList.add('show'); }, i * 60);
+    });
+
+    // Analyze buttons
+    document.querySelectorAll('.analyze-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var idx = parseInt(this.dataset.idx);
+        analyzeArticle(articles[idx], idx);
+      });
+    });
+  }
+
+  function analyzeArticle(article, idx) {
+    var el = document.getElementById('analysis-' + idx);
+    el.style.display = 'block';
+    if (analysisCache['a' + idx]) {
+      el.innerHTML = analysisCache['a' + idx];
+      return;
+    }
+    el.innerHTML = '<div class="spinner" style="width:10px;height:10px;display:inline-block;margin-right:0.4rem"></div> Analyzing relevance to AcreetionOS...';
+    fetch('/api/news/ai', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        messages: [
+          { role: 'system', content: 'You analyze Arch Linux news for relevance to AcreetionOS users. Output JSON: {"relevance":"high/medium/low","why":"one sentence why","workaround":"one sentence workaround for AcreetionOS users"}' },
+          { role: 'user', content: 'Title: ' + (article.title||'') + '\nDescription: ' + (article.desc||'') + '\nSource: ' + (article.source||'') }
+        ],
+        max_tokens: 300
+      })
+    }).then(function(r) { return r.json(); }).then(function(data) {
+      var text = data.choices?.[0]?.message?.content || '{"relevance":"unknown","why":"Could not analyze","workaround":""}';
+      try {
+        var parsed = JSON.parse(text);
+        var relevanceColor = parsed.relevance === 'high' ? 'var(--green)' : parsed.relevance === 'medium' ? 'var(--orange)' : 'var(--muted)';
+        var html = '<div style="margin-bottom:0.3rem"><strong>Relevance:</strong> <span style="color:' + relevanceColor + '">' + esc(parsed.relevance||'unknown') + '</span></div>' +
+          '<div style="margin-bottom:0.3rem;color:var(--muted)">' + esc(parsed.why||'') + '</div>' +
+          '<div style="margin-bottom:0.5rem;color:var(--muted);font-size:0.72rem">💡 <strong>Workaround:</strong> ' + esc(parsed.workaround||'') + '</div>' +
+          '<button class="fix-btn" data-idx="' + idx + '" style="background:var(--orange);color:#000;border:none;border-radius:6px;padding:0.25rem 0.7rem;cursor:pointer;font-size:0.75rem;font-weight:600">🛠 Generate Fix Script</button>' +
+          '<div id="fix-result-' + idx + '" style="margin-top:0.5rem;display:none"></div>';
+        analysisCache['a' + idx] = html;
+        el.innerHTML = html;
+
+        // Fix script button
+        el.querySelector('.fix-btn').addEventListener('click', function() {
+          generateFixScript(article, parsed, idx);
+        });
+      } catch(e) {
+        el.innerHTML = '<div style="color:var(--muted)">Analysis: ' + esc(text.slice(0,200)) + '</div>';
+      }
+    }).catch(function(err) {
+      el.innerHTML = '<div style="color:var(--red)">Analysis failed: ' + err.message + '</div>';
+    });
+  }
+
+  function generateFixScript(article, analysis, idx) {
+    var el = document.getElementById('fix-result-' + idx);
+    el.style.display = 'block';
+    el.innerHTML = '<div class="spinner" style="width:10px;height:10px;display:inline-block;margin-right:0.4rem"></div> Generating PKGBUILD and GTK GUI script...<br><small style="color:var(--muted)">This may take 30-60 seconds</small>';
+    fetch('/api/fix-script', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        title: article.title,
+        desc: article.desc,
+        source: article.source,
+        relevance: analysis.relevance
+      })
+    }).then(function(r) { return r.json(); }).then(function(data) {
+      if (data.script) {
+        var blob = new Blob([data.script], { type: 'text/x-shellscript' });
+        var url = URL.createObjectURL(blob);
+        el.innerHTML =
+          '<div style="background:rgba(46,204,113,0.08);border:1px solid rgba(46,204,113,0.2);border-radius:8px;padding:0.6rem;margin-top:0.3rem">' +
+            '<div style="margin-bottom:0.4rem;color:var(--green)">✅ Script generated successfully!</div>' +
+            '<a href="' + url + '" download="acreetionos-fix-' + idx + '.sh" style="display:inline-block;background:var(--green);color:#000;text-decoration:none;padding:0.35rem 1rem;border-radius:6px;font-weight:600;font-size:0.85rem">📥 Download Script</a>' +
+            '<button onclick="this.nextElementSibling.style.display=\'block\';this.style.display=\'none\'" style="margin-left:0.4rem;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:6px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.75rem">View Source</button>' +
+            '<pre style="display:none;margin-top:0.5rem;padding:0.5rem;background:var(--bg);border-radius:6px;font-size:0.68rem;max-height:200px;overflow-y:auto;color:var(--muted)">' + esc(data.script.slice(0,1500)) + '...</pre>' +
+          '</div>';
+      } else {
+        el.innerHTML = '<div style="color:var(--red)">Script generation failed</div>';
+      }
+    }).catch(function(err) {
+      el.innerHTML = '<div style="color:var(--red)">Error: ' + err.message + '</div>';
+    });
+  }
+
+  function renderActivity(items, append) {
+    var list = document.getElementById('activity-list');
+    if (!append) list.innerHTML = '';
+    if (!items || items.length === 0) {
+      if (!append) list.innerHTML = '<p style="color:var(--muted);font-size:0.9rem;padding:0.5rem 0">No activity found.</p>';
+      return;
+    }
+    items.forEach(function(a, i) {
+      var item = document.createElement('div');
+      item.className = 'activity-item';
+      var repoLabel = a.repo ? '<span>' + esc(a.repo) + '</span>' : '';
+      var authorLabel = a.author ? '<span>' + esc(a.author) + '</span>' : '';
+      item.innerHTML =
+        '<span class="activity-icon">' + activityIcon(a.type) + '</span>' +
+        '<div class="activity-content">' +
+          '<div class="activity-msg">' + esc(a.message || a.name || 'Update') + '</div>' +
+          '<div class="activity-meta">' +
+            repoLabel + authorLabel +
+            '<a href="' + esc(a.url || '#') + '" target="_blank" rel="noopener">View</a>' +
+          '</div>' +
+        '</div>' +
+        '<span class="activity-date">' + esc(relativeTime(a.date)) + '</span>';
+      list.appendChild(item);
+      setTimeout(function(){ item.classList.add('show'); }, (append ? 0 : i) * 40);
+    });
+  }
+
+  function renderStats(articles, activity) {
+    var statsEl = document.getElementById('stats');
+    var gh = activity.filter(function(a){ return (a.source||'').toLowerCase().includes('github'); }).length;
+    var gl = activity.filter(function(a){ return (a.source||'').toLowerCase().includes('gitlab'); }).length;
+    var news = activity.filter(function(a){ return (a.source||'').toLowerCase().includes('news'); }).length;
+    statsEl.innerHTML =
+      '<span class="stat-chip"><b>' + (articles.length + activity.length) + '</b> total items</span>' +
+      '<span class="stat-chip"><b>' + gh + '</b> GitHub</span>' +
+      (gl > 0 ? '<span class="stat-chip"><b>' + gl + '</b> GitLab</span>' : '') +
+      (news > 0 ? '<span class="stat-chip"><b>' + news + '</b> News</span>' : '');
+  }
+
+  function saveCache(data) {
+    try { localStorage.setItem(CACHE_KEY, JSON.stringify({ data: data, ts: Date.now() })); } catch(e) {}
+  }
+
+  function loadCache() {
+    try {
+      var raw = localStorage.getItem(CACHE_KEY);
+      if (!raw) return null;
+      var p = JSON.parse(raw);
+      if (Date.now() - p.ts < CACHE_TTL && p.data) return p.data;
+    } catch(e) {}
+    return null;
+  }
+
+  function renderAll(data) {
+    renderFeatured(data.articles || []);
+    allActivity = data.activity || [];
+    activityPage = 0;
+    renderActivity(allActivity.slice(0, 15));
+    renderStats(data.articles || [], allActivity);
+    var loadMoreBtn = document.getElementById('load-more');
+    if (allActivity.length > 15) {
+      activityPage = 1;
+      loadMoreBtn.style.display = 'block';
+    } else {
+      loadMoreBtn.style.display = 'none';
+    }
+  }
+
+  async function fetchNews(forceRefresh) {
+    if (!forceRefresh) {
+      var cached = loadCache();
+      if (cached) {
+        setStatus('Loaded from cache — refreshing in background', false);
+        renderAll(cached);
       }
     }
-  }catch(e){}
-}
 
-async function fetchRSS(){
-  try{
-    var feeds=[
-      'https://news.google.com/rss/search?q=%22AcreetionOS%22&hl=en-US&gl=US&ceid=US:en',
-      'https://news.google.com/rss/search?q=AcreetionOS+Linux&hl=en-US&gl=US&ceid=US:en'
-    ];
-    for(var f=0;f<feeds.length;f++){
-      try{
-        var res=await fetch(CP+encodeURIComponent(feeds[f]));
-        if(!res.ok)continue;
-        var txt=await res.text();
-        var matches=txt.match(/<item>[\s\S]*?<\/item>/gi);
-        if(!matches)continue;
-        for(var i=0;i<Math.min(5,matches.length);i++){
-          var item=matches[i];
-          var title='',link='',desc='',pub='';
-          var tm=item.match(/<title(?:<!\[CDATA\[)?([^\]]*)(?:\]\]>)?<\/title>/i);
-          if(tm)title=tm[1].trim();
-          var lm=item.match(/<link[^>]*>([^<]*)<\/link>/);
-          if(lm)link=lm[1].trim();
-          var dm=item.match(/<description>(?:<!\[CDATA\[)?([^\]]*)(?:\]\]>)?<\/description>/i);
-          if(dm)desc=dm[1].replace(/<[^>]+>/g,'').slice(0,250);
-          var pm=item.match(/<pubDate>([^<]*)<\/pubDate>/i);
-          if(pm)pub=pm[1];
-          if(title&&link){
-            allArticles.push({title:title.slice(0,70),desc:desc||'AcreetionOS mentioned in news.',tag:'Community',tc:'com',url:link,src:'Google News',date:pub});
-          }
-        }
-      }catch(e){}
+    setStatus('Fetching latest from GitHub and news feeds…', true);
+    try {
+      var res = await fetch('/api/news');
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      var data = await res.json();
+      if (data.error) throw new Error(data.error);
+      saveCache(data);
+      renderAll(data);
+      var total = (data.articles || []).length + (data.activity || []).length;
+      setStatus(total + ' items tracked · Updated just now', false);
+    } catch(e) {
+      setStatus('Using cached data', false);
+      showError('Could not reach news API: ' + (e.message || 'Unknown error') + '. Showing cached data if available.');
     }
-  }catch(e){}
-}
-
-async function generateAI(count){
-  if(allArticles.length===0)return;
-  var sample='';
-  for(var i=0;i<Math.min(8,allArticles.length);i++){
-    sample+='['+allArticles[i].src+'] '+allArticles[i].title+'\n';
   }
-  try{
-    var res=await fetch('https://openrouter.ai/api/v1/chat/completions',{
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'Authorization':'Bearer '+OR_KEY,
-        'HTTP-Referer':'https://acreetionos.org',
-        'X-Title':'AcreetionOS News'
-      },
-      body:JSON.stringify({
-        model:'inclusionai/ring-2.6-1t:free',
-        messages:[
-          {role:'system',content:'You generate news for the AcreetionOS Linux project. Output exactly '+count+' items as a JSON array. Each item: {title: string (max 55 chars), summary: string (1-2 sentences), tag: string (Release/Development/Community/Infrastructure), url: string}. Return valid JSON only. No markdown.'},
-          {role:'user',content:'Generate articles from this data:\n'+sample}
-        ],
-        max_tokens:512
-      })
-    });
-    if(!res.ok)throw new Error('HTTP '+res.status);
-    var data=await res.json();
-    var raw=(data.choices?.[0]?.message?.content||'').trim();
-    raw=raw.replace(/^```(?:json)?\s*/i,'').replace(/\s*```\s*$/,'');
-    raw=raw.replace(/,\s*([}\]])/g,'$1');
-    raw=raw.replace(/[\u2018\u2019]/g,"'").replace(/[\u201c\u201d]/g,'"');
-    raw=raw.replace(/\\'/g,"'");
-    var arts;
-    try{arts=JSON.parse(raw)}catch(e){
-      var m=raw.match(/\[[\s\S]*\]/);
-      if(m){
-        var cleaned=m[0].replace(/,\s*([}\]])/g,'$1');
-        try{arts=JSON.parse(cleaned)}catch(e2){throw new Error('Bad JSON from AI')}
-      }else{throw new Error('No JSON in AI response')}
+
+  // Load more activity
+  document.getElementById('load-more').addEventListener('click', function() {
+    var btn = this;
+    btn.disabled = true;
+    var start = (activityPage * 15) + 15;
+    var slice = allActivity.slice(start, start + 15);
+    if (slice.length > 0) {
+      renderActivity(slice, true);
+      activityPage++;
+      if (start + 15 >= allActivity.length) btn.style.display = 'none';
+      else btn.disabled = false;
+    } else {
+      btn.style.display = 'none';
     }
-    if(!Array.isArray(arts))throw new Error('Not an array');
-    for(var i=0;i<arts.length;i++){
-      var a=arts[i];
-      if(!a||!a.title)continue;
-      var tc='cmt';
-      if(a.tag&&a.tag.toLowerCase().indexOf('release')>=0)tc='rls';
-      else if(a.tag&&a.tag.toLowerCase().indexOf('community')>=0)tc='com';
-      else if(a.tag&&a.tag.toLowerCase().indexOf('infra')>=0)tc='inf';
-      allArticles.push({title:a.title,desc:a.summary||a.desc||'',tag:a.tag||'Development',tc:tc,url:a.url||'https://acreetionos.org',src:'AI',date:new Date().toISOString()});
-    }
-    saveCache();
-    renderAll();
-  }catch(e){
-    em('AI: '+(e.message||'Failed'));
-  }
-}
+  });
 
-async function init(){
-  var cached=loadCache();
-  if(cached&&allArticles.length>3){
-    st('Loaded '+allArticles.length+' articles from cache',false);
-    renderAll();
-  }else{
-    st('Fetching from GitHub and Google News...',true);
-  }
-  await Promise.all([fetchGitHub(),fetchRSS()]);
-  allArticles.sort(function(a,b){return new Date(b.date||0)-new Date(a.date||0)});
-  saveCache();
-  renderAll();
-  st(allArticles.length+' articles tracked from GitHub and Google News',false);
-  if(allArticles.length>0){
-    MS.innerHTML='<button class="mb" id="mb">Want more about AcreetionOS? (AI)</button>';
-    document.getElementById('mb').onclick=async function(){
-      var btn=document.getElementById('mb');
-      btn.disabled=true;
-      btn.textContent='Generating...';
-      st('AI generating articles...',true);
-      await generateAI(5);
-      btn.textContent='Want more about AcreetionOS?';
-      btn.disabled=false;
-      st(allArticles.length+' articles total',false);
-    };
-  }
-}
-
-init();
-</script></body></html>
+  fetchNews(false);
+  // Refresh every 5 minutes
+  setInterval(function(){ fetchNews(true); }, 300000);
+})();
+</script>
+</body>
+</html>

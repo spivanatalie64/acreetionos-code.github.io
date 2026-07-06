@@ -1,0 +1,283 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>AcreetionOS Immutable (formerly ArttulOS) — Immutable Edition</title>
+<meta name="description" content="AcreetionOS Immutable is an immutable spinoff of AcreetionOS with a read-only root filesystem, atomic updates, and container-native workloads."/>
+<style>
+:root{--g:#2ecc71;--gbg:#080b0a;--bg2:#0e1311;--bg3:#1a221e;--bd:#1e2a24;--fg:#eef2f0;--fg2:#8a9e94;--fg3:#5a6e64;--fm:'JetBrains Mono','Fira Code',monospace;--fs:'Space Grotesk','Inter',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--fs);background:var(--gbg);color:var(--fg);line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+.bar{background:var(--bg2);border-bottom:1px solid var(--bd);padding:0.35rem 2rem;text-align:center;font-family:var(--fm);font-size:0.65rem;color:var(--fg3);letter-spacing:0.1em}
+.bar span{color:var(--g)}
+header{background:rgba(8,11,10,0.85);backdrop-filter:blur(16px);border-bottom:2px solid var(--g);position:sticky;top:0;z-index:100}
+.hc{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;height:64px;gap:1rem}
+.logo{font-family:var(--fm);font-size:1.3rem;font-weight:700;color:var(--fg);text-decoration:none;display:flex;align-items:center;gap:0.6rem}
+.logo span{color:var(--g)}
+.nav{margin-left:auto;display:flex;gap:0.3rem}
+.nav a{color:var(--fg3);text-decoration:none;font-family:var(--fm);font-size:0.75rem;padding:0.4rem 0.8rem;border-radius:6px;transition:all 0.2s;text-transform:uppercase;letter-spacing:0.05em}
+.nav a:hover{color:var(--fg);background:rgba(46,204,113,0.06);text-decoration:none}
+.page{max-width:1200px;margin:3rem auto;padding:0 2rem;flex:1;width:100%}
+.hero{text-align:center;padding:4rem 0 3rem}
+.hero h1{font-family:var(--fm);font-size:2.8rem;font-weight:700;margin-bottom:0.5rem;letter-spacing:-0.04em}
+.hero h1 span{background:linear-gradient(135deg,var(--g),#3ddc84);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{color:var(--fg2);font-size:1.05rem;max-width:650px;margin:0 auto;line-height:1.7}
+.tag{display:inline-block;background:rgba(46,204,113,0.1);color:var(--g);padding:0.25rem 0.75rem;border-radius:6px;font-family:var(--fm);font-size:0.7rem;border:1px solid rgba(46,204,113,0.15);margin-bottom:1rem}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem;margin:2rem 0}
+.card{background:var(--bg2);border:1px solid var(--bd);border-radius:12px;padding:1.5rem;transition:all 0.3s}
+.card:hover{border-color:var(--g);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.3)}
+.card h3{font-family:var(--fm);font-size:0.8rem;color:var(--g);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.5rem}
+.card p{color:var(--fg2);font-size:0.9rem;margin:0}
+.feature-box{background:var(--bg2);border:1px solid var(--bd);border-radius:12px;padding:2rem;margin:2rem 0}
+.feature-box h2{font-family:var(--fm);font-size:1.2rem;color:var(--g);margin-bottom:1rem}
+.feature-box p{color:var(--fg2);font-size:0.9rem;margin-bottom:0.5rem}
+.feature-box ul{list-style:none;padding:0}
+.feature-box li{padding:0.5rem 0;border-bottom:1px solid var(--bd);color:var(--fg2);font-size:0.9rem;display:flex;gap:0.75rem;align-items:center}
+.feature-box li:last-child{border:none}
+.feature-box li strong{color:var(--fg);font-family:var(--fm);min-width:140px;font-size:0.8rem}
+code{font-family:var(--fm);background:rgba(46,204,113,0.06);padding:0.2em 0.4em;border-radius:4px;font-size:0.85em;color:var(--g)}
+pre{background:rgba(0,0,0,0.2);border:1px solid var(--bd);border-radius:8px;padding:1rem;overflow-x:auto;margin:1rem 0}
+pre code{background:transparent;padding:0;color:var(--fg2)}
+.btns{display:flex;gap:0.75rem;flex-wrap:wrap;justify-content:center;margin:2rem 0}
+.btn{display:inline-block;padding:0.7rem 1.5rem;border-radius:8px;font-family:var(--fm);font-size:0.8rem;font-weight:600;text-decoration:none;transition:all 0.3s;text-transform:uppercase;letter-spacing:0.05em}
+.btn-p{background:var(--g);color:#000}
+.btn-p:hover{background:#3ddc84;color:#000;text-decoration:none}
+.btn-s{background:transparent;border:1px solid var(--bd);color:var(--fg2)}
+.btn-s:hover{border-color:var(--g);color:var(--g);text-decoration:none}
+footer{border-top:1px solid var(--bd);padding:2rem;text-align:center;background:var(--bg2);margin-top:auto}
+footer p{color:var(--fg3);font-size:0.8rem;margin-bottom:0.3rem}
+footer a{color:var(--g);text-decoration:none}
+
+/* AIDEN chat widget */
+#aiden-btn{position:fixed;bottom:24px;right:24px;width:56px;height:56px;background:var(--g);color:#000;border:none;border-radius:50%;font-size:1.4rem;cursor:pointer;z-index:999;box-shadow:0 4px 20px rgba(46,204,113,0.3);transition:all 0.3s}
+#aiden-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(46,204,113,0.5)}
+#aiden-widget{position:fixed;bottom:92px;right:24px;width:340px;max-height:460px;background:var(--bg2);border:1px solid var(--bd);border-radius:14px;z-index:998;display:none;flex-direction:column;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.5)}
+#aiden-widget.open{display:flex}
+.aw-header{display:flex;align-items:center;gap:0.6rem;padding:0.8rem 1rem;border-bottom:1px solid var(--bd);background:var(--bg3)}
+.aw-avatar{width:30px;height:30px;background:var(--g);color:#000;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-weight:700;font-size:0.85rem}
+.aw-name{font-weight:600;font-size:0.8rem}
+.aw-sub{font-size:0.6rem;color:var(--fg3)}
+.aw-close{margin-left:auto;background:none;border:none;color:var(--fg3);font-size:1.2rem;cursor:pointer}
+.aw-messages{flex:1;overflow-y:auto;padding:0.8rem;display:flex;flex-direction:column;gap:0.4rem;min-height:180px;max-height:280px}
+.aw-msg{padding:0.5rem 0.7rem;border-radius:8px;max-width:90%;font-size:0.78rem;line-height:1.5}
+.aw-msg.bot{background:var(--bg3);border:1px solid var(--bd);align-self:flex-start}
+.aw-msg.user{background:rgba(46,204,113,0.1);border:1px solid rgba(46,204,113,0.15);align-self:flex-end}
+.aw-sender{font-family:var(--fm);font-size:0.6rem;color:var(--g);margin-bottom:0.15rem}
+.aw-input-row{display:flex;gap:0.4rem;padding:0.6rem 0.8rem;border-top:1px solid var(--bd);background:var(--bg3)}
+.aw-input{flex:1;background:var(--gbg);border:1px solid var(--bd);border-radius:6px;padding:0.45rem 0.6rem;color:var(--fg);font-family:var(--fs);font-size:0.78rem;outline:none}
+.aw-input:focus{border-color:var(--g)}
+.aw-send{background:var(--g);color:#000;border:none;border-radius:6px;padding:0 0.7rem;cursor:pointer;font-weight:700;font-size:0.9rem}
+.aw-send:hover{filter:brightness(1.1)}
+@media(max-width:768px){#aiden-widget{right:12px;left:12px;width:auto;bottom:84px}.hero h1{font-size:1.8rem}.hc{padding:0 1rem}.page{padding:0 1rem;margin:1.5rem auto}}
+</style>
+</head><body>
+
+<div class="bar"><span>◆</span> ACREETIONOS IMMUTABLE (formerly <small>ArttulOS</small>) — IMMUTABLE SPINOFF OF ACREETIONOS <span>◆</span></div>
+
+<header>
+<div class="hc">
+<a href="/immutable/" class="logo">⌂ Immutable<span>OS</span></a>
+<nav class="nav">
+<a href="/immutable/">Dashboard</a>
+<a href="https://acreetionos.org">AcreetionOS</a>
+<a href="https://discord.gg/VHqQkJASw7">Discord</a>
+</nav>
+</div>
+</header>
+
+<div class="page">
+
+<div class="hero">
+<div class="tag">Immutable · Atomic Updates · Container-Native</div>
+<h1><span>AcreetionOS Immutable</span></h1>
+<p><strong>AcreetionOS Immutable</strong> is an immutable spinoff of AcreetionOS. Same Arch base, same Cinnamon desktop, but with a read-only root filesystem, atomic updates, and container-native workloads. You get the same familiar desktop with a base that stays locked down.</p>
+<div class="btns">
+<a href="https://discord.gg/VHqQkJASw7" class="btn btn-p">Join Discord</a>
+<a href="https://github.com/spivanatalie64/immutable" class="btn btn-s">Source Code</a>
+</div>
+</div>
+
+<div class="feature-box" id="downloads" style="border-left:3px solid var(--g)">
+<h2>⬇ Download AcreetionOS Immutable</h2>
+<p style="margin-bottom:1rem;color:var(--fg2);font-size:0.9rem">Pre-built ISO images are built automatically every 3 days.</p>
+<div id="iso-list" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem">
+  <div style="background:var(--bg3);border:1px solid var(--bd);border-radius:10px;padding:1.25rem;text-align:center">
+    <div style="font-family:var(--fm);font-size:0.7rem;color:var(--g);margin-bottom:0.5rem">CINNAMON EDITION</div>
+    <div style="font-size:0.85rem;color:var(--fg2);margin-bottom:1rem">Cinnamon edition with a read-only base.</div>
+    <a href="/api/r2/get/immutable-cinnamon-latest.iso" class="btn btn-p" style="font-size:0.7rem" id="dl-cinnamon">Download Cinnamon</a>
+    <div id="info-cinnamon" style="font-size:0.65rem;color:var(--fg3);margin-top:0.5rem"></div>
+  </div>
+  <div style="background:var(--bg3);border:1px solid var(--bd);border-radius:10px;padding:1.25rem;text-align:center">
+    <div style="font-family:var(--fm);font-size:0.7rem;color:var(--g);margin-bottom:0.5rem">XLIBRE EDITION</div>
+    <div style="font-size:0.85rem;color:var(--fg2);margin-bottom:1rem">Wayland-native with XLibre display protocol — modern and fast.</div>
+    <a href="/api/r2/get/immutable-xlibre-latest.iso" class="btn btn-p" style="font-size:0.7rem" id="dl-xlibre">Download XLibre</a>
+    <div id="info-xlibre" style="font-size:0.65rem;color:var(--fg3);margin-top:0.5rem"></div>
+  </div>
+</div>
+<p style="margin-top:1rem;font-size:0.75rem;color:var(--fg3)">ISOs are built from the latest AcreetionOS base with immutability patches applied. Builds are available for approximately 3 weeks.</p>
+</div>
+
+<div class="feature-box" style="border-left:3px solid var(--g)">
+<h2>🤔 So what actually IS immutable?</h2>
+<p>It means <code>/usr</code> is read-only. You can't <code>sudo rm -rf /usr</code> (yes, we've all been there). You can't install a broken AUR package that takes down your desktop. You can't accumulate five years of orphaned configs that make your system crawl. The OS is locked. Period.</p>
+<p>When you need an app: run it in a <strong>container</strong>. Your Python experiments stay in their box. Your weird npm packages stay in their box. Your "let me try this random binary from GitHub" stays in its box. When the system updates: it downloads a <strong>whole new image</strong> and swaps to it. If it fails, it rolls back. You don't fix your OS — your OS fixes itself.</p>
+<p style="margin-top:1rem;color:var(--fg)"><strong>Same AcreetionOS you know. Same Arch under the hood. Same AUR. Same Cinnamon. Just locked down so your curiosity doesn't cost you your homework.</strong></p>
+</div>
+
+<div class="cards">
+<div class="card"><h3>🔒 Can't Break It</h3><p><code>/usr</code> is read-only. <code>rm -rf /</code> does nothing. You literally cannot destroy your install. Try it. We dare you.</p></div>
+<div class="card"><h3>📦 Apps in Boxes</h3><p>Every app runs in its own container. Python, Node, random GitHub binaries — they all stay isolated. Your system stays clean.</p></div>
+<div class="card"><h3>♻️ Self-Healing</h3><p>Updates are whole-image swaps. If an update breaks, the system rolls back automatically. You never deal with a broken update.</p></div>
+<div class="card"><h3>🎒 Perfect for School</h3><p>Writing a paper? Coding a project? Taking a test? Your OS won't crash, won't break, won't distract you. It just works.</p></div>
+<div class="card"><h3>🏢 Works for Work</h3><p>Stable desktop for your day job. Same AcreetionOS Cinnamon workflow. Nothing breaks on Patch Tuesday. Nothing breaks ever.</p></div>
+<div class="card"><h3>🛠️ Mess Around Safely</h3><p>Want to try that crazy kernel module? Go ahead. It goes in a container. Your system is protected from your experiments.</p></div>
+</div>
+
+<div class="feature-box">
+<h2>📋 What stays the same</h2>
+<ul>
+<li><strong>OS Base</strong><span>Arch Linux (rolling) — same as AcreetionOS</span></li>
+<li><strong>Desktop</strong><span>Cinnamon 6.4 — same layout, same workflow</span></li>
+<li><strong>Package manager</strong><span>Pamac + AUR access — same as always</span></li>
+<li><strong>Terminal</strong><span>Full bash/zsh — you still have control, just not over /usr</span></li>
+<li><strong>Drivers</strong><span>NVIDIA, AMD, Intel — all work out of the box</span></li>
+<li><strong>Everything else</strong><span>The same AcreetionOS you already know and love</span></li>
+</ul>
+</div>
+
+<div class="feature-box">
+<h2>Specifications</h2>
+<ul>
+<li><strong>Base</strong><span>Literally just AcreetionOS (Arch Linux rolling)</span></li>
+<li><strong>Desktop</strong><span>Cinnamon 6.4 — identical to AcreetionOS</span></li>
+<li><strong>Root</strong><span>Read-only ext4 + overlayfs for transient writes</span></li>
+<li><strong>Updates</strong><span>A/B atomic image swaps with automatic rollback</span></li>
+<li><strong>Containers</strong><span>Podman rootless + Docker compatibility</span></li>
+<li><strong>Security</strong><span>SELinux enforcing, no setuid, read-only /usr</span></li>
+<li><strong>State</strong><span>Active development — alpha milestones</span></li>
+</ul>
+</div>
+
+<div class="feature-box" id="download">
+<h2>⬇️ Download AcreetionOS Immutable</h2>
+<p>AcreetionOS Immutable is built every 3 days via GitHub Actions. Both Cinnamon and XLibre editions are available:</p>
+<div class="btns" style="margin:1rem 0;justify-content:flex-start">
+<a href="https://github.com/AcreetionOS-Code/acreetionos-code.github.io/actions/workflows/build-immutable.yml" class="btn btn-p" target="_blank">Latest Builds</a>
+<a href="https://discord.gg/VHqQkJASw7" class="btn btn-s">Get Help</a>
+</div>
+<p style="font-size:0.8rem;color:var(--fg3)">ISOs stored on Cloudflare R2 — free downloads. Old builds are purged after 3 weeks.</p>
+</div>
+
+<div class="feature-box" style="border:1px solid var(--g);">
+<h2>🔄 Recovery System — You Can't Permanently Break It</h2>
+<p style="margin-bottom:1.5rem">Even if you somehow manage to corrupt the base system, AcreetionOS Immutable has your back. The recovery system automatically detects boot failures and offers to restore the immutable base — while keeping all your files and containers intact.</p>
+<div class="cards" style="margin:0">
+<div class="card" style="background:var(--gbg)"><h3>🆘 Recovery Mode</h3><p>A dedicated boot entry in systemd-boot. Select it at startup and the system reinstalls the immutable base from a known-good image. Your <code>/home</code> is untouched.</p></div>
+<div class="card" style="background:var(--gbg)"><h3>❤️‍🩹 Boot Health Check</h3><p>systemd service monitors every boot. If the system fails to start 3 times in a row, recovery mode is offered automatically. No manual intervention needed.</p></div>
+<div class="card" style="background:var(--gbg)"><h3>🛠️ <code>immutable-recover</code></h3><p>CLI tool that pulls a fresh immutable base image from Cloudflare R2 and reinstalls the core OS — preserving <code>/home</code>, containers, and overlay configs. Run it from the recovery shell.</p></div>
+<div class="card" style="background:var(--gbg)"><h3>📦 <code>immutable-update</code></h3><p>Atomic A/B update mechanism. The current system is slot A. Updates download to slot B. Reboot into B. If it fails, reboot back to A. No partial upgrades, no broken states.</p></div>
+</div>
+<p style="margin-top:1rem;color:var(--fg2);font-size:0.85rem">Your documents, downloads, application containers, and <code>/home</code> are stored on separate overlays and are never touched during recovery or updates. Only the immutable base (<code>/usr</code>, <code>/bin</code>, <code>/lib</code>) gets replaced.</p>
+</div>
+
+<div class="feature-box">
+<h2>Quick Start</h2>
+<pre><code>git clone https://github.com/spivanatalie64/immutable
+cd immutable
+# Build instructions in BUILD_PROCESS.md</code></pre>
+<div class="btns" style="margin:1rem 0 0;justify-content:flex-start">
+<a href="https://discord.gg/VHqQkJASw7" class="btn btn-p">Join Discord</a>
+<a href="https://github.com/spivanatalie64/immutable" class="btn btn-s">GitHub</a>
+</div>
+</div>
+
+</div>
+
+<footer>
+<p>AcreetionOS Immutable — <a href="https://acreetionos.org">AcreetionOS</a> but immutable. Because sometimes you just need to not break things.</p>
+<p><a href="https://acreetionos.org">acreetionos.org</a> · <a href="https://discord.gg/VHqQkJASw7">Discord</a> · <a href="https://github.com/spivanatalie64/immutable">GitHub</a></p>
+</footer>
+
+<!-- AIDEN chatbot -->
+<button id="aiden-btn" onclick="toggleAiden()">💬</button>
+<div id="aiden-widget">
+<div class="aw-header">
+<div class="aw-avatar">A</div>
+<div><div class="aw-name">AIDEN</div><div class="aw-sub">AcreetionOS Immutable Assistant</div></div>
+<button class="aw-close" onclick="toggleAiden()">×</button>
+</div>
+<div class="aw-messages" id="aw-msgs">
+<div class="aw-msg bot">i am here to uwu *nuzzles your kernel* 💚 ask me anything about AcreetionOS Immutable or AcreetionOS~</div>
+</div>
+<div class="aw-input-row">
+<input class="aw-input" id="aw-input" placeholder="ask aiden..." autocomplete="off"/>
+<button class="aw-send" onclick="askAiden()">➤</button>
+</div>
+</div>
+<script>
+const AIDEN_ANSWERS={
+  'what is immutable|what is this|about|arttulos':"AcreetionOS Immutable is an immutable spinoff of AcreetionOS. Same Arch base, same Cinnamon desktop, same AUR — but with a read-only root filesystem and atomic updates. You can't break it. That's the whole thing~ uwu",
+  'immutable|read.only|readonly|can.t break|what does immutable mean':"It means /usr is read-only. You can't `rm -rf /` yourself into a corner. Apps live in containers. Updates are atomic A/B swaps. If it fails, it rolls back. You literally cannot break the system. It's AcreetionOS with training wheels that never come off~ 💚",
+  'difference|how is.*different|what makes|why.*immutable':"It's just AcreetionOS with the root filesystem locked. Same Arch, same Cinnamon, same Pamac, same everything. The only difference: you can't modify the system directly. Apps go in containers. Updates are atomic. It's AcreetionOS for people who want to use their computer, not fight with it~",
+  'install|download|try|how to|get.*started':"Clone the repo from github.com/spivanatalie64/immutable and check BUILD_PROCESS.md. It's in active alpha — join the Discord at discord.gg/VHqQkJASw7 for build support and updates~ 🛠️",
+  'container|podman|docker|app':"AcreetionOS Immutable runs apps in containers via Podman (rootless by default). Docker works through a compatibility layer. Your system stays clean — all apps live in their own isolated worlds with their own dependencies~ 📦",
+  'update|upgrade|atomic|rollback':"Updates are whole-image A/B swaps. Your current system is A. The update downloads to B. You reboot into B. If it fails or you don't like it, reboot back to A. No partial upgrades, no dependency hell, no broken systems~ ♻️",
+  'aiden|who are you|uwu':"I'm AIDEN! I'm here to uwu and answer your questions about AcreetionOS Immutable, AcreetionOS, or really anything Linux-related. i believe in you and your operational security~ *gently pats your kernel* 💚",
+  'acreetionos|main project':"AcreetionOS is the parent project — a user-friendly Arch Linux distribution with the Cinnamon desktop. AcreetionOS Immutable is the immutable spinoff. Check out acreetionos.org for the main project~ 🖥️",
+}
+function matchAiden(t){
+  const txt=t.toLowerCase().trim()
+  for(const[key,val]of Object.entries(AIDEN_ANSWERS)){
+    for(const kw of key.split('|')){
+      if(txt.includes(kw)||kw.includes(txt))return val
+    }
+  }
+  return"Sorry, I don't have an answer for that yet~ Try asking about what AcreetionOS Immutable is, how it differs from AcreetionOS, or what immutable means! uwu 💚"
+}
+async function aiAiden(t){
+  try{
+    const res=await fetch('/api/chat',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({messages:[{role:'system',content:'You are AIDEN, a cute helpful assistant for AcreetionOS Immutable (an immutable container OS based on AcreetionOS). Answer concisely but with a playful uwu tone. Keep responses under 3 sentences.'},{role:'user',content:t}],max_tokens:200})
+    })
+    const d=await res.json()
+    if(!res.ok){const e=await res.json();console.error('AIDEN API error:',e);return null}
+    return d.content||d.choices?.[0]?.message?.content||null
+  }catch(e){console.error('AI error:',e);return null}
+}
+function toggleAiden(){
+  const w=document.getElementById('aiden-widget')
+  w.classList.toggle('open')
+  if(w.classList.contains('open'))document.getElementById('aw-input').focus()
+}
+async function askAiden(){
+  const i=document.getElementById('aw-input')
+  const t=i.value.trim()
+  if(!t)return
+  i.value=''
+  const m=document.getElementById('aw-msgs')
+  m.innerHTML+='<div class="aw-msg user">'+t+'</div>'
+  let reply=await aiAiden(t)
+  if(!reply)reply=matchAiden(t)
+  setTimeout(()=>{
+    m.innerHTML+='<div class="aw-msg bot"><div class="aw-sender">AIDEN</div>'+reply+'</div>'
+    m.scrollTop=m.scrollHeight
+  },100)
+}
+document.getElementById('aw-input').addEventListener('keydown',e=>{if(e.key==='Enter')askAiden()})
+// Fetch latest ISOs for download page
+fetch('/api/r2/list').then(r=>r.json()).then(d=>{
+  const isos=d.isos||[]
+  for(const iso of isos){
+    const edition=iso.name.includes('cinnamon')?'cinnamon':'xlibre'
+    const el=document.getElementById('dl-'+edition)
+    const info=document.getElementById('info-'+edition)
+    if(el)el.href='/api/r2/get/'+iso.name
+    if(info){
+      const d=new Date(iso.date)
+      const s=iso.size>1e9?(iso.size/1e9).toFixed(1)+'GB':(iso.size/1e6).toFixed(0)+'MB'
+      info.textContent=d.toLocaleDateString()+' · '+s
+    }
+  }
+}).catch(()=>{})
+</script>
+</body></html>
